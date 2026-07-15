@@ -1,37 +1,16 @@
 import frappe
 
 
-def after_install():
-    create_workspace()
-    create_custom_fields()
-    create_property_doctypes()
-    frappe.db.commit()
-    frappe.publish_realtime("bench_event", {"message": "Abandoned Property Restoration installed successfully"})
-
-
-def after_uninstall():
-    pass
-
-
-def create_workspace():
-    """Create or update the Abandoned Property Restoration workspace."""
-    if not frappe.db.exists("Workspace", "Abandoned Property Restoration"):
-        workspace = frappe.new_doc("Workspace")
-        workspace.name = "Abandoned Property Restoration"
-        workspace.title = "Abandoned Property Restoration"
-        workspace.label = "Abandoned Property Restoration"
-        workspace.icon = "fa fa-home"
-        workspace.module = "restoration"
-        workspace.public = 1
-        workspace.sequence_id = 1
+def execute():
+    """
+    Update the Abandoned Property Restoration workspace to use the new block format.
+    This patch migrates from the old content format to the new blocks format.
+    """
+    if frappe.db.exists("Workspace", "Abandoned Property Restoration"):
+        workspace = frappe.get_doc("Workspace", "Abandoned Property Restoration")
         
-        # Add roles
-        roles = ["System Manager", "Property Administrator", "Restoration Manager", "Government Officer", "View Only User"]
-        for role in roles:
-            workspace.append("roles", {"role": role})
-        
-        # Add blocks
-        workspace.blocks = frappe.json.dumps([
+        # Define new blocks structure
+        blocks = [
             {
                 "id": "masters-header",
                 "type": "header",
@@ -186,14 +165,14 @@ def create_workspace():
                     ]
                 }
             }
-        ])
+        ]
         
-        workspace.insert(ignore_permissions=True)
-
-
-def create_custom_fields():
-    pass
-
-
-def create_property_doctypes():
-    pass
+        # Update workspace with new blocks format
+        workspace.blocks = frappe.json.dumps(blocks)
+        workspace.icon = "fa fa-home"
+        workspace.save(ignore_permissions=True)
+        frappe.db.commit()
+        
+        print("Workspace updated successfully with new block format")
+    else:
+        print("Workspace 'Abandoned Property Restoration' not found")
