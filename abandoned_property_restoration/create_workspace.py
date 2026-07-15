@@ -15,7 +15,7 @@ def create_abandoned_property_workspace():
         frappe.delete_doc("Workspace", "Abandoned Property Restoration", force=True)
         print("Deleted existing workspace")
     
-    # Create workspace with content set directly
+    # Create workspace
     workspace = frappe.new_doc("Workspace")
     workspace.name = "Abandoned Property Restoration"
     workspace.title = "Abandoned Property Restoration"
@@ -30,19 +30,23 @@ def create_abandoned_property_workspace():
     for role in ["System Manager", "Property Administrator", "Restoration Manager", "Government Officer", "View Only User"]:
         workspace.append("roles", {"role": role})
     
-    # Create content JSON - using ERPNext format
-    content = [
-        {"id": "A1B2C3D4E5", "type": "card", "data": {"card_name": "Masters", "col": 4}},
-        {"id": "F6G7H8I9J0", "type": "card", "data": {"card_name": "Transactions", "col": 4}},
-        {"id": "K1L2M3N4O5", "type": "card", "data": {"card_name": "Reports", "col": 4}},
+    # Add number cards (this creates the card blocks)
+    number_cards = [
+        {"label": "Masters", "color": "#4CAF50"},
+        {"label": "Transactions", "color": "#2196F3"},
+        {"label": "Reports", "color": "#FF9800"},
     ]
     
-    # Set content as JSON string
-    workspace.content = json.dumps(content)
+    for card in number_cards:
+        workspace.append("number_cards", {
+            "label": card["label"],
+            "color": card["color"],
+            "doc_view": "List",
+        })
     
     workspace.insert(ignore_permissions=True)
     frappe.db.commit()
     
     print("SUCCESS: Workspace created!")
-    print("Content:", workspace.content)
+    print("Number cards:", len(number_cards))
     print("Please hard refresh your browser (Ctrl+Shift+R)")
