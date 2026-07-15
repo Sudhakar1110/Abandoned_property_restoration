@@ -11,7 +11,7 @@ build/
 # Frappe
 sites/
 node_modules/
-public/
+/public/
 .bench/
 .egg-info/
 
