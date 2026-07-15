@@ -1,4 +1,4 @@
-{
+﻿{
  "actions": [],
  "autoname": "field:sale_id",
  "creation": "2024-01-01 00:00:00.000000",
@@ -195,7 +195,7 @@
  "links": [],
  "modified": "2024-01-01 00:00:00.000000",
  "modified_by": "Administrator",
- "module": "Abandoned Property Restoration",
+ "module": "__init__",
  "name": "Material Sale",
  "owner": "Administrator",
  "permissions": [
