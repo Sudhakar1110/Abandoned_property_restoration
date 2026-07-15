@@ -5,13 +5,7 @@ Run with: bench --site abp.bizaxl.local execute abandoned_property_restoration.c
 """
 
 import frappe
-import secrets
-import string
-
-def generate_id():
-    """Generate a random ID like ERPNext does."""
-    chars = string.ascii_letters + string.digits
-    return ''.join(secrets.choice(chars) for _ in range(10))
+import json
 
 def create_abandoned_property_workspace():
     """Create the Abandoned Property Restoration workspace."""
@@ -21,7 +15,7 @@ def create_abandoned_property_workspace():
         frappe.delete_doc("Workspace", "Abandoned Property Restoration", force=True)
         print("Deleted existing workspace")
     
-    # Create workspace
+    # Create workspace with content set directly
     workspace = frappe.new_doc("Workspace")
     workspace.name = "Abandoned Property Restoration"
     workspace.title = "Abandoned Property Restoration"
@@ -33,27 +27,22 @@ def create_abandoned_property_workspace():
     workspace.is_standard = 1
     
     # Add roles
-    roles = ["System Manager", "Property Administrator", "Restoration Manager", "Government Officer", "View Only User"]
-    for role in roles:
+    for role in ["System Manager", "Property Administrator", "Restoration Manager", "Government Officer", "View Only User"]:
         workspace.append("roles", {"role": role})
+    
+    # Create content JSON - using ERPNext format
+    content = [
+        {"id": "A1B2C3D4E5", "type": "card", "data": {"card_name": "Masters", "col": 4}},
+        {"id": "F6G7H8I9J0", "type": "card", "data": {"card_name": "Transactions", "col": 4}},
+        {"id": "K1L2M3N4O5", "type": "card", "data": {"card_name": "Reports", "col": 4}},
+    ]
+    
+    # Set content as JSON string
+    workspace.content = json.dumps(content)
     
     workspace.insert(ignore_permissions=True)
     frappe.db.commit()
     
-    # Create content JSON with Masters, Transactions, Reports cards
-    content_blocks = [
-        {"id": generate_id(), "type": "card", "data": {"card_name": "Masters", "col": 4}},
-        {"id": generate_id(), "type": "card", "data": {"card_name": "Transactions", "col": 4}},
-        {"id": generate_id(), "type": "card", "data": {"card_name": "Reports", "col": 4}},
-    ]
-    
-    # Update content via SQL
-    frappe.db.sql("""
-        UPDATE `tabWorkspace` 
-        SET content = %s 
-        WHERE name = %s
-    """, (frappe.json.dumps(content_blocks), "Abandoned Property Restoration"))
-    frappe.db.commit()
-    
-    print("SUCCESS: Workspace created with Masters, Transactions, Reports cards!")
+    print("SUCCESS: Workspace created!")
+    print("Content:", workspace.content)
     print("Please hard refresh your browser (Ctrl+Shift+R)")
