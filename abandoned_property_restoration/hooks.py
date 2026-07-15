@@ -85,6 +85,7 @@ fixtures = [
     {"dt": "Custom Script", "filters": [["dt", "like", "%"]]},
     {"dt": "Print Format", "filters": [["module", "=", "restoration"]]},
     {"dt": "Report", "filters": [["module", "=", "restoration"]]},
+    {"dt": "Workspace", "filters": [["name", "=", "Abandoned Property Restoration"]]},
 ]
 
 override_whitelisted_methods = {}
