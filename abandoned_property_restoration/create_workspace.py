@@ -21,7 +21,7 @@ def create_abandoned_property_workspace():
         frappe.delete_doc("Workspace", "Abandoned Property Restoration", force=True)
         print("Deleted existing workspace")
     
-    # First create the workspace without shortcuts
+    # First create the workspace
     workspace = frappe.new_doc("Workspace")
     workspace.name = "Abandoned Property Restoration"
     workspace.title = "Abandoned Property Restoration"
@@ -40,79 +40,66 @@ def create_abandoned_property_workspace():
     workspace.insert(ignore_permissions=True)
     frappe.db.commit()
     
-    # Define shortcuts by category
-    masters_shortcuts = [
-        {"label": "Property Category", "shortcut_name": "Property Category", "url": "/app/property-category", "icon": "fa fa-th", "col": 3},
-        {"label": "Property Type", "shortcut_name": "Property Type", "url": "/app/property-type", "icon": "fa fa-building", "col": 3},
-        {"label": "Restoration Category", "shortcut_name": "Restoration Category", "url": "/app/restoration-category", "icon": "fa fa-refresh", "col": 3},
-        {"label": "Material Category", "shortcut_name": "Material Category", "url": "/app/material-category", "icon": "fa fa-cubes", "col": 3},
-        {"label": "Material Condition", "shortcut_name": "Material Condition", "url": "/app/material-condition", "icon": "fa fa-check-circle", "col": 3},
-        {"label": "Citizen", "shortcut_name": "Citizen", "url": "/app/citizen", "icon": "fa fa-user", "col": 3},
-        {"label": "Contractor", "shortcut_name": "Contractor", "url": "/app/contractor", "icon": "fa fa-briefcase", "col": 3},
-        {"label": "Engineer", "shortcut_name": "Engineer", "url": "/app/engineer", "icon": "fa fa-wrench", "col": 3},
-        {"label": "Inspector", "shortcut_name": "Inspector", "url": "/app/inspector", "icon": "fa fa-search", "col": 3},
-        {"label": "Government Department", "shortcut_name": "Government Department", "url": "/app/government-department", "icon": "fa fa-institution", "col": 3},
-        {"label": "Reward Type", "shortcut_name": "Reward Type", "url": "/app/reward-type", "icon": "fa fa-gift", "col": 3},
+    # Use links child table instead of shortcuts - this organizes by section
+    # Masters links
+    masters_links = [
+        {"label": "Property Category", "link_type": "DocType", "link_to": "Property Category", "icon": "fa fa-th"},
+        {"label": "Property Type", "link_type": "DocType", "link_to": "Property Type", "icon": "fa fa-building"},
+        {"label": "Restoration Category", "link_type": "DocType", "link_to": "Restoration Category", "icon": "fa fa-refresh"},
+        {"label": "Material Category", "link_type": "DocType", "link_to": "Material Category", "icon": "fa fa-cubes"},
+        {"label": "Material Condition", "link_type": "DocType", "link_to": "Material Condition", "icon": "fa fa-check-circle"},
+        {"label": "Citizen", "link_type": "DocType", "link_to": "Citizen", "icon": "fa fa-user"},
+        {"label": "Contractor", "link_type": "DocType", "link_to": "Contractor", "icon": "fa fa-briefcase"},
+        {"label": "Engineer", "link_type": "DocType", "link_to": "Engineer", "icon": "fa fa-wrench"},
+        {"label": "Inspector", "link_type": "DocType", "link_to": "Inspector", "icon": "fa fa-search"},
+        {"label": "Government Department", "link_type": "DocType", "link_to": "Government Department", "icon": "fa fa-institution"},
+        {"label": "Reward Type", "link_type": "DocType", "link_to": "Reward Type", "icon": "fa fa-gift"},
     ]
     
-    transactions_shortcuts = [
-        {"label": "Abandoned Property", "shortcut_name": "Abandoned Property", "url": "/app/abandoned-property", "icon": "fa fa-home", "col": 3},
-        {"label": "Citizen Property Report", "shortcut_name": "Citizen Property Report", "url": "/app/citizen-property-report", "icon": "fa fa-flag", "col": 3},
-        {"label": "Property Inspection", "shortcut_name": "Property Inspection", "url": "/app/property-inspection", "icon": "fa fa-clipboard", "col": 3},
-        {"label": "Restoration Project", "shortcut_name": "Restoration Project", "url": "/app/restoration-project", "icon": "fa fa-tasks", "col": 3},
-        {"label": "Material Salvage", "shortcut_name": "Material Salvage", "url": "/app/material-salvage", "icon": "fa fa-recycle", "col": 3},
-        {"label": "Material Exchange", "shortcut_name": "Material Exchange", "url": "/app/material-exchange", "icon": "fa fa-exchange", "col": 3},
-        {"label": "Material Sale", "shortcut_name": "Material Sale", "url": "/app/material-sale", "icon": "fa fa-shopping-cart", "col": 3},
-        {"label": "Reward Claim", "shortcut_name": "Reward Claim", "url": "/app/reward-claim", "icon": "fa fa-money", "col": 3},
+    transactions_links = [
+        {"label": "Abandoned Property", "link_type": "DocType", "link_to": "Abandoned Property", "icon": "fa fa-home"},
+        {"label": "Citizen Property Report", "link_type": "DocType", "link_to": "Citizen Property Report", "icon": "fa fa-flag"},
+        {"label": "Property Inspection", "link_type": "DocType", "link_to": "Property Inspection", "icon": "fa fa-clipboard"},
+        {"label": "Restoration Project", "link_type": "DocType", "link_to": "Restoration Project", "icon": "fa fa-tasks"},
+        {"label": "Material Salvage", "link_type": "DocType", "link_to": "Material Salvage", "icon": "fa fa-recycle"},
+        {"label": "Material Exchange", "link_type": "DocType", "link_to": "Material Exchange", "icon": "fa fa-exchange"},
+        {"label": "Material Sale", "link_type": "DocType", "link_to": "Material Sale", "icon": "fa fa-shopping-cart"},
+        {"label": "Reward Claim", "link_type": "DocType", "link_to": "Reward Claim", "icon": "fa fa-money"},
     ]
     
-    reports_shortcuts = [
-        {"label": "Abandoned Property Summary", "shortcut_name": "Abandoned Property Summary", "url": "/app/query-report/Abandoned%20Property%20Summary", "icon": "fa fa-file-text", "col": 3},
-        {"label": "Restoration Status Report", "shortcut_name": "Restoration Status Report", "url": "/app/query-report/Restoration%20Status%20Report", "icon": "fa fa-file-text", "col": 3},
-        {"label": "Property Inspection Report", "shortcut_name": "Property Inspection Report", "url": "/app/query-report/Property%20Inspection%20Report", "icon": "fa fa-file-text", "col": 3},
-        {"label": "Material Salvage Report", "shortcut_name": "Material Salvage Report", "url": "/app/query-report/Material%20Salvage%20Report", "icon": "fa fa-file-text", "col": 3},
-        {"label": "Material Exchange Report", "shortcut_name": "Material Exchange Report", "url": "/app/query-report/Material%20Exchange%20Report", "icon": "fa fa-file-text", "col": 3},
-        {"label": "Citizen Reward Report", "shortcut_name": "Citizen Reward Report", "url": "/app/query-report/Citizen%20Reward%20Report", "icon": "fa fa-file-text", "col": 3},
+    reports_links = [
+        {"label": "Abandoned Property Summary", "link_type": "Report", "link_to": "Abandoned Property Summary", "icon": "fa fa-file-text"},
+        {"label": "Restoration Status Report", "link_type": "Report", "link_to": "Restoration Status Report", "icon": "fa fa-file-text"},
+        {"label": "Property Inspection Report", "link_type": "Report", "link_to": "Property Inspection Report", "icon": "fa fa-file-text"},
+        {"label": "Material Salvage Report", "link_type": "Report", "link_to": "Material Salvage Report", "icon": "fa fa-file-text"},
+        {"label": "Material Exchange Report", "link_type": "Report", "link_to": "Material Exchange Report", "icon": "fa fa-file-text"},
+        {"label": "Citizen Reward Report", "link_type": "Report", "link_to": "Citizen Reward Report", "icon": "fa fa-file-text"},
     ]
     
-    all_shortcuts = masters_shortcuts + transactions_shortcuts + reports_shortcuts
-    
-    # Add all shortcuts to child table
-    for sc in all_shortcuts:
-        ws_shortcut = frappe.new_doc("Workspace Shortcut")
-        ws_shortcut.parent = "Abandoned Property Restoration"
-        ws_shortcut.parentfield = "shortcuts"
-        ws_shortcut.parenttype = "Workspace"
-        ws_shortcut.label = sc["label"]
-        ws_shortcut.shortcut_name = sc["shortcut_name"]
-        ws_shortcut.url = sc["url"]
-        ws_shortcut.icon = sc["icon"]
-        ws_shortcut.col = sc["col"]
-        ws_shortcut.insert(ignore_permissions=True)
+    # Add all links to child table
+    all_links = masters_links + transactions_links + reports_links
+    for link in all_links:
+        ws_link = frappe.new_doc("Workspace Link")
+        ws_link.parent = "Abandoned Property Restoration"
+        ws_link.parentfield = "links"
+        ws_link.parenttype = "Workspace"
+        ws_link.label = link["label"]
+        ws_link.link_type = link["link_type"]
+        ws_link.link_to = link["link_to"]
+        ws_link.icon = link["icon"]
+        ws_link.insert(ignore_permissions=True)
     
     frappe.db.commit()
     
-    # Create content JSON with proper section organization
+    # Create content JSON with cards for each section
     content_blocks = [
-        # Masters Section
-        {"id": generate_id(), "type": "header", "data": {"text": "<span class=\"h4\"><b>Masters</b></span>", "col": 12}},
+        # Masters Card
+        {"id": generate_id(), "type": "card", "data": {"card_name": "Masters", "col": 4}},
+        # Transactions Card
+        {"id": generate_id(), "type": "card", "data": {"card_name": "Transactions", "col": 4}},
+        # Reports Card
+        {"id": generate_id(), "type": "card", "data": {"card_name": "Reports", "col": 4}},
     ]
-    for sc in masters_shortcuts:
-        content_blocks.append({"id": generate_id(), "type": "shortcut", "data": {"shortcut_name": sc["shortcut_name"], "col": sc["col"]}})
-    
-    content_blocks.append({"id": generate_id(), "type": "spacer", "data": {"col": 12}})
-    
-    # Transactions Section
-    content_blocks.append({"id": generate_id(), "type": "header", "data": {"text": "<span class=\"h4\"><b>Transactions</b></span>", "col": 12}})
-    for sc in transactions_shortcuts:
-        content_blocks.append({"id": generate_id(), "type": "shortcut", "data": {"shortcut_name": sc["shortcut_name"], "col": sc["col"]}})
-    
-    content_blocks.append({"id": generate_id(), "type": "spacer", "data": {"col": 12}})
-    
-    # Reports Section
-    content_blocks.append({"id": generate_id(), "type": "header", "data": {"text": "<span class=\"h4\"><b>Reports</b></span>", "col": 12}})
-    for sc in reports_shortcuts:
-        content_blocks.append({"id": generate_id(), "type": "shortcut", "data": {"shortcut_name": sc["shortcut_name"], "col": sc["col"]}})
     
     # Update content via SQL
     frappe.db.sql("""
@@ -123,7 +110,7 @@ def create_abandoned_property_workspace():
     frappe.db.commit()
     
     print("SUCCESS: Workspace created!")
-    print("- Masters: {0} shortcuts".format(len(masters_shortcuts)))
-    print("- Transactions: {0} shortcuts".format(len(transactions_shortcuts)))
-    print("- Reports: {0} shortcuts".format(len(reports_shortcuts)))
+    print("- Masters: {0} links".format(len(masters_links)))
+    print("- Transactions: {0} links".format(len(transactions_links)))
+    print("- Reports: {0} links".format(len(reports_links)))
     print("Please hard refresh your browser (Ctrl+Shift+R)")
