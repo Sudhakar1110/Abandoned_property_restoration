@@ -37,71 +37,39 @@ def create_abandoned_property_workspace():
     for role in ["System Manager", "Property Administrator", "Restoration Manager", "Government Officer", "View Only User"]:
         workspace.append("roles", {"role": role})
     
-    # Add links to the links child table
-    links = [
-        {"name": "Property Category", "doctype": "Property Category", "url": "/app/property-category"},
-        {"name": "Property Type", "doctype": "Property Type", "url": "/app/property-type"},
-        {"name": "Restoration Category", "doctype": "Restoration Category", "url": "/app/restoration-category"},
-        {"name": "Material Category", "doctype": "Material Category", "url": "/app/material-category"},
-        {"name": "Material Condition", "doctype": "Material Condition", "url": "/app/material-condition"},
-        {"name": "Citizen", "doctype": "Citizen", "url": "/app/citizen"},
-        {"name": "Contractor", "doctype": "Contractor", "url": "/app/contractor"},
-        {"name": "Engineer", "doctype": "Engineer", "url": "/app/engineer"},
-        {"name": "Inspector", "doctype": "Inspector", "url": "/app/inspector"},
-        {"name": "Government Department", "doctype": "Government Department", "url": "/app/government-department"},
-        {"name": "Reward Type", "doctype": "Reward Type", "url": "/app/reward-type"},
-        {"name": "Abandoned Property", "doctype": "Abandoned Property", "url": "/app/abandoned-property"},
-        {"name": "Citizen Property Report", "doctype": "Citizen Property Report", "url": "/app/citizen-property-report"},
-        {"name": "Property Inspection", "doctype": "Property Inspection", "url": "/app/property-inspection"},
-        {"name": "Restoration Project", "doctype": "Restoration Project", "url": "/app/restoration-project"},
-        {"name": "Material Salvage", "doctype": "Material Salvage", "url": "/app/material-salvage"},
-        {"name": "Material Exchange", "doctype": "Material Exchange", "url": "/app/material-exchange"},
-        {"name": "Material Sale", "doctype": "Material Sale", "url": "/app/material-sale"},
-        {"name": "Reward Claim", "doctype": "Reward Claim", "url": "/app/reward-claim"},
+    # Add shortcuts to the shortcuts child table
+    shortcuts = [
+        {"label": "Property Category", "shortcut_name": "Property Category", "url": "/app/property-category"},
+        {"label": "Property Type", "shortcut_name": "Property Type", "url": "/app/property-type"},
+        {"label": "Restoration Category", "shortcut_name": "Restoration Category", "url": "/app/restoration-category"},
+        {"label": "Material Category", "shortcut_name": "Material Category", "url": "/app/material-category"},
+        {"label": "Material Condition", "shortcut_name": "Material Condition", "url": "/app/material-condition"},
+        {"label": "Citizen", "shortcut_name": "Citizen", "url": "/app/citizen"},
+        {"label": "Contractor", "shortcut_name": "Contractor", "url": "/app/contractor"},
+        {"label": "Engineer", "shortcut_name": "Engineer", "url": "/app/engineer"},
+        {"label": "Inspector", "shortcut_name": "Inspector", "url": "/app/inspector"},
+        {"label": "Government Department", "shortcut_name": "Government Department", "url": "/app/government-department"},
+        {"label": "Reward Type", "shortcut_name": "Reward Type", "url": "/app/reward-type"},
+        {"label": "Abandoned Property", "shortcut_name": "Abandoned Property", "url": "/app/abandoned-property"},
+        {"label": "Citizen Property Report", "shortcut_name": "Citizen Property Report", "url": "/app/citizen-property-report"},
+        {"label": "Property Inspection", "shortcut_name": "Property Inspection", "url": "/app/property-inspection"},
+        {"label": "Restoration Project", "shortcut_name": "Restoration Project", "url": "/app/restoration-project"},
+        {"label": "Material Salvage", "shortcut_name": "Material Salvage", "url": "/app/material-salvage"},
+        {"label": "Material Exchange", "shortcut_name": "Material Exchange", "url": "/app/material-exchange"},
+        {"label": "Material Sale", "shortcut_name": "Material Sale", "url": "/app/material-sale"},
+        {"label": "Reward Claim", "shortcut_name": "Reward Claim", "url": "/app/reward-claim"},
     ]
     
-    for link in links:
-        workspace.append("links", {
-            "label": link["name"],
-            "link_type": "DocType",
-            "link_to": link["doctype"],
-            "url": link["url"],
+    for sc in shortcuts:
+        workspace.append("shortcuts", {
+            "label": sc["label"],
+            "shortcut_name": sc["shortcut_name"],
+            "url": sc["url"],
             "col": 3
         })
     
     workspace.insert(ignore_permissions=True)
     frappe.db.commit()
     
-    # Create content JSON with shortcut type (this is what Frappe v15 uses)
-    content = json.dumps([
-        {"id": generate_id(), "type": "header", "data": {"text": "<span class=\"h4\"><b>Masters</b></span>", "col": 12}},
-        {"id": generate_id(), "type": "shortcut", "data": {"shortcut_name": "Property Category", "url": "/app/property-category", "col": 3}},
-        {"id": generate_id(), "type": "shortcut", "data": {"shortcut_name": "Property Type", "url": "/app/property-type", "col": 3}},
-        {"id": generate_id(), "type": "shortcut", "data": {"shortcut_name": "Restoration Category", "url": "/app/restoration-category", "col": 3}},
-        {"id": generate_id(), "type": "shortcut", "data": {"shortcut_name": "Material Category", "url": "/app/material-category", "col": 3}},
-        {"id": generate_id(), "type": "shortcut", "data": {"shortcut_name": "Material Condition", "url": "/app/material-condition", "col": 3}},
-        {"id": generate_id(), "type": "shortcut", "data": {"shortcut_name": "Citizen", "url": "/app/citizen", "col": 3}},
-        {"id": generate_id(), "type": "shortcut", "data": {"shortcut_name": "Contractor", "url": "/app/contractor", "col": 3}},
-        {"id": generate_id(), "type": "shortcut", "data": {"shortcut_name": "Engineer", "url": "/app/engineer", "col": 3}},
-        {"id": generate_id(), "type": "shortcut", "data": {"shortcut_name": "Inspector", "url": "/app/inspector", "col": 3}},
-        {"id": generate_id(), "type": "shortcut", "data": {"shortcut_name": "Government Department", "url": "/app/government-department", "col": 3}},
-        {"id": generate_id(), "type": "shortcut", "data": {"shortcut_name": "Reward Type", "url": "/app/reward-type", "col": 3}},
-        {"id": generate_id(), "type": "spacer", "data": {"col": 12}},
-        {"id": generate_id(), "type": "header", "data": {"text": "<span class=\"h4\"><b>Transactions</b></span>", "col": 12}},
-        {"id": generate_id(), "type": "shortcut", "data": {"shortcut_name": "Abandoned Property", "url": "/app/abandoned-property", "col": 3}},
-        {"id": generate_id(), "type": "shortcut", "data": {"shortcut_name": "Citizen Property Report", "url": "/app/citizen-property-report", "col": 3}},
-        {"id": generate_id(), "type": "shortcut", "data": {"shortcut_name": "Property Inspection", "url": "/app/property-inspection", "col": 3}},
-        {"id": generate_id(), "type": "shortcut", "data": {"shortcut_name": "Restoration Project", "url": "/app/restoration-project", "col": 3}},
-        {"id": generate_id(), "type": "shortcut", "data": {"shortcut_name": "Material Salvage", "url": "/app/material-salvage", "col": 3}},
-        {"id": generate_id(), "type": "shortcut", "data": {"shortcut_name": "Material Exchange", "url": "/app/material-exchange", "col": 3}},
-        {"id": generate_id(), "type": "shortcut", "data": {"shortcut_name": "Material Sale", "url": "/app/material-sale", "col": 3}},
-        {"id": generate_id(), "type": "shortcut", "data": {"shortcut_name": "Reward Claim", "url": "/app/reward-claim", "col": 3}},
-        {"id": generate_id(), "type": "spacer", "data": {"col": 12}},
-        {"id": generate_id(), "type": "header", "data": {"text": "<span class=\"h4\"><b>Reports</b></span>", "col": 12}},
-    ])
-    
-    frappe.db.sql("UPDATE `tabWorkspace` SET content = %s WHERE name = %s", (content, "Abandoned Property Restoration"))
-    frappe.db.commit()
-    
-    print("SUCCESS: Workspace created with {0} links!".format(len(links)))
+    print("SUCCESS: Workspace created with {0} shortcuts!".format(len(shortcuts)))
     print("Please hard refresh your browser (Ctrl+Shift+R)")
