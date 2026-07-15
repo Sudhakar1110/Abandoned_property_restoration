@@ -5,7 +5,8 @@
   "owner": "Administrator",
   "modified_by": "Administrator",
   "idx": 1,
-  "is_active": 1
+  "is_active": 1,
+  "ownership_type_name": "Private"
  },
  {
   "doctype": "Ownership Type",
@@ -13,7 +14,8 @@
   "owner": "Administrator",
   "modified_by": "Administrator",
   "idx": 2,
-  "is_active": 1
+  "is_active": 1,
+  "ownership_type_name": "Government"
  },
  {
   "doctype": "Ownership Type",
@@ -21,7 +23,8 @@
   "owner": "Administrator",
   "modified_by": "Administrator",
   "idx": 3,
-  "is_active": 1
+  "is_active": 1,
+  "ownership_type_name": "Religious Institution"
  },
  {
   "doctype": "Ownership Type",
@@ -29,7 +32,8 @@
   "owner": "Administrator",
   "modified_by": "Administrator",
   "idx": 4,
-  "is_active": 1
+  "is_active": 1,
+  "ownership_type_name": "Trust"
  },
  {
   "doctype": "Ownership Type",
@@ -37,6 +41,7 @@
   "owner": "Administrator",
   "modified_by": "Administrator",
   "idx": 5,
-  "is_active": 1
+  "is_active": 1,
+  "ownership_type_name": "Corporate"
  }
 ]

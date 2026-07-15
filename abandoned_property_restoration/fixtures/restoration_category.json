@@ -5,7 +5,8 @@
   "owner": "Administrator",
   "modified_by": "Administrator",
   "idx": 1,
-  "is_active": 1
+  "is_active": 1,
+  "category_name": "Structural"
  },
  {
   "doctype": "Restoration Category",
@@ -13,7 +14,8 @@
   "owner": "Administrator",
   "modified_by": "Administrator",
   "idx": 2,
-  "is_active": 1
+  "is_active": 1,
+  "category_name": "Electrical"
  },
  {
   "doctype": "Restoration Category",
@@ -21,7 +23,8 @@
   "owner": "Administrator",
   "modified_by": "Administrator",
   "idx": 3,
-  "is_active": 1
+  "is_active": 1,
+  "category_name": "Plumbing"
  },
  {
   "doctype": "Restoration Category",
@@ -29,7 +32,8 @@
   "owner": "Administrator",
   "modified_by": "Administrator",
   "idx": 4,
-  "is_active": 1
+  "is_active": 1,
+  "category_name": "Architectural"
  },
  {
   "doctype": "Restoration Category",
@@ -37,6 +41,7 @@
   "owner": "Administrator",
   "modified_by": "Administrator",
   "idx": 5,
-  "is_active": 1
+  "is_active": 1,
+  "category_name": "Complete"
  }
 ]

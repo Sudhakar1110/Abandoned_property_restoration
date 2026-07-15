@@ -5,7 +5,8 @@
   "owner": "Administrator",
   "modified_by": "Administrator",
   "idx": 1,
-  "is_active": 1
+  "is_active": 1,
+  "category_name": "Restoration Progress"
  },
  {
   "doctype": "Time Capsule Category",
@@ -13,7 +14,8 @@
   "owner": "Administrator",
   "modified_by": "Administrator",
   "idx": 2,
-  "is_active": 1
+  "is_active": 1,
+  "category_name": "Community Memory"
  },
  {
   "doctype": "Time Capsule Category",
@@ -21,7 +23,8 @@
   "owner": "Administrator",
   "modified_by": "Administrator",
   "idx": 3,
-  "is_active": 1
+  "is_active": 1,
+  "category_name": "Historical Archive"
  },
  {
   "doctype": "Time Capsule Category",
@@ -29,6 +32,7 @@
   "owner": "Administrator",
   "modified_by": "Administrator",
   "idx": 4,
-  "is_active": 1
+  "is_active": 1,
+  "category_name": "Project Documentation"
  }
 ]

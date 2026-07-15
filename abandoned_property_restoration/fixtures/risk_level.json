@@ -6,7 +6,8 @@
   "modified_by": "Administrator",
   "idx": 1,
   "risk_score": 1,
-  "is_active": 1
+  "is_active": 1,
+  "risk_level_name": "Low"
  },
  {
   "doctype": "Risk Level",
@@ -15,7 +16,8 @@
   "modified_by": "Administrator",
   "idx": 2,
   "risk_score": 2,
-  "is_active": 1
+  "is_active": 1,
+  "risk_level_name": "Medium"
  },
  {
   "doctype": "Risk Level",
@@ -24,7 +26,8 @@
   "modified_by": "Administrator",
   "idx": 3,
   "risk_score": 3,
-  "is_active": 1
+  "is_active": 1,
+  "risk_level_name": "High"
  },
  {
   "doctype": "Risk Level",
@@ -33,6 +36,7 @@
   "modified_by": "Administrator",
   "idx": 4,
   "risk_score": 4,
-  "is_active": 1
+  "is_active": 1,
+  "risk_level_name": "Critical"
  }
 ]

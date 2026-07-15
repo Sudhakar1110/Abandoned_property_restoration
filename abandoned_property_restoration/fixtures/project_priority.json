@@ -6,7 +6,8 @@
   "modified_by": "Administrator",
   "idx": 1,
   "priority_order": 1,
-  "is_active": 1
+  "is_active": 1,
+  "priority_name": "Low"
  },
  {
   "doctype": "Project Priority",
@@ -15,7 +16,8 @@
   "modified_by": "Administrator",
   "idx": 2,
   "priority_order": 2,
-  "is_active": 1
+  "is_active": 1,
+  "priority_name": "Medium"
  },
  {
   "doctype": "Project Priority",
@@ -24,7 +26,8 @@
   "modified_by": "Administrator",
   "idx": 3,
   "priority_order": 3,
-  "is_active": 1
+  "is_active": 1,
+  "priority_name": "High"
  },
  {
   "doctype": "Project Priority",
@@ -33,6 +36,7 @@
   "modified_by": "Administrator",
   "idx": 4,
   "priority_order": 4,
-  "is_active": 1
+  "is_active": 1,
+  "priority_name": "Urgent"
  }
 ]

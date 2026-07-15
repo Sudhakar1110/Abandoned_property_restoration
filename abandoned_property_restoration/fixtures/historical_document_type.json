@@ -5,7 +5,8 @@
   "owner": "Administrator",
   "modified_by": "Administrator",
   "idx": 1,
-  "is_active": 1
+  "is_active": 1,
+  "document_type_name": "Old Title Deed"
  },
  {
   "doctype": "Historical Document Type",
@@ -13,7 +14,8 @@
   "owner": "Administrator",
   "modified_by": "Administrator",
   "idx": 2,
-  "is_active": 1
+  "is_active": 1,
+  "document_type_name": "Historical Map"
  },
  {
   "doctype": "Historical Document Type",
@@ -21,7 +23,8 @@
   "owner": "Administrator",
   "modified_by": "Administrator",
   "idx": 3,
-  "is_active": 1
+  "is_active": 1,
+  "document_type_name": "Land Records"
  },
  {
   "doctype": "Historical Document Type",
@@ -29,7 +32,8 @@
   "owner": "Administrator",
   "modified_by": "Administrator",
   "idx": 4,
-  "is_active": 1
+  "is_active": 1,
+  "document_type_name": "Photographs"
  },
  {
   "doctype": "Historical Document Type",
@@ -37,6 +41,7 @@
   "owner": "Administrator",
   "modified_by": "Administrator",
   "idx": 5,
-  "is_active": 1
+  "is_active": 1,
+  "document_type_name": "Correspondence"
  }
 ]

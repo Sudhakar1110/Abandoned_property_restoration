@@ -5,7 +5,8 @@
   "owner": "Administrator",
   "modified_by": "Administrator",
   "idx": 1,
-  "is_active": 1
+  "is_active": 1,
+  "property_type_name": "House"
  },
  {
   "doctype": "Property Type",
@@ -13,7 +14,8 @@
   "owner": "Administrator",
   "modified_by": "Administrator",
   "idx": 2,
-  "is_active": 1
+  "is_active": 1,
+  "property_type_name": "Apartment"
  },
  {
   "doctype": "Property Type",
@@ -21,7 +23,8 @@
   "owner": "Administrator",
   "modified_by": "Administrator",
   "idx": 3,
-  "is_active": 1
+  "is_active": 1,
+  "property_type_name": "Villa"
  },
  {
   "doctype": "Property Type",
@@ -29,7 +32,8 @@
   "owner": "Administrator",
   "modified_by": "Administrator",
   "idx": 4,
-  "is_active": 1
+  "is_active": 1,
+  "property_type_name": "Shop"
  },
  {
   "doctype": "Property Type",
@@ -37,7 +41,8 @@
   "owner": "Administrator",
   "modified_by": "Administrator",
   "idx": 5,
-  "is_active": 1
+  "is_active": 1,
+  "property_type_name": "Office"
  },
  {
   "doctype": "Property Type",
@@ -45,7 +50,8 @@
   "owner": "Administrator",
   "modified_by": "Administrator",
   "idx": 6,
-  "is_active": 1
+  "is_active": 1,
+  "property_type_name": "Warehouse"
  },
  {
   "doctype": "Property Type",
@@ -53,7 +59,8 @@
   "owner": "Administrator",
   "modified_by": "Administrator",
   "idx": 7,
-  "is_active": 1
+  "is_active": 1,
+  "property_type_name": "Factory"
  },
  {
   "doctype": "Property Type",
@@ -61,6 +68,7 @@
   "owner": "Administrator",
   "modified_by": "Administrator",
   "idx": 8,
-  "is_active": 1
+  "is_active": 1,
+  "property_type_name": "Land"
  }
 ]

@@ -5,7 +5,8 @@
   "owner": "Administrator",
   "modified_by": "Administrator",
   "idx": 1,
-  "is_active": 1
+  "is_active": 1,
+  "status_name": "Not Started"
  },
  {
   "doctype": "Restoration Status",
@@ -13,7 +14,8 @@
   "owner": "Administrator",
   "modified_by": "Administrator",
   "idx": 2,
-  "is_active": 1
+  "is_active": 1,
+  "status_name": "Planning"
  },
  {
   "doctype": "Restoration Status",
@@ -21,7 +23,8 @@
   "owner": "Administrator",
   "modified_by": "Administrator",
   "idx": 3,
-  "is_active": 1
+  "is_active": 1,
+  "status_name": "In Progress"
  },
  {
   "doctype": "Restoration Status",
@@ -29,7 +32,8 @@
   "owner": "Administrator",
   "modified_by": "Administrator",
   "idx": 4,
-  "is_active": 1
+  "is_active": 1,
+  "status_name": "On Hold"
  },
  {
   "doctype": "Restoration Status",
@@ -37,6 +41,7 @@
   "owner": "Administrator",
   "modified_by": "Administrator",
   "idx": 5,
-  "is_active": 1
+  "is_active": 1,
+  "status_name": "Completed"
  }
 ]
