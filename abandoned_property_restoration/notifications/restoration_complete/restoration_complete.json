@@ -1,0 +1,32 @@
+{
+ "creation": "2024-01-01 00:00:00.000000",
+ "docstatus": 0,
+ "doctype": "Notification",
+ "enabled": 1,
+ "event": "Value Change",
+ "fieldname": "project_status",
+ "filter_meta": 1,
+ "is_standard": 1,
+ "is_training_notification": 0,
+ "message": "Restoration project {{ doc.name }} has been completed.",
+ "modified": "2024-01-01 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Abandoned Property Restoration",
+ "name": "Restoration Complete",
+ "owner": "Administrator",
+ "parent": "Restoration Project",
+ "parentfield": "notifications",
+ "parenttype": "DocType",
+ "recipients": [
+  {
+   "receiver_by_role": "Property Administrator"
+  },
+  {
+   "receiver_by_role": "Restoration Manager"
+  }
+ ],
+ "sendAlertForDocument": 0,
+ "send_system_notification": 0,
+ "send_to_all_assignees": 0,
+ "subject": "Restoration Project Completed"
+}

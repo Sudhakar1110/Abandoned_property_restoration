@@ -1,0 +1,243 @@
+{
+ "actions": [],
+ "autoname": "field:sale_id",
+ "creation": "2024-01-01 00:00:00.000000",
+ "docstatus": 0,
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "sale_id",
+  "material",
+  "material_name",
+  "source_project",
+  "sale_status",
+  "buyer_section",
+  "buyer_name",
+  "buyer_contact",
+  "buyer_email",
+  "material_details_section",
+  "quantity",
+  "unit",
+  "unit_price",
+  "total_amount",
+  "sale_details_section",
+  "sale_date",
+  "payment_method",
+  "payment_status",
+  "invoice_number",
+  "delivery_section",
+  "delivery_date",
+  "delivery_address",
+  "transport_cost",
+  "additional_charges",
+  "notes",
+  "remarks"
+ ],
+ "fields": [
+  {
+   "fieldname": "sale_id",
+   "fieldtype": "Data",
+   "label": "Sale ID",
+   "reqd": 1,
+   "unique": 1
+  },
+  {
+   "fieldname": "material",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Material",
+   "options": "Material Salvage",
+   "reqd": 1
+  },
+  {
+   "fieldname": "material_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Material Name",
+   "read_only": 1
+  },
+  {
+   "fieldname": "source_project",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Source Project",
+   "options": "Restoration Project"
+  },
+  {
+   "fieldname": "sale_status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Sale Status",
+   "options": "\nPending\nConfirmed\nIn Delivery\nCompleted\nCancelled",
+   "reqd": 1
+  },
+  {
+   "fieldname": "buyer_section",
+   "fieldtype": "Section Break",
+   "label": "Buyer Information"
+  },
+  {
+   "fieldname": "buyer_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Buyer Name",
+   "reqd": 1
+  },
+  {
+   "fieldname": "buyer_contact",
+   "fieldtype": "Data",
+   "label": "Buyer Contact"
+  },
+  {
+   "fieldname": "buyer_email",
+   "fieldtype": "Data",
+   "label": "Buyer Email",
+   "options": "Email"
+  },
+  {
+   "fieldname": "material_details_section",
+   "fieldtype": "Section Break",
+   "label": "Material Details"
+  },
+  {
+   "fieldname": "quantity",
+   "fieldtype": "Float",
+   "in_list_view": 1,
+   "label": "Quantity",
+   "reqd": 1
+  },
+  {
+   "fieldname": "unit",
+   "fieldtype": "Select",
+   "label": "Unit",
+   "options": "\nPieces\nKg\nSq Ft\nLinear Ft\nSets"
+  },
+  {
+   "fieldname": "unit_price",
+   "fieldtype": "Currency",
+   "label": "Unit Price",
+   "reqd": 1
+  },
+  {
+   "fieldname": "total_amount",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Total Amount",
+   "read_only": 1
+  },
+  {
+   "fieldname": "sale_details_section",
+   "fieldtype": "Section Break",
+   "label": "Sale Details"
+  },
+  {
+   "fieldname": "sale_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Sale Date",
+   "reqd": 1
+  },
+  {
+   "fieldname": "payment_method",
+   "fieldtype": "Select",
+   "label": "Payment Method",
+   "options": "\nCash\nBank Transfer\nCheck\nOnline Payment"
+  },
+  {
+   "fieldname": "payment_status",
+   "fieldtype": "Select",
+   "label": "Payment Status",
+   "options": "\nPending\nPartial\nCompleted"
+  },
+  {
+   "fieldname": "invoice_number",
+   "fieldtype": "Data",
+   "label": "Invoice Number"
+  },
+  {
+   "fieldname": "delivery_section",
+   "fieldtype": "Section Break",
+   "label": "Delivery"
+  },
+  {
+   "fieldname": "delivery_date",
+   "fieldtype": "Date",
+   "label": "Delivery Date"
+  },
+  {
+   "fieldname": "delivery_address",
+   "fieldtype": "Small Text",
+   "label": "Delivery Address"
+  },
+  {
+   "fieldname": "transport_cost",
+   "fieldtype": "Currency",
+   "label": "Transport Cost"
+  },
+  {
+   "fieldname": "additional_charges",
+   "fieldtype": "Currency",
+   "label": "Additional Charges"
+  },
+  {
+   "fieldname": "notes",
+   "fieldtype": "Small Text",
+   "label": "Notes"
+  },
+  {
+   "fieldname": "remarks",
+   "fieldtype": "Small Text",
+   "label": "Remarks"
+  }
+ ],
+ "istable": 0,
+ "links": [],
+ "modified": "2024-01-01 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Abandoned Property Restoration",
+ "name": "Material Sale",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Property Administrator",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Restoration Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1
+}

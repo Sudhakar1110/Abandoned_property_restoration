@@ -1,0 +1,353 @@
+{
+ "actions": [],
+ "autoname": "field:property_name",
+ "creation": "2024-01-01 00:00:00.000000",
+ "docstatus": 0,
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "naming_series",
+  "property_name",
+  "property_type",
+  "property_category",
+  "address_section",
+  "address",
+  "district",
+  "city",
+  "state",
+  "country",
+  "postal_code",
+  "location_details",
+  "latitude",
+  "longitude",
+  "property_details",
+  "property_status",
+  "ownership_type",
+  "owner_name",
+  "owner_contact",
+  "risk_level",
+  "restoration_status",
+  "restoration_category",
+  "project_priority",
+  "acquisition_date",
+  "market_value",
+  "restoration_section",
+  "estimated_restoration_cost",
+  "actual_restoration_cost",
+  "restoration_start_date",
+  "restoration_end_date",
+  "restoration_manager",
+  "contractor",
+  "engineer",
+  "more_information",
+  "description",
+  "remarks",
+  "images_section",
+  "before_images",
+  "after_images",
+  "attachments_section",
+  "documents"
+ ],
+ "fields": [
+  {
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "label": "Series",
+   "options": "APR-.YYYY.-",
+   "reqd": 1,
+   "set_only_once": 1
+  },
+  {
+   "fieldname": "property_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Property Name",
+   "length": 200,
+   "reqd": 1
+  },
+  {
+   "fieldname": "property_type",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Property Type",
+   "options": "Property Type"
+  },
+  {
+   "fieldname": "property_category",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Property Category",
+   "options": "Property Category"
+  },
+  {
+   "fieldname": "address_section",
+   "fieldtype": "Section Break",
+   "label": "Address"
+  },
+  {
+   "fieldname": "address",
+   "fieldtype": "Small Text",
+   "label": "Address"
+  },
+  {
+   "fieldname": "district",
+   "fieldtype": "Link",
+   "label": "District",
+   "options": "District"
+  },
+  {
+   "fieldname": "city",
+   "fieldtype": "Link",
+   "label": "City",
+   "options": "City"
+  },
+  {
+   "fieldname": "state",
+   "fieldtype": "Link",
+   "label": "State",
+   "options": "State"
+  },
+  {
+   "fieldname": "country",
+   "fieldtype": "Link",
+   "label": "Country",
+   "options": "Country"
+  },
+  {
+   "fieldname": "postal_code",
+   "fieldtype": "Data",
+   "label": "Postal Code"
+  },
+  {
+   "fieldname": "location_details",
+   "fieldtype": "Section Break",
+   "label": "Location Details"
+  },
+  {
+   "fieldname": "latitude",
+   "fieldtype": "Float",
+   "label": "Latitude"
+  },
+  {
+   "fieldname": "longitude",
+   "fieldtype": "Float",
+   "label": "Longitude"
+  },
+  {
+   "fieldname": "property_details",
+   "fieldtype": "Section Break",
+   "label": "Property Details"
+  },
+  {
+   "fieldname": "property_status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Property Status",
+   "options": "\nAbandoned\nVacant\nOccupied\nUnder Restoration\nRestored\nDemolished",
+   "reqd": 1
+  },
+  {
+   "fieldname": "ownership_type",
+   "fieldtype": "Link",
+   "label": "Ownership Type",
+   "options": "Ownership Type"
+  },
+  {
+   "fieldname": "owner_name",
+   "fieldtype": "Data",
+   "label": "Owner Name"
+  },
+  {
+   "fieldname": "owner_contact",
+   "fieldtype": "Data",
+   "label": "Owner Contact"
+  },
+  {
+   "fieldname": "risk_level",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Risk Level",
+   "options": "Risk Level"
+  },
+  {
+   "fieldname": "restoration_status",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Restoration Status",
+   "options": "Restoration Status"
+  },
+  {
+   "fieldname": "restoration_category",
+   "fieldtype": "Link",
+   "label": "Restoration Category",
+   "options": "Restoration Category"
+  },
+  {
+   "fieldname": "project_priority",
+   "fieldtype": "Link",
+   "label": "Project Priority",
+   "options": "Project Priority"
+  },
+  {
+   "fieldname": "acquisition_date",
+   "fieldtype": "Date",
+   "label": "Acquisition Date"
+  },
+  {
+   "fieldname": "market_value",
+   "fieldtype": "Currency",
+   "label": "Market Value"
+  },
+  {
+   "fieldname": "restoration_section",
+   "fieldtype": "Section Break",
+   "label": "Restoration Details"
+  },
+  {
+   "fieldname": "estimated_restoration_cost",
+   "fieldtype": "Currency",
+   "label": "Estimated Restoration Cost"
+  },
+  {
+   "fieldname": "actual_restoration_cost",
+   "fieldtype": "Currency",
+   "label": "Actual Restoration Cost"
+  },
+  {
+   "fieldname": "restoration_start_date",
+   "fieldtype": "Date",
+   "label": "Restoration Start Date"
+  },
+  {
+   "fieldname": "restoration_end_date",
+   "fieldtype": "Date",
+   "label": "Restoration End Date"
+  },
+  {
+   "fieldname": "restoration_manager",
+   "fieldtype": "Data",
+   "label": "Restoration Manager"
+  },
+  {
+   "fieldname": "contractor",
+   "fieldtype": "Link",
+   "label": "Contractor",
+   "options": "Contractor"
+  },
+  {
+   "fieldname": "engineer",
+   "fieldtype": "Link",
+   "label": "Engineer",
+   "options": "Engineer"
+  },
+  {
+   "fieldname": "more_information",
+   "fieldtype": "Section Break",
+   "label": "More Information"
+  },
+  {
+   "fieldname": "description",
+   "fieldtype": "Text Editor",
+   "label": "Description"
+  },
+  {
+   "fieldname": "remarks",
+   "fieldtype": "Small Text",
+   "label": "Remarks"
+  },
+  {
+   "fieldname": "images_section",
+   "fieldtype": "Section Break",
+   "label": "Images"
+  },
+  {
+   "fieldname": "before_images",
+   "fieldtype": "Attach Image",
+   "label": "Before Images",
+   "options": "Image"
+  },
+  {
+   "fieldname": "after_images",
+   "fieldtype": "Attach Image",
+   "label": "After Images",
+   "options": "Image"
+  },
+  {
+   "fieldname": "attachments_section",
+   "fieldtype": "Section Break",
+   "label": "Attachments"
+  },
+  {
+   "fieldname": "documents",
+   "fieldtype": "Attach",
+   "label": "Documents"
+  }
+ ],
+ "istable": 0,
+ "links": [],
+ "modified": "2024-01-01 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Abandoned Property Restoration",
+ "name": "Abandoned Property",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Property Administrator",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Restoration Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Government Officer",
+   "share": 1
+  },
+  {
+   "email": 1,
+   "print": 1,
+   "read": 1,
+   "role": "View Only User",
+   "share": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1
+}

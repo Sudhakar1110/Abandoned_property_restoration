@@ -1,0 +1,58 @@
+[
+ {
+  "name": "House",
+  "owner": "Administrator",
+  "modified_by": "Administrator",
+  "idx": 1,
+  "is_active": 1
+ },
+ {
+  "name": "Apartment",
+  "owner": "Administrator",
+  "modified_by": "Administrator",
+  "idx": 2,
+  "is_active": 1
+ },
+ {
+  "name": "Villa",
+  "owner": "Administrator",
+  "modified_by": "Administrator",
+  "idx": 3,
+  "is_active": 1
+ },
+ {
+  "name": "Shop",
+  "owner": "Administrator",
+  "modified_by": "Administrator",
+  "idx": 4,
+  "is_active": 1
+ },
+ {
+  "name": "Office",
+  "owner": "Administrator",
+  "modified_by": "Administrator",
+  "idx": 5,
+  "is_active": 1
+ },
+ {
+  "name": "Warehouse",
+  "owner": "Administrator",
+  "modified_by": "Administrator",
+  "idx": 6,
+  "is_active": 1
+ },
+ {
+  "name": "Factory",
+  "owner": "Administrator",
+  "modified_by": "Administrator",
+  "idx": 7,
+  "is_active": 1
+ },
+ {
+  "name": "Land",
+  "owner": "Administrator",
+  "modified_by": "Administrator",
+  "idx": 8,
+  "is_active": 1
+ }
+]

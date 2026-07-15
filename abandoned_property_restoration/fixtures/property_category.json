@@ -1,0 +1,37 @@
+[
+ {
+  "name": "Residential",
+  "owner": "Administrator",
+  "modified_by": "Administrator",
+  "idx": 1,
+  "is_active": 1
+ },
+ {
+  "name": "Commercial",
+  "owner": "Administrator",
+  "modified_by": "Administrator",
+  "idx": 2,
+  "is_active": 1
+ },
+ {
+  "name": "Industrial",
+  "owner": "Administrator",
+  "modified_by": "Administrator",
+  "idx": 3,
+  "is_active": 1
+ },
+ {
+  "name": "Agricultural",
+  "owner": "Administrator",
+  "modified_by": "Administrator",
+  "idx": 4,
+  "is_active": 1
+ },
+ {
+  "name": "Mixed Use",
+  "owner": "Administrator",
+  "modified_by": "Administrator",
+  "idx": 5,
+  "is_active": 1
+ }
+]

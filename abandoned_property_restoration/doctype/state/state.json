@@ -1,0 +1,84 @@
+{
+ "actions": [],
+ "autoname": "field:state_name",
+ "creation": "2024-01-01 00:00:00.000000",
+ "docstatus": 0,
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "state_name",
+  "state_code",
+  "country",
+  "is_active"
+ ],
+ "fields": [
+  {
+   "fieldname": "state_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "State Name",
+   "length": 100,
+   "reqd": 1
+  },
+  {
+   "fieldname": "state_code",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "State Code",
+   "length": 10
+  },
+  {
+   "fieldname": "country",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Country",
+   "options": "Country"
+  },
+  {
+   "fieldname": "is_active",
+   "fieldtype": "Check",
+   "in_list_view": 1,
+   "label": "Is Active",
+   "default": "1"
+  }
+ ],
+ "istable": 0,
+ "links": [],
+ "modified": "2024-01-01 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Abandoned Property Restoration",
+ "name": "State",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Property Administrator",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "quick_entry": 1,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1
+}

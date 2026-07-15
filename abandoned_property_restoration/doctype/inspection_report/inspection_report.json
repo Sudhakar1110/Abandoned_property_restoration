@@ -1,0 +1,196 @@
+{
+ "actions": [],
+ "autoname": "field:report_id",
+ "creation": "2024-01-01 00:00:00.000000",
+ "docstatus": 0,
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "report_id",
+  "property_inspection",
+  "property",
+  "inspector",
+  "engineer",
+  "report_date",
+  "report_type",
+  "inspection_summary",
+  "structural_assessment",
+  "safety_assessment",
+  "environmental_assessment",
+  "recommendations",
+  "estimated_costs",
+  "photos",
+  "approval_status",
+  "approved_by",
+  "approval_date",
+  "remarks"
+ ],
+ "fields": [
+  {
+   "fieldname": "report_id",
+   "fieldtype": "Data",
+   "label": "Report ID",
+   "reqd": 1,
+   "unique": 1
+  },
+  {
+   "fieldname": "property_inspection",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Property Inspection",
+   "options": "Property Inspection"
+  },
+  {
+   "fieldname": "property",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Property",
+   "options": "Abandoned Property"
+  },
+  {
+   "fieldname": "inspector",
+   "fieldtype": "Link",
+   "label": "Inspector",
+   "options": "Inspector"
+  },
+  {
+   "fieldname": "engineer",
+   "fieldtype": "Link",
+   "label": "Engineer",
+   "options": "Engineer"
+  },
+  {
+   "fieldname": "report_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Report Date",
+   "reqd": 1
+  },
+  {
+   "fieldname": "report_type",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Report Type",
+   "options": "\nInitial\nProgress\nFinal\nSafety\nQuality"
+  },
+  {
+   "fieldname": "inspection_summary",
+   "fieldtype": "Text Editor",
+   "label": "Inspection Summary"
+  },
+  {
+   "fieldname": "structural_assessment",
+   "fieldtype": "Text Editor",
+   "label": "Structural Assessment"
+  },
+  {
+   "fieldname": "safety_assessment",
+   "fieldtype": "Text Editor",
+   "label": "Safety Assessment"
+  },
+  {
+   "fieldname": "environmental_assessment",
+   "fieldtype": "Text Editor",
+   "label": "Environmental Assessment"
+  },
+  {
+   "fieldname": "recommendations",
+   "fieldtype": "Text Editor",
+   "label": "Recommendations"
+  },
+  {
+   "fieldname": "estimated_costs",
+   "fieldtype": "Currency",
+   "label": "Estimated Costs"
+  },
+  {
+   "fieldname": "photos",
+   "fieldtype": "Attach Image",
+   "label": "Photos",
+   "options": "Image"
+  },
+  {
+   "fieldname": "approval_status",
+   "fieldtype": "Select",
+   "label": "Approval Status",
+   "options": "\nPending\nApproved\nRejected"
+  },
+  {
+   "fieldname": "approved_by",
+   "fieldtype": "Data",
+   "label": "Approved By"
+  },
+  {
+   "fieldname": "approval_date",
+   "fieldtype": "Date",
+   "label": "Approval Date"
+  },
+  {
+   "fieldname": "remarks",
+   "fieldtype": "Small Text",
+   "label": "Remarks"
+  }
+ ],
+ "istable": 0,
+ "links": [],
+ "modified": "2024-01-01 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Abandoned Property Restoration",
+ "name": "Inspection Report",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Property Administrator",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Inspector",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Engineer",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1
+}

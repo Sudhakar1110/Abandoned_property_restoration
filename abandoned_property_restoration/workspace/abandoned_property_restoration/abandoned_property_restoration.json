@@ -1,0 +1,204 @@
+{
+ "content": [
+  {
+   "id": "masters",
+   "type": "header",
+   "data": "Masters"
+  },
+  {
+   "id": "property-category",
+   "type": "doc",
+   "label": "Property Category",
+   "doc_type": "Property Category",
+   "icon": "fa fa-th",
+   "link": "/app/property-category"
+  },
+  {
+   "id": "property-type",
+   "type": "doc",
+   "label": "Property Type",
+   "doc_type": "Property Type",
+   "icon": "fa fa-building",
+   "link": "/app/property-type"
+  },
+  {
+   "id": "restoration-category",
+   "type": "doc",
+   "label": "Restoration Category",
+   "doc_type": "Restoration Category",
+   "icon": "fa fa-refresh",
+   "link": "/app/restoration-category"
+  },
+  {
+   "id": "material-category",
+   "type": "doc",
+   "label": "Material Category",
+   "doc_type": "Material Category",
+   "icon": "fa fa-cubes",
+   "link": "/app/material-category"
+  },
+  {
+   "id": "material-condition",
+   "type": "doc",
+   "label": "Material Condition",
+   "doc_type": "Material Condition",
+   "icon": "fa fa-check-circle",
+   "link": "/app/material-condition"
+  },
+  {
+   "id": "reward-type",
+   "type": "doc",
+   "label": "Reward Type",
+   "doc_type": "Reward Type",
+   "icon": "fa fa-gift",
+   "link": "/app/reward-type"
+  },
+  {
+   "id": "citizen",
+   "type": "doc",
+   "label": "Citizen",
+   "doc_type": "Citizen",
+   "icon": "fa fa-user",
+   "link": "/app/citizen"
+  },
+  {
+   "id": "contractor",
+   "type": "doc",
+   "label": "Contractor",
+   "doc_type": "Contractor",
+   "icon": "fa fa-briefcase",
+   "link": "/app/contractor"
+  },
+  {
+   "id": "engineer",
+   "type": "doc",
+   "label": "Engineer",
+   "doc_type": "Engineer",
+   "icon": "fa fa-wrench",
+   "link": "/app/engineer"
+  },
+  {
+   "id": "inspector",
+   "type": "doc",
+   "label": "Inspector",
+   "doc_type": "Inspector",
+   "icon": "fa fa-search",
+   "link": "/app/inspector"
+  },
+  {
+   "id": "government-department",
+   "type": "doc",
+   "label": "Government Department",
+   "doc_type": "Government Department",
+   "icon": "fa fa-institution",
+   "link": "/app/government-department"
+  },
+  {
+   "id": "transactions-header",
+   "type": "header",
+   "data": "Transactions"
+  },
+  {
+   "id": "abandoned-property",
+   "type": "doc",
+   "label": "Abandoned Property",
+   "doc_type": "Abandoned Property",
+   "icon": "fa fa-home",
+   "link": "/app/abandoned-property"
+  },
+  {
+   "id": "citizen-property-report",
+   "type": "doc",
+   "label": "Citizen Property Report",
+   "doc_type": "Citizen Property Report",
+   "icon": "fa fa-flag",
+   "link": "/app/citizen-property-report"
+  },
+  {
+   "id": "property-inspection",
+   "type": "doc",
+   "label": "Property Inspection",
+   "doc_type": "Property Inspection",
+   "icon": "fa fa-clipboard",
+   "link": "/app/property-inspection"
+  },
+  {
+   "id": "restoration-project",
+   "type": "doc",
+   "label": "Restoration Project",
+   "doc_type": "Restoration Project",
+   "icon": "fa fa-tasks",
+   "link": "/app/restoration-project"
+  },
+  {
+   "id": "material-salvage",
+   "type": "doc",
+   "label": "Material Salvage",
+   "doc_type": "Material Salvage",
+   "icon": "fa fa-recycle",
+   "link": "/app/material-salvage"
+  },
+  {
+   "id": "material-exchange",
+   "type": "doc",
+   "label": "Material Exchange",
+   "doc_type": "Material Exchange",
+   "icon": "fa fa-exchange",
+   "link": "/app/material-exchange"
+  },
+  {
+   "id": "material-sale",
+   "type": "doc",
+   "label": "Material Sale",
+   "doc_type": "Material Sale",
+   "icon": "fa fa-shopping-cart",
+   "link": "/app/material-sale"
+  },
+  {
+   "id": "reward-claim",
+   "type": "doc",
+   "label": "Reward Claim",
+   "doc_type": "Reward Claim",
+   "icon": "fa fa-money",
+   "link": "/app/reward-claim"
+  },
+  {
+   "id": "reports-header",
+   "type": "header",
+   "data": "Reports"
+  },
+  {
+   "id": "abandoned-property-summary",
+   "type": "report",
+   "label": "Abandoned Property Summary",
+   "report_name": "Abandoned Property Summary",
+   "icon": "fa fa-file",
+   "link": "/app/reports/abandoned_property_summary"
+  },
+  {
+   "id": "restoration-status-report",
+   "type": "report",
+   "label": "Restoration Status Report",
+   "report_name": "Restoration Status Report",
+   "icon": "fa fa-file",
+   "link": "/app/reports/restoration_status_report"
+  }
+ ],
+ "creation": "2024-01-01 00:00:00.000000",
+ "docstatus": 0,
+ "doctype": "Workspace",
+ "icon": "octicon octicon-tools",
+ "idx": 0,
+ "modified": "2024-01-01 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Abandoned Property Restoration",
+ "name": "Abandoned Property Restoration",
+ "owner": "Administrator",
+ "parent_page": "",
+ "public": 1,
+ "restrict_to_domain": "",
+ "roles": [],
+ "sequence_id": 1,
+ "shortcuts": [],
+ "title": "Abandoned Property Restoration"
+}

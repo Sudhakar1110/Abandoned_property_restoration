@@ -1,0 +1,382 @@
+{
+ "actions": [],
+ "autoname": "field:inspection_id",
+ "creation": "2024-01-01 00:00:00.000000",
+ "docstatus": 0,
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "inspection_id",
+  "property",
+  "citizen_report",
+  "inspector",
+  "engineer",
+  "inspection_date",
+  "inspection_type",
+  "inspection_status",
+  "location_section",
+  "address",
+  "district",
+  "city",
+  "state",
+  "property_details_section",
+  "property_type",
+  "property_category",
+  "estimated_area",
+  "construction_year",
+  "structure_condition",
+  "foundation_condition",
+  "roof_condition",
+  "electrical_system",
+  "plumbing_system",
+  "safety_concerns",
+  "environmental_hazards",
+  "risk_assessment_section",
+  "risk_level",
+  "risk_factors",
+  "recommendations",
+  "inspection_findings",
+  "photos_section",
+  "property_photos",
+  "structural_photos",
+  "hazards_photos",
+  "cost_estimation_section",
+  "estimated_restoration_cost",
+  "estimated_material_cost",
+  "estimated_labor_cost",
+  "additional_notes",
+  "signature_section",
+  "inspector_signature",
+  "engineer_signature",
+  "approval_status",
+  "approved_by",
+  "approval_date"
+ ],
+ "fields": [
+  {
+   "fieldname": "inspection_id",
+   "fieldtype": "Data",
+   "label": "Inspection ID",
+   "reqd": 1,
+   "unique": 1
+  },
+  {
+   "fieldname": "property",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Property",
+   "options": "Abandoned Property"
+  },
+  {
+   "fieldname": "citizen_report",
+   "fieldtype": "Link",
+   "label": "Citizen Report",
+   "options": "Citizen Property Report"
+  },
+  {
+   "fieldname": "inspector",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Inspector",
+   "options": "Inspector",
+   "reqd": 1
+  },
+  {
+   "fieldname": "engineer",
+   "fieldtype": "Link",
+   "label": "Engineer",
+   "options": "Engineer"
+  },
+  {
+   "fieldname": "inspection_date",
+   "fieldtype": "Datetime",
+   "in_list_view": 1,
+   "label": "Inspection Date",
+   "reqd": 1
+  },
+  {
+   "fieldname": "inspection_type",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Inspection Type",
+   "options": "\nInitial Inspection\nFollow-up Inspection\nSafety Inspection\nQuality Inspection\nFinal Inspection"
+  },
+  {
+   "fieldname": "inspection_status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Inspection Status",
+   "options": "\nScheduled\nIn Progress\nCompleted\nCancelled",
+   "reqd": 1
+  },
+  {
+   "fieldname": "location_section",
+   "fieldtype": "Section Break",
+   "label": "Location"
+  },
+  {
+   "fieldname": "address",
+   "fieldtype": "Small Text",
+   "label": "Address"
+  },
+  {
+   "fieldname": "district",
+   "fieldtype": "Link",
+   "label": "District",
+   "options": "District"
+  },
+  {
+   "fieldname": "city",
+   "fieldtype": "Link",
+   "label": "City",
+   "options": "City"
+  },
+  {
+   "fieldname": "state",
+   "fieldtype": "Link",
+   "label": "State",
+   "options": "State"
+  },
+  {
+   "fieldname": "property_details_section",
+   "fieldtype": "Section Break",
+   "label": "Property Details"
+  },
+  {
+   "fieldname": "property_type",
+   "fieldtype": "Link",
+   "label": "Property Type",
+   "options": "Property Type"
+  },
+  {
+   "fieldname": "property_category",
+   "fieldtype": "Link",
+   "label": "Property Category",
+   "options": "Property Category"
+  },
+  {
+   "fieldname": "estimated_area",
+   "fieldtype": "Float",
+   "label": "Estimated Area (sq ft)"
+  },
+  {
+   "fieldname": "construction_year",
+   "fieldtype": "Int",
+   "label": "Construction Year"
+  },
+  {
+   "fieldname": "structure_condition",
+   "fieldtype": "Select",
+   "label": "Structure Condition",
+   "options": "\nExcellent\nGood\nFair\nPoor\nCritical"
+  },
+  {
+   "fieldname": "foundation_condition",
+   "fieldtype": "Select",
+   "label": "Foundation Condition",
+   "options": "\nExcellent\nGood\nFair\nPoor\nCritical"
+  },
+  {
+   "fieldname": "roof_condition",
+   "fieldtype": "Select",
+   "label": "Roof Condition",
+   "options": "\nExcellent\nGood\nFair\nPoor\nCritical"
+  },
+  {
+   "fieldname": "electrical_system",
+   "fieldtype": "Select",
+   "label": "Electrical System",
+   "options": "\nOperational\nNeeds Repair\nUnsafe"
+  },
+  {
+   "fieldname": "plumbing_system",
+   "fieldtype": "Select",
+   "label": "Plumbing System",
+   "options": "\nOperational\nNeeds Repair\nUnsafe"
+  },
+  {
+   "fieldname": "safety_concerns",
+   "fieldtype": "Small Text",
+   "label": "Safety Concerns"
+  },
+  {
+   "fieldname": "environmental_hazards",
+   "fieldtype": "Small Text",
+   "label": "Environmental Hazards"
+  },
+  {
+   "fieldname": "risk_assessment_section",
+   "fieldtype": "Section Break",
+   "label": "Risk Assessment"
+  },
+  {
+   "fieldname": "risk_level",
+   "fieldtype": "Link",
+   "label": "Risk Level",
+   "options": "Risk Level"
+  },
+  {
+   "fieldname": "risk_factors",
+   "fieldtype": "Text Editor",
+   "label": "Risk Factors"
+  },
+  {
+   "fieldname": "recommendations",
+   "fieldtype": "Text Editor",
+   "label": "Recommendations"
+  },
+  {
+   "fieldname": "inspection_findings",
+   "fieldtype": "Section Break",
+   "label": "Inspection Findings"
+  },
+  {
+   "fieldname": "photos_section",
+   "fieldtype": "Section Break",
+   "label": "Photos"
+  },
+  {
+   "fieldname": "property_photos",
+   "fieldtype": "Attach Image",
+   "label": "Property Photos",
+   "options": "Image"
+  },
+  {
+   "fieldname": "structural_photos",
+   "fieldtype": "Attach Image",
+   "label": "Structural Photos",
+   "options": "Image"
+  },
+  {
+   "fieldname": "hazards_photos",
+   "fieldtype": "Attach Image",
+   "label": "Hazards Photos",
+   "options": "Image"
+  },
+  {
+   "fieldname": "cost_estimation_section",
+   "fieldtype": "Section Break",
+   "label": "Cost Estimation"
+  },
+  {
+   "fieldname": "estimated_restoration_cost",
+   "fieldtype": "Currency",
+   "label": "Estimated Restoration Cost"
+  },
+  {
+   "fieldname": "estimated_material_cost",
+   "fieldtype": "Currency",
+   "label": "Estimated Material Cost"
+  },
+  {
+   "fieldname": "estimated_labor_cost",
+   "fieldtype": "Currency",
+   "label": "Estimated Labor Cost"
+  },
+  {
+   "fieldname": "additional_notes",
+   "fieldtype": "Section Break",
+   "label": "Additional Notes"
+  },
+  {
+   "fieldname": "signature_section",
+   "fieldtype": "Section Break",
+   "label": "Signatures"
+  },
+  {
+   "fieldname": "inspector_signature",
+   "fieldtype": "Select",
+   "label": "Inspector Signature",
+   "options": "\nApproved\nRejected\nPending"
+  },
+  {
+   "fieldname": "engineer_signature",
+   "fieldtype": "Select",
+   "label": "Engineer Signature",
+   "options": "\nApproved\nRejected\nPending"
+  },
+  {
+   "fieldname": "approval_status",
+   "fieldtype": "Select",
+   "label": "Approval Status",
+   "options": "\nPending\nApproved\nRejected"
+  },
+  {
+   "fieldname": "approved_by",
+   "fieldtype": "Data",
+   "label": "Approved By"
+  },
+  {
+   "fieldname": "approval_date",
+   "fieldtype": "Date",
+   "label": "Approval Date"
+  }
+ ],
+ "istable": 0,
+ "links": [],
+ "modified": "2024-01-01 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Abandoned Property Restoration",
+ "name": "Property Inspection",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Property Administrator",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Inspector",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Engineer",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "read": 1,
+   "role": "View Only User",
+   "share": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1
+}

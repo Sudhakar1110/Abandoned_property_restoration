@@ -1,0 +1,222 @@
+{
+ "actions": [],
+ "autoname": "field:capsule_id",
+ "creation": "2024-01-01 00:00:00.000000",
+ "docstatus": 0,
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "capsule_id",
+  "property",
+  "restoration_project",
+  "capsule_name",
+  "category",
+  "status",
+  "creation_date",
+  "sealed_date",
+  "open_date",
+  "created_by",
+  "contents_section",
+  "content_description",
+  "digital_files",
+  "photos",
+  "videos",
+  "documents",
+  "metadata",
+  "access_section",
+  "access_level",
+  "authorized_persons",
+  "preservation_section",
+  "preservation_format",
+  "preservation_location",
+  "integrity_check_date",
+  "remarks"
+ ],
+ "fields": [
+  {
+   "fieldname": "capsule_id",
+   "fieldtype": "Data",
+   "label": "Capsule ID",
+   "reqd": 1,
+   "unique": 1
+  },
+  {
+   "fieldname": "property",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Property",
+   "options": "Abandoned Property"
+  },
+  {
+   "fieldname": "restoration_project",
+   "fieldtype": "Link",
+   "label": "Restoration Project",
+   "options": "Restoration Project"
+  },
+  {
+   "fieldname": "capsule_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Capsule Name",
+   "reqd": 1
+  },
+  {
+   "fieldname": "category",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Category",
+   "options": "Time Capsule Category"
+  },
+  {
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Status",
+   "options": "\nDraft\nSealed\nArchived\nOpened",
+   "reqd": 1
+  },
+  {
+   "fieldname": "creation_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Creation Date",
+   "reqd": 1
+  },
+  {
+   "fieldname": "sealed_date",
+   "fieldtype": "Date",
+   "label": "Sealed Date"
+  },
+  {
+   "fieldname": "open_date",
+   "fieldtype": "Date",
+   "label": "Open Date"
+  },
+  {
+   "fieldname": "created_by",
+   "fieldtype": "Data",
+   "label": "Created By"
+  },
+  {
+   "fieldname": "contents_section",
+   "fieldtype": "Section Break",
+   "label": "Contents"
+  },
+  {
+   "fieldname": "content_description",
+   "fieldtype": "Text Editor",
+   "label": "Content Description"
+  },
+  {
+   "fieldname": "digital_files",
+   "fieldtype": "Attach",
+   "label": "Digital Files"
+  },
+  {
+   "fieldname": "photos",
+   "fieldtype": "Attach Image",
+   "label": "Photos",
+   "options": "Image"
+  },
+  {
+   "fieldname": "videos",
+   "fieldtype": "Attach",
+   "label": "Videos"
+  },
+  {
+   "fieldname": "documents",
+   "fieldtype": "Attach",
+   "label": "Documents"
+  },
+  {
+   "fieldname": "metadata",
+   "fieldtype": "Text Editor",
+   "label": "Metadata"
+  },
+  {
+   "fieldname": "access_section",
+   "fieldtype": "Section Break",
+   "label": "Access Control"
+  },
+  {
+   "fieldname": "access_level",
+   "fieldtype": "Select",
+   "label": "Access Level",
+   "options": "\nPublic\nInternal\nConfidential\nRestricted"
+  },
+  {
+   "fieldname": "authorized_persons",
+   "fieldtype": "Small Text",
+   "label": "Authorized Persons"
+  },
+  {
+   "fieldname": "preservation_section",
+   "fieldtype": "Section Break",
+   "label": "Preservation"
+  },
+  {
+   "fieldname": "preservation_format",
+   "fieldtype": "Select",
+   "label": "Preservation Format",
+   "options": "\nDigital Only\nPhysical\nHybrid"
+  },
+  {
+   "fieldname": "preservation_location",
+   "fieldtype": "Data",
+   "label": "Preservation Location"
+  },
+  {
+   "fieldname": "integrity_check_date",
+   "fieldtype": "Date",
+   "label": "Integrity Check Date"
+  },
+  {
+   "fieldname": "remarks",
+   "fieldtype": "Small Text",
+   "label": "Remarks"
+  }
+ ],
+ "istable": 0,
+ "links": [],
+ "modified": "2024-01-01 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Abandoned Property Restoration",
+ "name": "Digital Time Capsule",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Property Administrator",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "read": 1,
+   "role": "View Only User",
+   "share": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1
+}

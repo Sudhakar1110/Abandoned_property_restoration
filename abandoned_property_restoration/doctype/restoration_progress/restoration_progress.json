@@ -1,0 +1,193 @@
+{
+ "actions": [],
+ "autoname": "field:progress_id",
+ "creation": "2024-01-01 00:00:00.000000",
+ "docstatus": 0,
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "progress_id",
+  "restoration_project",
+  "property",
+  "update_date",
+  "progress_percentage",
+  "current_phase",
+  "work_completed",
+  "work_remaining",
+  "issues_encountered",
+  "solutions_implemented",
+  "materials_used",
+  "labor_hours",
+  "cost_incurred",
+  "next_steps",
+  "photos",
+  "reported_by",
+  "remarks"
+ ],
+ "fields": [
+  {
+   "fieldname": "progress_id",
+   "fieldtype": "Data",
+   "label": "Progress ID",
+   "reqd": 1,
+   "unique": 1
+  },
+  {
+   "fieldname": "restoration_project",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Restoration Project",
+   "options": "Restoration Project"
+  },
+  {
+   "fieldname": "property",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Property",
+   "options": "Abandoned Property"
+  },
+  {
+   "fieldname": "update_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Update Date",
+   "reqd": 1
+  },
+  {
+   "fieldname": "progress_percentage",
+   "fieldtype": "Percent",
+   "in_list_view": 1,
+   "label": "Progress Percentage",
+   "reqd": 1
+  },
+  {
+   "fieldname": "current_phase",
+   "fieldtype": "Data",
+   "label": "Current Phase"
+  },
+  {
+   "fieldname": "work_completed",
+   "fieldtype": "Text Editor",
+   "label": "Work Completed"
+  },
+  {
+   "fieldname": "work_remaining",
+   "fieldtype": "Text Editor",
+   "label": "Work Remaining"
+  },
+  {
+   "fieldname": "issues_encountered",
+   "fieldtype": "Text Editor",
+   "label": "Issues Encountered"
+  },
+  {
+   "fieldname": "solutions_implemented",
+   "fieldtype": "Text Editor",
+   "label": "Solutions Implemented"
+  },
+  {
+   "fieldname": "materials_used",
+   "fieldtype": "Small Text",
+   "label": "Materials Used"
+  },
+  {
+   "fieldname": "labor_hours",
+   "fieldtype": "Float",
+   "label": "Labor Hours"
+  },
+  {
+   "fieldname": "cost_incurred",
+   "fieldtype": "Currency",
+   "label": "Cost Incurred"
+  },
+  {
+   "fieldname": "next_steps",
+   "fieldtype": "Text Editor",
+   "label": "Next Steps"
+  },
+  {
+   "fieldname": "photos",
+   "fieldtype": "Attach Image",
+   "label": "Progress Photos",
+   "options": "Image"
+  },
+  {
+   "fieldname": "reported_by",
+   "fieldtype": "Data",
+   "label": "Reported By"
+  },
+  {
+   "fieldname": "remarks",
+   "fieldtype": "Small Text",
+   "label": "Remarks"
+  }
+ ],
+ "istable": 0,
+ "links": [],
+ "modified": "2024-01-01 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Abandoned Property Restoration",
+ "name": "Restoration Progress",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Property Administrator",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Restoration Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "role": "Engineer",
+   "share": 1
+  },
+  {
+   "create": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "role": "Contractor",
+   "share": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1
+}

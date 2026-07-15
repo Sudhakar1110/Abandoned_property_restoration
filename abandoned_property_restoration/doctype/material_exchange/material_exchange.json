@@ -1,0 +1,226 @@
+{
+ "actions": [],
+ "autoname": "field:exchange_id",
+ "creation": "2024-01-01 00:00:00.000000",
+ "docstatus": 0,
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "exchange_id",
+  "material",
+  "material_name",
+  "source_project",
+  "source_property",
+  "destination_project",
+  "destination_property",
+  "exchange_status",
+  "quantity",
+  "unit",
+  "exchange_details_section",
+  "exchange_date",
+  "requested_by",
+  "approved_by",
+  "approval_date",
+  "condition_at_exchange",
+  "transport_section",
+  "transport_method",
+  "transport_cost",
+  "handled_by",
+  "notes",
+  "remarks"
+ ],
+ "fields": [
+  {
+   "fieldname": "exchange_id",
+   "fieldtype": "Data",
+   "label": "Exchange ID",
+   "reqd": 1,
+   "unique": 1
+  },
+  {
+   "fieldname": "material",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Material",
+   "options": "Material Salvage",
+   "reqd": 1
+  },
+  {
+   "fieldname": "material_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Material Name",
+   "read_only": 1
+  },
+  {
+   "fieldname": "source_project",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Source Project",
+   "options": "Restoration Project"
+  },
+  {
+   "fieldname": "source_property",
+   "fieldtype": "Link",
+   "label": "Source Property",
+   "options": "Abandoned Property"
+  },
+  {
+   "fieldname": "destination_project",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Destination Project",
+   "options": "Restoration Project"
+  },
+  {
+   "fieldname": "destination_property",
+   "fieldtype": "Link",
+   "label": "Destination Property",
+   "options": "Abandoned Property"
+  },
+  {
+   "fieldname": "exchange_status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Exchange Status",
+   "options": "\nPending\nApproved\nIn Transit\nCompleted\nCancelled",
+   "reqd": 1
+  },
+  {
+   "fieldname": "quantity",
+   "fieldtype": "Float",
+   "in_list_view": 1,
+   "label": "Quantity",
+   "reqd": 1
+  },
+  {
+   "fieldname": "unit",
+   "fieldtype": "Select",
+   "label": "Unit",
+   "options": "\nPieces\nKg\nSq Ft\nLinear Ft\nSets"
+  },
+  {
+   "fieldname": "exchange_details_section",
+   "fieldtype": "Section Break",
+   "label": "Exchange Details"
+  },
+  {
+   "fieldname": "exchange_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Exchange Date",
+   "reqd": 1
+  },
+  {
+   "fieldname": "requested_by",
+   "fieldtype": "Data",
+   "label": "Requested By"
+  },
+  {
+   "fieldname": "approved_by",
+   "fieldtype": "Data",
+   "label": "Approved By"
+  },
+  {
+   "fieldname": "approval_date",
+   "fieldtype": "Date",
+   "label": "Approval Date"
+  },
+  {
+   "fieldname": "condition_at_exchange",
+   "fieldtype": "Link",
+   "label": "Condition at Exchange",
+   "options": "Material Condition"
+  },
+  {
+   "fieldname": "transport_section",
+   "fieldtype": "Section Break",
+   "label": "Transport"
+  },
+  {
+   "fieldname": "transport_method",
+   "fieldtype": "Select",
+   "label": "Transport Method",
+   "options": "\nSelf Pickup\nDelivery\nCourier\nOther"
+  },
+  {
+   "fieldname": "transport_cost",
+   "fieldtype": "Currency",
+   "label": "Transport Cost"
+  },
+  {
+   "fieldname": "handled_by",
+   "fieldtype": "Data",
+   "label": "Handled By"
+  },
+  {
+   "fieldname": "notes",
+   "fieldtype": "Small Text",
+   "label": "Notes"
+  },
+  {
+   "fieldname": "remarks",
+   "fieldtype": "Small Text",
+   "label": "Remarks"
+  }
+ ],
+ "istable": 0,
+ "links": [],
+ "modified": "2024-01-01 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Abandoned Property Restoration",
+ "name": "Material Exchange",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Property Administrator",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Restoration Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "role": "Contractor",
+   "share": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1
+}

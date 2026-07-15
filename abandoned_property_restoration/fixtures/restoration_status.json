@@ -1,0 +1,37 @@
+[
+ {
+  "name": "Not Started",
+  "owner": "Administrator",
+  "modified_by": "Administrator",
+  "idx": 1,
+  "is_active": 1
+ },
+ {
+  "name": "Planning",
+  "owner": "Administrator",
+  "modified_by": "Administrator",
+  "idx": 2,
+  "is_active": 1
+ },
+ {
+  "name": "In Progress",
+  "owner": "Administrator",
+  "modified_by": "Administrator",
+  "idx": 3,
+  "is_active": 1
+ },
+ {
+  "name": "On Hold",
+  "owner": "Administrator",
+  "modified_by": "Administrator",
+  "idx": 4,
+  "is_active": 1
+ },
+ {
+  "name": "Completed",
+  "owner": "Administrator",
+  "modified_by": "Administrator",
+  "idx": 5,
+  "is_active": 1
+ }
+]

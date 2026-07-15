@@ -1,0 +1,173 @@
+{
+ "actions": [],
+ "autoname": "field:record_id",
+ "creation": "2024-01-01 00:00:00.000000",
+ "docstatus": 0,
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "record_id",
+  "property",
+  "document_type",
+  "title",
+  "record_date",
+  "description",
+  "source_section",
+  "source_name",
+  "source_contact",
+  "historical_significance",
+  "documents_section",
+  "document_files",
+  "photos",
+  "verification_section",
+  "verified",
+  "verified_by",
+  "verification_date",
+  "remarks"
+ ],
+ "fields": [
+  {
+   "fieldname": "record_id",
+   "fieldtype": "Data",
+   "label": "Record ID",
+   "reqd": 1,
+   "unique": 1
+  },
+  {
+   "fieldname": "property",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Property",
+   "options": "Abandoned Property"
+  },
+  {
+   "fieldname": "document_type",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Document Type",
+   "options": "Historical Document Type"
+  },
+  {
+   "fieldname": "title",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Title",
+   "reqd": 1
+  },
+  {
+   "fieldname": "record_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Record Date"
+  },
+  {
+   "fieldname": "description",
+   "fieldtype": "Text Editor",
+   "label": "Description"
+  },
+  {
+   "fieldname": "source_section",
+   "fieldtype": "Section Break",
+   "label": "Source Information"
+  },
+  {
+   "fieldname": "source_name",
+   "fieldtype": "Data",
+   "label": "Source Name"
+  },
+  {
+   "fieldname": "source_contact",
+   "fieldtype": "Data",
+   "label": "Source Contact"
+  },
+  {
+   "fieldname": "historical_significance",
+   "fieldtype": "Text Editor",
+   "label": "Historical Significance"
+  },
+  {
+   "fieldname": "documents_section",
+   "fieldtype": "Section Break",
+   "label": "Documents"
+  },
+  {
+   "fieldname": "document_files",
+   "fieldtype": "Attach",
+   "label": "Document Files"
+  },
+  {
+   "fieldname": "photos",
+   "fieldtype": "Attach Image",
+   "label": "Photos",
+   "options": "Image"
+  },
+  {
+   "fieldname": "verification_section",
+   "fieldtype": "Section Break",
+   "label": "Verification"
+  },
+  {
+   "fieldname": "verified",
+   "fieldtype": "Check",
+   "label": "Verified"
+  },
+  {
+   "fieldname": "verified_by",
+   "fieldtype": "Data",
+   "label": "Verified By"
+  },
+  {
+   "fieldname": "verification_date",
+   "fieldtype": "Date",
+   "label": "Verification Date"
+  },
+  {
+   "fieldname": "remarks",
+   "fieldtype": "Small Text",
+   "label": "Remarks"
+  }
+ ],
+ "istable": 0,
+ "links": [],
+ "modified": "2024-01-01 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Abandoned Property Restoration",
+ "name": "Historical Record",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Property Administrator",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "read": 1,
+   "role": "View Only User",
+   "share": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1
+}

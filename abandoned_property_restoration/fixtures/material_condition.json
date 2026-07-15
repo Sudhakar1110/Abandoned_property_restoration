@@ -1,0 +1,37 @@
+[
+ {
+  "name": "Excellent",
+  "owner": "Administrator",
+  "modified_by": "Administrator",
+  "idx": 1,
+  "is_active": 1
+ },
+ {
+  "name": "Good",
+  "owner": "Administrator",
+  "modified_by": "Administrator",
+  "idx": 2,
+  "is_active": 1
+ },
+ {
+  "name": "Fair",
+  "owner": "Administrator",
+  "modified_by": "Administrator",
+  "idx": 3,
+  "is_active": 1
+ },
+ {
+  "name": "Poor",
+  "owner": "Administrator",
+  "modified_by": "Administrator",
+  "idx": 4,
+  "is_active": 1
+ },
+ {
+  "name": "Damaged",
+  "owner": "Administrator",
+  "modified_by": "Administrator",
+  "idx": 5,
+  "is_active": 1
+ }
+]

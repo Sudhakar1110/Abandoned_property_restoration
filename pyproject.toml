@@ -1,0 +1,15 @@
+[build-system]
+requires = ["flit_core >=3.2,<4"]
+build-backend = "flit_core.buildapi"
+
+[project]
+name = "abandoned_property_restoration"
+version = "1.0.0"
+description = "Application for identifying, restoring, preserving, and managing abandoned properties"
+authors = [{name = "Abandoned Property Restoration Team"}]
+requires-python = ">=3.10"
+dependencies = []
+
+[tool.flit.metadata]
+requires-python = ">=3.10"
+module_name = "abandoned_property_restoration"

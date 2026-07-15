@@ -1,0 +1,142 @@
+{
+ "actions": [],
+ "autoname": "field:record_id",
+ "creation": "2024-01-01 00:00:00.000000",
+ "docstatus": 0,
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "record_id",
+  "property",
+  "ownership_type",
+  "owner_name",
+  "owner_contact",
+  "ownership_status",
+  "transfer_date",
+  "transfer_reason",
+  "previous_owner",
+  "new_owner",
+  "legal_documents",
+  "remarks"
+ ],
+ "fields": [
+  {
+   "fieldname": "record_id",
+   "fieldtype": "Data",
+   "label": "Record ID",
+   "reqd": 1,
+   "unique": 1
+  },
+  {
+   "fieldname": "property",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Property",
+   "options": "Abandoned Property",
+   "reqd": 1
+  },
+  {
+   "fieldname": "ownership_type",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Ownership Type",
+   "options": "Ownership Type"
+  },
+  {
+   "fieldname": "owner_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Owner Name"
+  },
+  {
+   "fieldname": "owner_contact",
+   "fieldtype": "Data",
+   "label": "Owner Contact"
+  },
+  {
+   "fieldname": "ownership_status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Status",
+   "options": "\nActive\nTransferred\nDisputed\nAbandoned"
+  },
+  {
+   "fieldname": "transfer_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Transfer Date"
+  },
+  {
+   "fieldname": "transfer_reason",
+   "fieldtype": "Small Text",
+   "label": "Transfer Reason"
+  },
+  {
+   "fieldname": "previous_owner",
+   "fieldtype": "Data",
+   "label": "Previous Owner"
+  },
+  {
+   "fieldname": "new_owner",
+   "fieldtype": "Data",
+   "label": "New Owner"
+  },
+  {
+   "fieldname": "legal_documents",
+   "fieldtype": "Attach",
+   "label": "Legal Documents"
+  },
+  {
+   "fieldname": "remarks",
+   "fieldtype": "Small Text",
+   "label": "Remarks"
+  }
+ ],
+ "istable": 0,
+ "links": [],
+ "modified": "2024-01-01 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Abandoned Property Restoration",
+ "name": "Property Ownership Record",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Property Administrator",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "role": "Government Officer",
+   "share": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1
+}

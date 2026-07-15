@@ -1,0 +1,236 @@
+{
+ "actions": [],
+ "autoname": "field:claim_id",
+ "creation": "2024-01-01 00:00:00.000000",
+ "docstatus": 0,
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "claim_id",
+  "report_name",
+  "property_name",
+  "citizen",
+  "citizen_name",
+  "citizen_email",
+  "citizen_phone",
+  "claim_status",
+  "reward_section",
+  "reward_type",
+  "reward_amount",
+  "verification_section",
+  "property_verified",
+  "verification_date",
+  "verified_by",
+  "restoration_approved",
+  "approval_date",
+  "approval_by",
+  "payment_section",
+  "payment_date",
+  "payment_method",
+  "payment_reference",
+  "payment_status",
+  "processed_by",
+  "remarks"
+ ],
+ "fields": [
+  {
+   "fieldname": "claim_id",
+   "fieldtype": "Data",
+   "label": "Claim ID",
+   "reqd": 1,
+   "unique": 1
+  },
+  {
+   "fieldname": "report_name",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Citizen Report",
+   "options": "Citizen Property Report",
+   "reqd": 1
+  },
+  {
+   "fieldname": "property_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Property Name",
+   "read_only": 1
+  },
+  {
+   "fieldname": "citizen",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Citizen",
+   "options": "Citizen"
+  },
+  {
+   "fieldname": "citizen_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Citizen Name",
+   "read_only": 1
+  },
+  {
+   "fieldname": "citizen_email",
+   "fieldtype": "Data",
+   "label": "Citizen Email",
+   "options": "Email",
+   "read_only": 1
+  },
+  {
+   "fieldname": "citizen_phone",
+   "fieldtype": "Data",
+   "label": "Citizen Phone",
+   "read_only": 1
+  },
+  {
+   "fieldname": "claim_status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Claim Status",
+   "options": "\nPending\nUnder Review\nVerified\nApproved\nRejected\nPaid",
+   "reqd": 1
+  },
+  {
+   "fieldname": "reward_section",
+   "fieldtype": "Section Break",
+   "label": "Reward Information"
+  },
+  {
+   "fieldname": "reward_type",
+   "fieldtype": "Link",
+   "label": "Reward Type",
+   "options": "Reward Type"
+  },
+  {
+   "fieldname": "reward_amount",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Reward Amount",
+   "reqd": 1
+  },
+  {
+   "fieldname": "verification_section",
+   "fieldtype": "Section Break",
+   "label": "Verification"
+  },
+  {
+   "fieldname": "property_verified",
+   "fieldtype": "Check",
+   "label": "Property Verified"
+  },
+  {
+   "fieldname": "verification_date",
+   "fieldtype": "Date",
+   "label": "Verification Date"
+  },
+  {
+   "fieldname": "verified_by",
+   "fieldtype": "Data",
+   "label": "Verified By"
+  },
+  {
+   "fieldname": "restoration_approved",
+   "fieldtype": "Check",
+   "label": "Restoration Approved"
+  },
+  {
+   "fieldname": "approval_date",
+   "fieldtype": "Date",
+   "label": "Approval Date"
+  },
+  {
+   "fieldname": "approval_by",
+   "fieldtype": "Data",
+   "label": "Approved By"
+  },
+  {
+   "fieldname": "payment_section",
+   "fieldtype": "Section Break",
+   "label": "Payment"
+  },
+  {
+   "fieldname": "payment_date",
+   "fieldtype": "Date",
+   "label": "Payment Date"
+  },
+  {
+   "fieldname": "payment_method",
+   "fieldtype": "Select",
+   "label": "Payment Method",
+   "options": "\nCash\nBank Transfer\nCheck\nOnline Payment"
+  },
+  {
+   "fieldname": "payment_reference",
+   "fieldtype": "Data",
+   "label": "Payment Reference"
+  },
+  {
+   "fieldname": "payment_status",
+   "fieldtype": "Select",
+   "label": "Payment Status",
+   "options": "\nPending\nProcessing\nCompleted"
+  },
+  {
+   "fieldname": "processed_by",
+   "fieldtype": "Data",
+   "label": "Processed By"
+  },
+  {
+   "fieldname": "remarks",
+   "fieldtype": "Small Text",
+   "label": "Remarks"
+  }
+ ],
+ "istable": 0,
+ "links": [],
+ "modified": "2024-01-01 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Abandoned Property Restoration",
+ "name": "Reward Claim",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Property Administrator",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "role": "Government Officer",
+   "share": 1
+  },
+  {
+   "read": 1,
+   "role": "Citizen",
+   "share": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1
+}

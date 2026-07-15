@@ -1,0 +1,193 @@
+{
+ "actions": [],
+ "autoname": "field:visit_id",
+ "creation": "2024-01-01 00:00:00.000000",
+ "docstatus": 0,
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "visit_id",
+  "maintenance_schedule",
+  "property",
+  "contractor",
+  "visit_date",
+  "visit_type",
+  "visit_status",
+  "work_performed",
+  "materials_used",
+  "duration_hours",
+  "technician",
+  "findings",
+  "follow_up_required",
+  "next_visit_date",
+  "cost",
+  "photos",
+  "signature",
+  "remarks"
+ ],
+ "fields": [
+  {
+   "fieldname": "visit_id",
+   "fieldtype": "Data",
+   "label": "Visit ID",
+   "reqd": 1,
+   "unique": 1
+  },
+  {
+   "fieldname": "maintenance_schedule",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Maintenance Schedule",
+   "options": "Maintenance Schedule"
+  },
+  {
+   "fieldname": "property",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Property",
+   "options": "Abandoned Property"
+  },
+  {
+   "fieldname": "contractor",
+   "fieldtype": "Link",
+   "label": "Contractor",
+   "options": "Contractor"
+  },
+  {
+   "fieldname": "visit_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Visit Date",
+   "reqd": 1
+  },
+  {
+   "fieldname": "visit_type",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Visit Type",
+   "options": "\nRoutine\nInspection\nRepair\nEmergency"
+  },
+  {
+   "fieldname": "visit_status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Status",
+   "options": "\nScheduled\nIn Progress\nCompleted\nCancelled"
+  },
+  {
+   "fieldname": "work_performed",
+   "fieldtype": "Text Editor",
+   "label": "Work Performed"
+  },
+  {
+   "fieldname": "materials_used",
+   "fieldtype": "Small Text",
+   "label": "Materials Used"
+  },
+  {
+   "fieldname": "duration_hours",
+   "fieldtype": "Float",
+   "label": "Duration (Hours)"
+  },
+  {
+   "fieldname": "technician",
+   "fieldtype": "Data",
+   "label": "Technician"
+  },
+  {
+   "fieldname": "findings",
+   "fieldtype": "Text Editor",
+   "label": "Findings"
+  },
+  {
+   "fieldname": "follow_up_required",
+   "fieldtype": "Check",
+   "label": "Follow-up Required"
+  },
+  {
+   "fieldname": "next_visit_date",
+   "fieldtype": "Date",
+   "label": "Next Visit Date"
+  },
+  {
+   "fieldname": "cost",
+   "fieldtype": "Currency",
+   "label": "Cost"
+  },
+  {
+   "fieldname": "photos",
+   "fieldtype": "Attach Image",
+   "label": "Photos",
+   "options": "Image"
+  },
+  {
+   "fieldname": "signature",
+   "fieldtype": "Attach",
+   "label": "Signature"
+  },
+  {
+   "fieldname": "remarks",
+   "fieldtype": "Small Text",
+   "label": "Remarks"
+  }
+ ],
+ "istable": 0,
+ "links": [],
+ "modified": "2024-01-01 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Abandoned Property Restoration",
+ "name": "Maintenance Visit",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Property Administrator",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Restoration Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "role": "Contractor",
+   "share": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1
+}

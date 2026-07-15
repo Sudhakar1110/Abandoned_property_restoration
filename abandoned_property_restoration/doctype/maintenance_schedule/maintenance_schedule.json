@@ -1,0 +1,184 @@
+{
+ "actions": [],
+ "autoname": "field:schedule_id",
+ "creation": "2024-01-01 00:00:00.000000",
+ "docstatus": 0,
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "schedule_id",
+  "property",
+  "restoration_project",
+  "schedule_type",
+  "schedule_status",
+  "frequency",
+  "schedule_date",
+  "completed_date",
+  "contractor",
+  "estimated_cost",
+  "actual_cost",
+  "priority",
+  "description",
+  "inspection_required",
+  "safety_check",
+  "remarks"
+ ],
+ "fields": [
+  {
+   "fieldname": "schedule_id",
+   "fieldtype": "Data",
+   "label": "Schedule ID",
+   "reqd": 1,
+   "unique": 1
+  },
+  {
+   "fieldname": "property",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Property",
+   "options": "Abandoned Property"
+  },
+  {
+   "fieldname": "restoration_project",
+   "fieldtype": "Link",
+   "label": "Restoration Project",
+   "options": "Restoration Project"
+  },
+  {
+   "fieldname": "schedule_type",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Schedule Type",
+   "options": "\nRoutine\nPreventive\nEmergency\nSpecial",
+   "reqd": 1
+  },
+  {
+   "fieldname": "schedule_status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Status",
+   "options": "\nScheduled\nIn Progress\nCompleted\nCancelled",
+   "reqd": 1
+  },
+  {
+   "fieldname": "frequency",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Frequency",
+   "options": "\nDaily\nWeekly\nMonthly\nQuarterly\nAnnually"
+  },
+  {
+   "fieldname": "schedule_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Schedule Date",
+   "reqd": 1
+  },
+  {
+   "fieldname": "completed_date",
+   "fieldtype": "Date",
+   "label": "Completed Date"
+  },
+  {
+   "fieldname": "contractor",
+   "fieldtype": "Link",
+   "label": "Contractor",
+   "options": "Contractor"
+  },
+  {
+   "fieldname": "estimated_cost",
+   "fieldtype": "Currency",
+   "label": "Estimated Cost"
+  },
+  {
+   "fieldname": "actual_cost",
+   "fieldtype": "Currency",
+   "label": "Actual Cost"
+  },
+  {
+   "fieldname": "priority",
+   "fieldtype": "Link",
+   "label": "Priority",
+   "options": "Project Priority"
+  },
+  {
+   "fieldname": "description",
+   "fieldtype": "Text Editor",
+   "label": "Description"
+  },
+  {
+   "fieldname": "inspection_required",
+   "fieldtype": "Check",
+   "label": "Inspection Required"
+  },
+  {
+   "fieldname": "safety_check",
+   "fieldtype": "Check",
+   "label": "Safety Check"
+  },
+  {
+   "fieldname": "remarks",
+   "fieldtype": "Small Text",
+   "label": "Remarks"
+  }
+ ],
+ "istable": 0,
+ "links": [],
+ "modified": "2024-01-01 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Abandoned Property Restoration",
+ "name": "Maintenance Schedule",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Property Administrator",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Restoration Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "role": "Contractor",
+   "share": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1
+}

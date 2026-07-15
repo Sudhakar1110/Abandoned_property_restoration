@@ -1,0 +1,30 @@
+{
+ "creation": "2024-01-01 00:00:00.000000",
+ "docstatus": 0,
+ "doctype": "Notification",
+ "enabled": 1,
+ "event": "Value Change",
+ "fieldname": "inspection_status",
+ "filter_meta": 1,
+ "is_standard": 1,
+ "is_training_notification": 0,
+ "message": "Property inspection {{ doc.name }} for property {{ doc.property }} is scheduled.",
+ "modified": "2024-01-01 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Abandoned Property Restoration",
+ "name": "Inspection Due",
+ "owner": "Administrator",
+ "parent": "Property Inspection",
+ "parentfield": "notifications",
+ "parenttype": "DocType",
+ "recipients": [
+  {
+   "receiver_by_document_field": "inspector",
+   "receiver_by_role": "Inspector"
+  }
+ ],
+ "sendAlertForDocument": 0,
+ "send_system_notification": 0,
+ "send_to_all_assignees": 0,
+ "subject": "Property Inspection Due"
+}

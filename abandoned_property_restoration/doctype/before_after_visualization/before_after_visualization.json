@@ -1,0 +1,227 @@
+{
+ "actions": [],
+ "autoname": "field:visualization_id",
+ "creation": "2024-01-01 00:00:00.000000",
+ "docstatus": 0,
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "visualization_id",
+  "property",
+  "restoration_project",
+  "visualization_type",
+  "visualization_status",
+  "before_restoration_section",
+  "before_images",
+  "before_description",
+  "after_restoration_section",
+  "after_images",
+  "after_description",
+  "mockup_section",
+  "mockup_images",
+  "mockup_description",
+  "comparison_section",
+  "comparison_notes",
+  "timeline_section",
+  "capture_date",
+  "captured_by",
+  "additional_info",
+  "remarks"
+ ],
+ "fields": [
+  {
+   "fieldname": "visualization_id",
+   "fieldtype": "Data",
+   "label": "Visualization ID",
+   "reqd": 1,
+   "unique": 1
+  },
+  {
+   "fieldname": "property",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Property",
+   "options": "Abandoned Property",
+   "reqd": 1
+  },
+  {
+   "fieldname": "restoration_project",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Restoration Project",
+   "options": "Restoration Project"
+  },
+  {
+   "fieldname": "visualization_type",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Visualization Type",
+   "options": "\nInitial\nProgress\nFinal\nMockup\nComparison",
+   "reqd": 1
+  },
+  {
+   "fieldname": "visualization_status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Status",
+   "options": "\nDraft\nIn Progress\nCompleted\nApproved",
+   "reqd": 1
+  },
+  {
+   "fieldname": "before_restoration_section",
+   "fieldtype": "Section Break",
+   "label": "Before Restoration"
+  },
+  {
+   "fieldname": "before_images",
+   "fieldtype": "Attach Image",
+   "label": "Before Images",
+   "options": "Image"
+  },
+  {
+   "fieldname": "before_description",
+   "fieldtype": "Text Editor",
+   "label": "Before Description"
+  },
+  {
+   "fieldname": "after_restoration_section",
+   "fieldtype": "Section Break",
+   "label": "After Restoration"
+  },
+  {
+   "fieldname": "after_images",
+   "fieldtype": "Attach Image",
+   "label": "After Images",
+   "options": "Image"
+  },
+  {
+   "fieldname": "after_description",
+   "fieldtype": "Text Editor",
+   "label": "After Description"
+  },
+  {
+   "fieldname": "mockup_section",
+   "fieldtype": "Section Break",
+   "label": "Restoration Mockup"
+  },
+  {
+   "fieldname": "mockup_images",
+   "fieldtype": "Attach Image",
+   "label": "Mockup Images",
+   "options": "Image"
+  },
+  {
+   "fieldname": "mockup_description",
+   "fieldtype": "Text Editor",
+   "label": "Mockup Description"
+  },
+  {
+   "fieldname": "comparison_section",
+   "fieldtype": "Section Break",
+   "label": "Comparison"
+  },
+  {
+   "fieldname": "comparison_notes",
+   "fieldtype": "Text Editor",
+   "label": "Comparison Notes"
+  },
+  {
+   "fieldname": "timeline_section",
+   "fieldtype": "Section Break",
+   "label": "Timeline"
+  },
+  {
+   "fieldname": "capture_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Capture Date",
+   "reqd": 1
+  },
+  {
+   "fieldname": "captured_by",
+   "fieldtype": "Data",
+   "label": "Captured By"
+  },
+  {
+   "fieldname": "additional_info",
+   "fieldtype": "Section Break",
+   "label": "Additional Information"
+  },
+  {
+   "fieldname": "remarks",
+   "fieldtype": "Small Text",
+   "label": "Remarks"
+  }
+ ],
+ "istable": 0,
+ "links": [],
+ "modified": "2024-01-01 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Abandoned Property Restoration",
+ "name": "Before After Visualization",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Property Administrator",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Restoration Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Engineer",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "role": "Contractor",
+   "share": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1
+}

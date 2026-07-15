@@ -1,0 +1,367 @@
+{
+ "actions": [],
+ "autoname": "field:report_id",
+ "creation": "2024-01-01 00:00:00.000000",
+ "docstatus": 0,
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "report_id",
+  "property_name",
+  "property_type",
+  "citizen_section",
+  "citizen",
+  "citizen_name",
+  "citizen_email",
+  "citizen_phone",
+  "property_location",
+  "address",
+  "district",
+  "city",
+  "state",
+  "country",
+  "latitude",
+  "longitude",
+  "property_details",
+  "ownership_status",
+  "owner_name",
+  "risk_level",
+  "property_condition",
+  "estimated_area",
+  "photos_section",
+  "property_photos",
+  "status_section",
+  "status",
+  "verification_date",
+  "verified_by",
+  "inspection_scheduled",
+  "inspection_date",
+  "inspection_section",
+  "inspector",
+  "approval_section",
+  "approved_by",
+  "approval_date",
+  "restoration_assignment",
+  "assigned_project",
+  "reward_section",
+  "reward_eligible",
+  "reward_type",
+  "reward_amount",
+  "reward_claimed",
+  "description",
+  "remarks"
+ ],
+ "fields": [
+  {
+   "fieldname": "report_id",
+   "fieldtype": "Data",
+   "label": "Report ID",
+   "reqd": 1,
+   "unique": 1
+  },
+  {
+   "fieldname": "property_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Property Name",
+   "reqd": 1
+  },
+  {
+   "fieldname": "property_type",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Property Type",
+   "options": "Property Type"
+  },
+  {
+   "fieldname": "citizen_section",
+   "fieldtype": "Section Break",
+   "label": "Citizen Information"
+  },
+  {
+   "fieldname": "citizen",
+   "fieldtype": "Link",
+   "label": "Citizen",
+   "options": "Citizen"
+  },
+  {
+   "fieldname": "citizen_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Citizen Name",
+   "reqd": 1
+  },
+  {
+   "fieldname": "citizen_email",
+   "fieldtype": "Data",
+   "label": "Citizen Email",
+   "options": "Email"
+  },
+  {
+   "fieldname": "citizen_phone",
+   "fieldtype": "Data",
+   "label": "Citizen Phone"
+  },
+  {
+   "fieldname": "property_location",
+   "fieldtype": "Section Break",
+   "label": "Property Location"
+  },
+  {
+   "fieldname": "address",
+   "fieldtype": "Small Text",
+   "label": "Address",
+   "reqd": 1
+  },
+  {
+   "fieldname": "district",
+   "fieldtype": "Link",
+   "label": "District",
+   "options": "District"
+  },
+  {
+   "fieldname": "city",
+   "fieldtype": "Link",
+   "label": "City",
+   "options": "City"
+  },
+  {
+   "fieldname": "state",
+   "fieldtype": "Link",
+   "label": "State",
+   "options": "State"
+  },
+  {
+   "fieldname": "country",
+   "fieldtype": "Link",
+   "label": "Country",
+   "options": "Country"
+  },
+  {
+   "fieldname": "latitude",
+   "fieldtype": "Float",
+   "label": "Latitude"
+  },
+  {
+   "fieldname": "longitude",
+   "fieldtype": "Float",
+   "label": "Longitude"
+  },
+  {
+   "fieldname": "property_details",
+   "fieldtype": "Section Break",
+   "label": "Property Details"
+  },
+  {
+   "fieldname": "ownership_status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Ownership Status",
+   "options": "\nUnknown\nPrivate\nGovernment\nReligious\nCommercial"
+  },
+  {
+   "fieldname": "owner_name",
+   "fieldtype": "Data",
+   "label": "Owner Name"
+  },
+  {
+   "fieldname": "risk_level",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Risk Level",
+   "options": "Risk Level"
+  },
+  {
+   "fieldname": "property_condition",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Property Condition",
+   "options": "\nPoor\nFair\nGood\nCritical\nStructurally Unsafe"
+  },
+  {
+   "fieldname": "estimated_area",
+   "fieldtype": "Float",
+   "label": "Estimated Area (sq ft)"
+  },
+  {
+   "fieldname": "photos_section",
+   "fieldtype": "Section Break",
+   "label": "Photos"
+  },
+  {
+   "fieldname": "property_photos",
+   "fieldtype": "Attach Image",
+   "label": "Property Photos",
+   "options": "Image"
+  },
+  {
+   "fieldname": "status_section",
+   "fieldtype": "Section Break",
+   "label": "Status"
+  },
+  {
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Status",
+   "options": "\nNew\nUnder Review\nVerified\nInspection Scheduled\nInspection Completed\nApproved\nRejected\nRestoration Assigned",
+   "reqd": 1
+  },
+  {
+   "fieldname": "verification_date",
+   "fieldtype": "Date",
+   "label": "Verification Date"
+  },
+  {
+   "fieldname": "verified_by",
+   "fieldtype": "Data",
+   "label": "Verified By"
+  },
+  {
+   "fieldname": "inspection_scheduled",
+   "fieldtype": "Check",
+   "label": "Inspection Scheduled"
+  },
+  {
+   "fieldname": "inspection_date",
+   "fieldtype": "Datetime",
+   "label": "Inspection Date"
+  },
+  {
+   "fieldname": "inspection_section",
+   "fieldtype": "Section Break",
+   "label": "Inspection"
+  },
+  {
+   "fieldname": "inspector",
+   "fieldtype": "Link",
+   "label": "Inspector",
+   "options": "Inspector"
+  },
+  {
+   "fieldname": "approval_section",
+   "fieldtype": "Section Break",
+   "label": "Approval"
+  },
+  {
+   "fieldname": "approved_by",
+   "fieldtype": "Data",
+   "label": "Approved By"
+  },
+  {
+   "fieldname": "approval_date",
+   "fieldtype": "Date",
+   "label": "Approval Date"
+  },
+  {
+   "fieldname": "restoration_assignment",
+   "fieldtype": "Section Break",
+   "label": "Restoration Assignment"
+  },
+  {
+   "fieldname": "assigned_project",
+   "fieldtype": "Link",
+   "label": "Assigned Project",
+   "options": "Restoration Project"
+  },
+  {
+   "fieldname": "reward_section",
+   "fieldtype": "Section Break",
+   "label": "Reward Information"
+  },
+  {
+   "fieldname": "reward_eligible",
+   "fieldtype": "Check",
+   "label": "Reward Eligible"
+  },
+  {
+   "fieldname": "reward_type",
+   "fieldtype": "Link",
+   "label": "Reward Type",
+   "options": "Reward Type"
+  },
+  {
+   "fieldname": "reward_amount",
+   "fieldtype": "Currency",
+   "label": "Reward Amount"
+  },
+  {
+   "fieldname": "reward_claimed",
+   "fieldtype": "Check",
+   "label": "Reward Claimed"
+  },
+  {
+   "fieldname": "description",
+   "fieldtype": "Text Editor",
+   "label": "Description"
+  },
+  {
+   "fieldname": "remarks",
+   "fieldtype": "Small Text",
+   "label": "Remarks"
+  }
+ ],
+ "istable": 0,
+ "links": [],
+ "modified": "2024-01-01 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Abandoned Property Restoration",
+ "name": "Citizen Property Report",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Property Administrator",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Citizen",
+   "share": 1
+  },
+  {
+   "create": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Government Officer",
+   "share": 1
+  },
+  {
+   "read": 1,
+   "role": "View Only User",
+   "share": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1
+}

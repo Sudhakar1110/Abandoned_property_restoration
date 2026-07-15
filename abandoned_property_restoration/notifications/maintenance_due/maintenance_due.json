@@ -1,0 +1,32 @@
+{
+ "creation": "2024-01-01 00:00:00.000000",
+ "docstatus": 0,
+ "doctype": "Notification",
+ "enabled": 1,
+ "event": "Form Update",
+ "fieldname": "status",
+ "filter_meta": 1,
+ "is_standard": 1,
+ "is_training_notification": 0,
+ "message": "Maintenance schedule {{ doc.name }} is due for property {{ doc.property }}.",
+ "modified": "2024-01-01 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Abandoned Property Restoration",
+ "name": "Maintenance Due",
+ "owner": "Administrator",
+ "parent": "Maintenance Schedule",
+ "parentfield": "notifications",
+ "parenttype": "DocType",
+ "recipients": [
+  {
+   "receiver_by_role": "Property Administrator"
+  },
+  {
+   "receiver_by_role": "Restoration Manager"
+  }
+ ],
+ "sendAlertForDocument": 0,
+ "send_system_notification": 0,
+ "send_to_all_assignees": 0,
+ "subject": "Maintenance Schedule Due"
+}

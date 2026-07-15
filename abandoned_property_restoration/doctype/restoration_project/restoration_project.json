@@ -1,0 +1,371 @@
+{
+ "actions": [],
+ "autoname": "field:project_name",
+ "creation": "2024-01-01 00:00:00.000000",
+ "docstatus": 0,
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "naming_series",
+  "project_name",
+  "property",
+  "citizen_report",
+  "restoration_category",
+  "project_status",
+  "project_priority",
+  "property_details_section",
+  "address",
+  "district",
+  "city",
+  "state",
+  "country",
+  "project_timeline",
+  "start_date",
+  "expected_end_date",
+  "actual_end_date",
+  "team_section",
+  "project_manager",
+  "engineer",
+  "contractor",
+  "government_department",
+  "cost_section",
+  "estimated_cost",
+  "total_cost",
+  "materials_section",
+  "material_salvage_count",
+  "material_exchange_count",
+  "progress_section",
+  "progress_percentage",
+  "current_phase",
+  "work_description",
+  "scope_section",
+  "scope_of_work",
+  "deliverables",
+  "challenges",
+  "approval_section",
+  "approved_by",
+  "approval_date",
+  "completion_section",
+  "completion_certificate",
+  "final_report",
+  "remarks"
+ ],
+ "fields": [
+  {
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "label": "Series",
+   "options": "RP-.YYYY.-",
+   "reqd": 1,
+   "set_only_once": 1
+  },
+  {
+   "fieldname": "project_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Project Name",
+   "length": 200,
+   "reqd": 1
+  },
+  {
+   "fieldname": "property",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Property",
+   "options": "Abandoned Property",
+   "reqd": 1
+  },
+  {
+   "fieldname": "citizen_report",
+   "fieldtype": "Link",
+   "label": "Citizen Report",
+   "options": "Citizen Property Report"
+  },
+  {
+   "fieldname": "restoration_category",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Restoration Category",
+   "options": "Restoration Category"
+  },
+  {
+   "fieldname": "project_status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Project Status",
+   "options": "\nDraft\nPlanning\nApproved\nIn Progress\nOn Hold\nCompleted\nCancelled",
+   "reqd": 1
+  },
+  {
+   "fieldname": "project_priority",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Project Priority",
+   "options": "Project Priority"
+  },
+  {
+   "fieldname": "property_details_section",
+   "fieldtype": "Section Break",
+   "label": "Property Details"
+  },
+  {
+   "fieldname": "address",
+   "fieldtype": "Small Text",
+   "label": "Address"
+  },
+  {
+   "fieldname": "district",
+   "fieldtype": "Link",
+   "label": "District",
+   "options": "District"
+  },
+  {
+   "fieldname": "city",
+   "fieldtype": "Link",
+   "label": "City",
+   "options": "City"
+  },
+  {
+   "fieldname": "state",
+   "fieldtype": "Link",
+   "label": "State",
+   "options": "State"
+  },
+  {
+   "fieldname": "country",
+   "fieldtype": "Link",
+   "label": "Country",
+   "options": "Country"
+  },
+  {
+   "fieldname": "project_timeline",
+   "fieldtype": "Section Break",
+   "label": "Project Timeline"
+  },
+  {
+   "fieldname": "start_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Start Date",
+   "reqd": 1
+  },
+  {
+   "fieldname": "expected_end_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Expected End Date"
+  },
+  {
+   "fieldname": "actual_end_date",
+   "fieldtype": "Date",
+   "label": "Actual End Date"
+  },
+  {
+   "fieldname": "team_section",
+   "fieldtype": "Section Break",
+   "label": "Project Team"
+  },
+  {
+   "fieldname": "project_manager",
+   "fieldtype": "Data",
+   "label": "Project Manager"
+  },
+  {
+   "fieldname": "engineer",
+   "fieldtype": "Link",
+   "label": "Engineer",
+   "options": "Engineer"
+  },
+  {
+   "fieldname": "contractor",
+   "fieldtype": "Link",
+   "label": "Contractor",
+   "options": "Contractor"
+  },
+  {
+   "fieldname": "government_department",
+   "fieldtype": "Link",
+   "label": "Government Department",
+   "options": "Government Department"
+  },
+  {
+   "fieldname": "cost_section",
+   "fieldtype": "Section Break",
+   "label": "Cost Details"
+  },
+  {
+   "fieldname": "estimated_cost",
+   "fieldtype": "Currency",
+   "label": "Estimated Cost"
+  },
+  {
+   "fieldname": "total_cost",
+   "fieldtype": "Currency",
+   "label": "Total Cost",
+   "read_only": 1
+  },
+  {
+   "fieldname": "materials_section",
+   "fieldtype": "Section Break",
+   "label": "Materials"
+  },
+  {
+   "fieldname": "material_salvage_count",
+   "fieldtype": "Int",
+   "label": "Material Salvage Count"
+  },
+  {
+   "fieldname": "material_exchange_count",
+   "fieldtype": "Int",
+   "label": "Material Exchange Count"
+  },
+  {
+   "fieldname": "progress_section",
+   "fieldtype": "Section Break",
+   "label": "Progress"
+  },
+  {
+   "fieldname": "progress_percentage",
+   "fieldtype": "Percent",
+   "label": "Progress Percentage"
+  },
+  {
+   "fieldname": "current_phase",
+   "fieldtype": "Data",
+   "label": "Current Phase"
+  },
+  {
+   "fieldname": "work_description",
+   "fieldtype": "Text Editor",
+   "label": "Work Description"
+  },
+  {
+   "fieldname": "scope_section",
+   "fieldtype": "Section Break",
+   "label": "Scope"
+  },
+  {
+   "fieldname": "scope_of_work",
+   "fieldtype": "Text Editor",
+   "label": "Scope of Work"
+  },
+  {
+   "fieldname": "deliverables",
+   "fieldtype": "Text Editor",
+   "label": "Deliverables"
+  },
+  {
+   "fieldname": "challenges",
+   "fieldtype": "Small Text",
+   "label": "Challenges"
+  },
+  {
+   "fieldname": "approval_section",
+   "fieldtype": "Section Break",
+   "label": "Approval"
+  },
+  {
+   "fieldname": "approved_by",
+   "fieldtype": "Data",
+   "label": "Approved By"
+  },
+  {
+   "fieldname": "approval_date",
+   "fieldtype": "Date",
+   "label": "Approval Date"
+  },
+  {
+   "fieldname": "completion_section",
+   "fieldtype": "Section Break",
+   "label": "Completion"
+  },
+  {
+   "fieldname": "completion_certificate",
+   "fieldtype": "Attach",
+   "label": "Completion Certificate"
+  },
+  {
+   "fieldname": "final_report",
+   "fieldtype": "Attach",
+   "label": "Final Report"
+  },
+  {
+   "fieldname": "remarks",
+   "fieldtype": "Small Text",
+   "label": "Remarks"
+  }
+ ],
+ "istable": 0,
+ "links": [],
+ "modified": "2024-01-01 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Abandoned Property Restoration",
+ "name": "Restoration Project",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Property Administrator",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Restoration Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "role": "Engineer",
+   "share": 1
+  },
+  {
+   "create": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "role": "Contractor",
+   "share": 1
+  },
+  {
+   "read": 1,
+   "role": "View Only User",
+   "share": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1
+}

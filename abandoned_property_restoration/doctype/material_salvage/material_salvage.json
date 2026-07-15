@@ -1,0 +1,275 @@
+{
+ "actions": [],
+ "autoname": "field:material_id",
+ "creation": "2024-01-01 00:00:00.000000",
+ "docstatus": 0,
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "material_id",
+  "material_name",
+  "material_type",
+  "material_category",
+  "property",
+  "restoration_project",
+  "quantity",
+  "unit",
+  "condition",
+  "status",
+  "location_section",
+  "storage_location",
+  "district",
+  "city",
+  "source_section",
+  "source_property",
+  "salvage_date",
+  "salvaged_by",
+  "details_section",
+  "description",
+  "dimensions",
+  "weight",
+  "material_value",
+  "photos_section",
+  "material_photos",
+  "reuse_section",
+  "reuse_potential",
+  "recommended_use",
+  "remarks"
+ ],
+ "fields": [
+  {
+   "fieldname": "material_id",
+   "fieldtype": "Data",
+   "label": "Material ID",
+   "reqd": 1,
+   "unique": 1
+  },
+  {
+   "fieldname": "material_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Material Name",
+   "length": 200,
+   "reqd": 1
+  },
+  {
+   "fieldname": "material_type",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Material Type",
+   "options": "\nDoors\nWindows\nWooden Materials\nTiles\nRoofing Sheets\nPlumbing Fixtures\nElectrical Fixtures\nFurniture\nSteel Materials\nOther",
+   "reqd": 1
+  },
+  {
+   "fieldname": "material_category",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Material Category",
+   "options": "Material Category"
+  },
+  {
+   "fieldname": "property",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Property",
+   "options": "Abandoned Property"
+  },
+  {
+   "fieldname": "restoration_project",
+   "fieldtype": "Link",
+   "label": "Restoration Project",
+   "options": "Restoration Project"
+  },
+  {
+   "fieldname": "quantity",
+   "fieldtype": "Float",
+   "in_list_view": 1,
+   "label": "Quantity",
+   "reqd": 1
+  },
+  {
+   "fieldname": "unit",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Unit",
+   "options": "\nPieces\nKg\nSq Ft\nLinear Ft\nSets",
+   "reqd": 1
+  },
+  {
+   "fieldname": "condition",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Condition",
+   "options": "Material Condition"
+  },
+  {
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Status",
+   "options": "\nAvailable\nReserved\nExchanged\nSold\nDisposed",
+   "reqd": 1
+  },
+  {
+   "fieldname": "location_section",
+   "fieldtype": "Section Break",
+   "label": "Location"
+  },
+  {
+   "fieldname": "storage_location",
+   "fieldtype": "Data",
+   "label": "Storage Location"
+  },
+  {
+   "fieldname": "district",
+   "fieldtype": "Link",
+   "label": "District",
+   "options": "District"
+  },
+  {
+   "fieldname": "city",
+   "fieldtype": "Link",
+   "label": "City",
+   "options": "City"
+  },
+  {
+   "fieldname": "source_section",
+   "fieldtype": "Section Break",
+   "label": "Source Information"
+  },
+  {
+   "fieldname": "source_property",
+   "fieldtype": "Link",
+   "label": "Source Property",
+   "options": "Abandoned Property"
+  },
+  {
+   "fieldname": "salvage_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Salvage Date",
+   "reqd": 1
+  },
+  {
+   "fieldname": "salvaged_by",
+   "fieldtype": "Data",
+   "label": "Salvaged By"
+  },
+  {
+   "fieldname": "details_section",
+   "fieldtype": "Section Break",
+   "label": "Material Details"
+  },
+  {
+   "fieldname": "description",
+   "fieldtype": "Text Editor",
+   "label": "Description"
+  },
+  {
+   "fieldname": "dimensions",
+   "fieldtype": "Data",
+   "label": "Dimensions"
+  },
+  {
+   "fieldname": "weight",
+   "fieldtype": "Float",
+   "label": "Weight (Kg)"
+  },
+  {
+   "fieldname": "material_value",
+   "fieldtype": "Currency",
+   "label": "Material Value"
+  },
+  {
+   "fieldname": "photos_section",
+   "fieldtype": "Section Break",
+   "label": "Photos"
+  },
+  {
+   "fieldname": "material_photos",
+   "fieldtype": "Attach Image",
+   "label": "Material Photos",
+   "options": "Image"
+  },
+  {
+   "fieldname": "reuse_section",
+   "fieldtype": "Section Break",
+   "label": "Reuse Information"
+  },
+  {
+   "fieldname": "reuse_potential",
+   "fieldtype": "Select",
+   "label": "Reuse Potential",
+   "options": "\nHigh\nMedium\nLow"
+  },
+  {
+   "fieldname": "recommended_use",
+   "fieldtype": "Small Text",
+   "label": "Recommended Use"
+  },
+  {
+   "fieldname": "remarks",
+   "fieldtype": "Small Text",
+   "label": "Remarks"
+  }
+ ],
+ "istable": 0,
+ "links": [],
+ "modified": "2024-01-01 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Abandoned Property Restoration",
+ "name": "Material Salvage",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Property Administrator",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Restoration Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "role": "Contractor",
+   "share": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1
+}

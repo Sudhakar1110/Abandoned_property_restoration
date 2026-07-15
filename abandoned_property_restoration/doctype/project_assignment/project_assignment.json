@@ -1,0 +1,216 @@
+{
+ "actions": [],
+ "autoname": "field:assignment_id",
+ "creation": "2024-01-01 00:00:00.000000",
+ "docstatus": 0,
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "assignment_id",
+  "property",
+  "citizen_report",
+  "restoration_project",
+  "assignment_type",
+  "assigned_to_type",
+  "engineer",
+  "contractor",
+  "government_department",
+  "assignment_status",
+  "assignment_date",
+  "expected_start_date",
+  "expected_end_date",
+  "actual_start_date",
+  "actual_end_date",
+  "priority",
+  "scope_of_work",
+  "budget_allocated",
+  "approval_section",
+  "approved_by",
+  "approval_date",
+  "remarks"
+ ],
+ "fields": [
+  {
+   "fieldname": "assignment_id",
+   "fieldtype": "Data",
+   "label": "Assignment ID",
+   "reqd": 1,
+   "unique": 1
+  },
+  {
+   "fieldname": "property",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Property",
+   "options": "Abandoned Property"
+  },
+  {
+   "fieldname": "citizen_report",
+   "fieldtype": "Link",
+   "label": "Citizen Report",
+   "options": "Citizen Property Report"
+  },
+  {
+   "fieldname": "restoration_project",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Restoration Project",
+   "options": "Restoration Project"
+  },
+  {
+   "fieldname": "assignment_type",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Assignment Type",
+   "options": "\nInspection\nRestoration\nMaintenance\nSupervision",
+   "reqd": 1
+  },
+  {
+   "fieldname": "assigned_to_type",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Assigned To Type",
+   "options": "\nEngineer\nContractor\nGovernment Department",
+   "reqd": 1
+  },
+  {
+   "fieldname": "engineer",
+   "fieldtype": "Link",
+   "label": "Engineer",
+   "options": "Engineer"
+  },
+  {
+   "fieldname": "contractor",
+   "fieldtype": "Link",
+   "label": "Contractor",
+   "options": "Contractor"
+  },
+  {
+   "fieldname": "government_department",
+   "fieldtype": "Link",
+   "label": "Government Department",
+   "options": "Government Department"
+  },
+  {
+   "fieldname": "assignment_status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Status",
+   "options": "\nPending\nAssigned\nIn Progress\nCompleted\nCancelled",
+   "reqd": 1
+  },
+  {
+   "fieldname": "assignment_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Assignment Date",
+   "reqd": 1
+  },
+  {
+   "fieldname": "expected_start_date",
+   "fieldtype": "Date",
+   "label": "Expected Start Date"
+  },
+  {
+   "fieldname": "expected_end_date",
+   "fieldtype": "Date",
+   "label": "Expected End Date"
+  },
+  {
+   "fieldname": "actual_start_date",
+   "fieldtype": "Date",
+   "label": "Actual Start Date"
+  },
+  {
+   "fieldname": "actual_end_date",
+   "fieldtype": "Date",
+   "label": "Actual End Date"
+  },
+  {
+   "fieldname": "priority",
+   "fieldtype": "Link",
+   "label": "Priority",
+   "options": "Project Priority"
+  },
+  {
+   "fieldname": "scope_of_work",
+   "fieldtype": "Text Editor",
+   "label": "Scope of Work"
+  },
+  {
+   "fieldname": "budget_allocated",
+   "fieldtype": "Currency",
+   "label": "Budget Allocated"
+  },
+  {
+   "fieldname": "approval_section",
+   "fieldtype": "Section Break",
+   "label": "Approval"
+  },
+  {
+   "fieldname": "approved_by",
+   "fieldtype": "Data",
+   "label": "Approved By"
+  },
+  {
+   "fieldname": "approval_date",
+   "fieldtype": "Date",
+   "label": "Approval Date"
+  },
+  {
+   "fieldname": "remarks",
+   "fieldtype": "Small Text",
+   "label": "Remarks"
+  }
+ ],
+ "istable": 0,
+ "links": [],
+ "modified": "2024-01-01 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Abandoned Property Restoration",
+ "name": "Project Assignment",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Property Administrator",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Restoration Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1
+}

@@ -1,0 +1,13 @@
+include MANIFEST.in
+include README.md
+include LICENSE
+recursive-include abandoned_property_restoration/**/*.py
+recursive-include abandoned_property_restoration/**/*.json
+recursive-include abandoned_property_restoration/**/*.js
+recursive-include abandoned_property_restoration/**/*.html
+recursive-include abandoned_property_restoration/**/*.css
+recursive-include abandoned_property_restoration/**/*.md
+recursive-include abandoned_property_restoration/**/*.xml
+recursive-include abandoned_property_restoration/**/*.svg
+recursive-exclude * __pycache__
+recursive-exclude * *.py[co]

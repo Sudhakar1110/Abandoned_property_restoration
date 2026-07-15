@@ -1,0 +1,130 @@
+{
+ "actions": [],
+ "autoname": "field:image_id",
+ "creation": "2024-01-01 00:00:00.000000",
+ "docstatus": 0,
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "image_id",
+  "property",
+  "image_type",
+  "caption",
+  "image",
+  "capture_date",
+  "captured_by",
+  "remarks"
+ ],
+ "fields": [
+  {
+   "fieldname": "image_id",
+   "fieldtype": "Data",
+   "label": "Image ID",
+   "reqd": 1,
+   "unique": 1
+  },
+  {
+   "fieldname": "property",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Property",
+   "options": "Abandoned Property",
+   "reqd": 1
+  },
+  {
+   "fieldname": "image_type",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Image Type",
+   "options": "\nExterior\nInterior\nStructural\nSafety\nProgress\nOther",
+   "reqd": 1
+  },
+  {
+   "fieldname": "caption",
+   "fieldtype": "Data",
+   "label": "Caption"
+  },
+  {
+   "fieldname": "image",
+   "fieldtype": "Attach Image",
+   "label": "Image",
+   "options": "Image",
+   "reqd": 1
+  },
+  {
+   "fieldname": "capture_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Capture Date"
+  },
+  {
+   "fieldname": "captured_by",
+   "fieldtype": "Data",
+   "label": "Captured By"
+  },
+  {
+   "fieldname": "remarks",
+   "fieldtype": "Small Text",
+   "label": "Remarks"
+  }
+ ],
+ "istable": 0,
+ "links": [],
+ "modified": "2024-01-01 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Abandoned Property Restoration",
+ "name": "Property Images",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Property Administrator",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Restoration Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "role": "Inspector",
+   "share": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1
+}
