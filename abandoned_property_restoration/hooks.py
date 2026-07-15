@@ -80,11 +80,11 @@ after_install = "abandoned_property_restoration.install.after_install"
 after_uninstall = "abandoned_property_restoration.install.after_uninstall"
 
 fixtures = [
-    {"dt": "Custom Field", "filters": [["module", "=", "Abandoned Property Restoration"]]},
-    {"dt": "Property Setter", "filters": [["module", "=", "Abandoned Property Restoration"]]},
+    {"dt": "Custom Field", "filters": [["module", "=", "restoration"]]},
+    {"dt": "Property Setter", "filters": [["module", "=", "restoration"]]},
     {"dt": "Custom Script", "filters": [["dt", "like", "%"]]},
-    {"dt": "Print Format", "filters": [["module", "=", "Abandoned Property Restoration"]]},
-    {"dt": "Report", "filters": [["module", "=", "Abandoned Property Restoration"]]},
+    {"dt": "Print Format", "filters": [["module", "=", "restoration"]]},
+    {"dt": "Report", "filters": [["module", "=", "restoration"]]},
 ]
 
 override_whitelisted_methods = {}
