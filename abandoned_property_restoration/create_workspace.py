@@ -30,61 +30,35 @@ def create_abandoned_property_workspace():
     for role in ["System Manager", "Property Administrator", "Restoration Manager", "Government Officer", "View Only User"]:
         workspace.append("roles", {"role": role})
     
-    # Add links to child table
-    links_data = [
-        # Masters
-        {"label": "Property Category", "link_type": "DocType", "link_to": "Property Category", "icon": "fa fa-th", "col": 3},
-        {"label": "Property Type", "link_type": "DocType", "link_to": "Property Type", "icon": "fa fa-building", "col": 3},
-        {"label": "Restoration Category", "link_type": "DocType", "link_to": "Restoration Category", "icon": "fa fa-refresh", "col": 3},
-        {"label": "Material Category", "link_type": "DocType", "link_to": "Material Category", "icon": "fa fa-cubes", "col": 3},
-        {"label": "Material Condition", "link_type": "DocType", "link_to": "Material Condition", "icon": "fa fa-check-circle", "col": 3},
-        {"label": "Citizen", "link_type": "DocType", "link_to": "Citizen", "icon": "fa fa-user", "col": 3},
-        {"label": "Contractor", "link_type": "DocType", "link_to": "Contractor", "icon": "fa fa-briefcase", "col": 3},
-        {"label": "Engineer", "link_type": "DocType", "link_to": "Engineer", "icon": "fa fa-wrench", "col": 3},
-        {"label": "Inspector", "link_type": "DocType", "link_to": "Inspector", "icon": "fa fa-search", "col": 3},
-        {"label": "Government Department", "link_type": "DocType", "link_to": "Government Department", "icon": "fa fa-institution", "col": 3},
-        {"label": "Reward Type", "link_type": "DocType", "link_to": "Reward Type", "icon": "fa fa-gift", "col": 3},
-        # Transactions
-        {"label": "Abandoned Property", "link_type": "DocType", "link_to": "Abandoned Property", "icon": "fa fa-home", "col": 3},
-        {"label": "Citizen Property Report", "link_type": "DocType", "link_to": "Citizen Property Report", "icon": "fa fa-flag", "col": 3},
-        {"label": "Property Inspection", "link_type": "DocType", "link_to": "Property Inspection", "icon": "fa fa-clipboard", "col": 3},
-        {"label": "Restoration Project", "link_type": "DocType", "link_to": "Restoration Project", "icon": "fa fa-tasks", "col": 3},
-        {"label": "Material Salvage", "link_type": "DocType", "link_to": "Material Salvage", "icon": "fa fa-recycle", "col": 3},
-        {"label": "Material Exchange", "link_type": "DocType", "link_to": "Material Exchange", "icon": "fa fa-exchange", "col": 3},
-        {"label": "Material Sale", "link_type": "DocType", "link_to": "Material Sale", "icon": "fa fa-shopping-cart", "col": 3},
-        {"label": "Reward Claim", "link_type": "DocType", "link_to": "Reward Claim", "icon": "fa fa-money", "col": 3},
-    ]
-    
-    for link in links_data:
-        workspace.append("links", link)
-    
     workspace.insert(ignore_permissions=True)
     frappe.db.commit()
     
-    # Update content JSON with link blocks format
+    # Update content JSON with shortcut blocks using URL format
     content = json.dumps([
-        {"id": "header1", "type": "header", "data": {"text": "<span class=\"h4\"><b>Masters</b></span>", "col": 12}},
-        {"id": "link1", "type": "link", "data": {"link_to": "Property Category", "col": 3}},
-        {"id": "link2", "type": "link", "data": {"link_to": "Property Type", "col": 3}},
-        {"id": "link3", "type": "link", "data": {"link_to": "Restoration Category", "col": 3}},
-        {"id": "link4", "type": "link", "data": {"link_to": "Material Category", "col": 3}},
-        {"id": "link5", "type": "link", "data": {"link_to": "Material Condition", "col": 3}},
-        {"id": "link6", "type": "link", "data": {"link_to": "Citizen", "col": 3}},
-        {"id": "link7", "type": "link", "data": {"link_to": "Contractor", "col": 3}},
-        {"id": "link8", "type": "link", "data": {"link_to": "Engineer", "col": 3}},
-        {"id": "link9", "type": "link", "data": {"link_to": "Inspector", "col": 3}},
-        {"id": "link10", "type": "link", "data": {"link_to": "Government Department", "col": 3}},
-        {"id": "link11", "type": "link", "data": {"link_to": "Reward Type", "col": 3}},
-        {"id": "spacer1", "type": "spacer", "data": {"col": 12}},
-        {"id": "header2", "type": "header", "data": {"text": "<span class=\"h4\"><b>Transactions</b></span>", "col": 12}},
-        {"id": "link12", "type": "link", "data": {"link_to": "Abandoned Property", "col": 3}},
-        {"id": "link13", "type": "link", "data": {"link_to": "Citizen Property Report", "col": 3}},
-        {"id": "link14", "type": "link", "data": {"link_to": "Property Inspection", "col": 3}},
-        {"id": "link15", "type": "link", "data": {"link_to": "Restoration Project", "col": 3}},
-        {"id": "link16", "type": "link", "data": {"link_to": "Material Salvage", "col": 3}},
-        {"id": "link17", "type": "link", "data": {"link_to": "Material Exchange", "col": 3}},
-        {"id": "link18", "type": "link", "data": {"link_to": "Material Sale", "col": 3}},
-        {"id": "link19", "type": "link", "data": {"link_to": "Reward Claim", "col": 3}},
+        # Masters Section
+        {"id": "H1", "type": "header", "data": {"text": "<span class=\"h4\"><b>Masters</b></span>", "col": 12}},
+        {"id": "S1", "type": "shortcut", "data": {"shortcut_name": "Property Category", "url": "/app/property-category", "col": 3}},
+        {"id": "S2", "type": "shortcut", "data": {"shortcut_name": "Property Type", "url": "/app/property-type", "col": 3}},
+        {"id": "S3", "type": "shortcut", "data": {"shortcut_name": "Restoration Category", "url": "/app/restoration-category", "col": 3}},
+        {"id": "S4", "type": "shortcut", "data": {"shortcut_name": "Material Category", "url": "/app/material-category", "col": 3}},
+        {"id": "S5", "type": "shortcut", "data": {"shortcut_name": "Material Condition", "url": "/app/material-condition", "col": 3}},
+        {"id": "S6", "type": "shortcut", "data": {"shortcut_name": "Citizen", "url": "/app/citizen", "col": 3}},
+        {"id": "S7", "type": "shortcut", "data": {"shortcut_name": "Contractor", "url": "/app/contractor", "col": 3}},
+        {"id": "S8", "type": "shortcut", "data": {"shortcut_name": "Engineer", "url": "/app/engineer", "col": 3}},
+        {"id": "S9", "type": "shortcut", "data": {"shortcut_name": "Inspector", "url": "/app/inspector", "col": 3}},
+        {"id": "S10", "type": "shortcut", "data": {"shortcut_name": "Government Department", "url": "/app/government-department", "col": 3}},
+        {"id": "S11", "type": "shortcut", "data": {"shortcut_name": "Reward Type", "url": "/app/reward-type", "col": 3}},
+        {"id": "SP1", "type": "spacer", "data": {"col": 12}},
+        # Transactions Section
+        {"id": "H2", "type": "header", "data": {"text": "<span class=\"h4\"><b>Transactions</b></span>", "col": 12}},
+        {"id": "S12", "type": "shortcut", "data": {"shortcut_name": "Abandoned Property", "url": "/app/abandoned-property", "col": 3}},
+        {"id": "S13", "type": "shortcut", "data": {"shortcut_name": "Citizen Property Report", "url": "/app/citizen-property-report", "col": 3}},
+        {"id": "S14", "type": "shortcut", "data": {"shortcut_name": "Property Inspection", "url": "/app/property-inspection", "col": 3}},
+        {"id": "S15", "type": "shortcut", "data": {"shortcut_name": "Restoration Project", "url": "/app/restoration-project", "col": 3}},
+        {"id": "S16", "type": "shortcut", "data": {"shortcut_name": "Material Salvage", "url": "/app/material-salvage", "col": 3}},
+        {"id": "S17", "type": "shortcut", "data": {"shortcut_name": "Material Exchange", "url": "/app/material-exchange", "col": 3}},
+        {"id": "S18", "type": "shortcut", "data": {"shortcut_name": "Material Sale", "url": "/app/material-sale", "col": 3}},
+        {"id": "S19", "type": "shortcut", "data": {"shortcut_name": "Reward Claim", "url": "/app/reward-claim", "col": 3}},
     ])
     
     frappe.db.sql("UPDATE `tabWorkspace` SET content = %s WHERE name = %s", (content, "Abandoned Property Restoration"))
