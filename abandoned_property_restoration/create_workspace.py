@@ -21,7 +21,7 @@ def create_abandoned_property_workspace():
         frappe.delete_doc("Workspace", "Abandoned Property Restoration", force=True)
         print("Deleted existing workspace")
     
-    # First create the workspace
+    # Create workspace
     workspace = frappe.new_doc("Workspace")
     workspace.name = "Abandoned Property Restoration"
     workspace.title = "Abandoned Property Restoration"
@@ -40,72 +40,66 @@ def create_abandoned_property_workspace():
     workspace.insert(ignore_permissions=True)
     frappe.db.commit()
     
-    # Masters links - only DocTypes
-    masters_links = [
-        {"label": "Property Category", "link_type": "DocType", "link_to": "Property Category", "icon": "fa fa-th"},
-        {"label": "Property Type", "link_type": "DocType", "link_to": "Property Type", "icon": "fa fa-building"},
-        {"label": "Restoration Category", "link_type": "DocType", "link_to": "Restoration Category", "icon": "fa fa-refresh"},
-        {"label": "Material Category", "link_type": "DocType", "link_to": "Material Category", "icon": "fa fa-cubes"},
-        {"label": "Material Condition", "link_type": "DocType", "link_to": "Material Condition", "icon": "fa fa-check-circle"},
-        {"label": "Citizen", "link_type": "DocType", "link_to": "Citizen", "icon": "fa fa-user"},
-        {"label": "Contractor", "link_type": "DocType", "link_to": "Contractor", "icon": "fa fa-briefcase"},
-        {"label": "Engineer", "link_type": "DocType", "link_to": "Engineer", "icon": "fa fa-wrench"},
-        {"label": "Inspector", "link_type": "DocType", "link_to": "Inspector", "icon": "fa fa-search"},
-        {"label": "Government Department", "link_type": "DocType", "link_to": "Government Department", "icon": "fa fa-institution"},
-        {"label": "Reward Type", "link_type": "DocType", "link_to": "Reward Type", "icon": "fa fa-gift"},
+    # Define shortcuts - these will be in content JSON with headers
+    content_blocks = []
+    
+    # Masters Section Header
+    content_blocks.append({
+        "id": generate_id(),
+        "type": "header", 
+        "data": {"text": "<span class=\"h4\"><b>Masters</b></span>", "col": 12}
+    })
+    
+    # Masters Shortcuts
+    masters = [
+        ("Property Category", "Property Category"),
+        ("Property Type", "Property Type"),
+        ("Restoration Category", "Restoration Category"),
+        ("Material Category", "Material Category"),
+        ("Material Condition", "Material Condition"),
+        ("Citizen", "Citizen"),
+        ("Contractor", "Contractor"),
+        ("Engineer", "Engineer"),
+        ("Inspector", "Inspector"),
+        ("Government Department", "Government Department"),
+        ("Reward Type", "Reward Type"),
     ]
     
-    transactions_links = [
-        {"label": "Abandoned Property", "link_type": "DocType", "link_to": "Abandoned Property", "icon": "fa fa-home"},
-        {"label": "Citizen Property Report", "link_type": "DocType", "link_to": "Citizen Property Report", "icon": "fa fa-flag"},
-        {"label": "Property Inspection", "link_type": "DocType", "link_to": "Property Inspection", "icon": "fa fa-clipboard"},
-        {"label": "Restoration Project", "link_type": "DocType", "link_to": "Restoration Project", "icon": "fa fa-tasks"},
-        {"label": "Material Salvage", "link_type": "DocType", "link_to": "Material Salvage", "icon": "fa fa-recycle"},
-        {"label": "Material Exchange", "link_type": "DocType", "link_to": "Material Exchange", "icon": "fa fa-exchange"},
-        {"label": "Material Sale", "link_type": "DocType", "link_to": "Material Sale", "icon": "fa fa-shopping-cart"},
-        {"label": "Reward Claim", "link_type": "DocType", "link_to": "Reward Claim", "icon": "fa fa-money"},
-    ]
+    for label, shortcut_name in masters:
+        content_blocks.append({
+            "id": generate_id(),
+            "type": "shortcut",
+            "data": {"shortcut_name": shortcut_name, "col": 3}
+        })
     
-    # Add Masters links
-    for link in masters_links:
-        ws_link = frappe.new_doc("Workspace Link")
-        ws_link.parent = "Abandoned Property Restoration"
-        ws_link.parentfield = "links"
-        ws_link.parenttype = "Workspace"
-        ws_link.label = link["label"]
-        ws_link.link_type = link["link_type"]
-        ws_link.link_to = link["link_to"]
-        ws_link.icon = link["icon"]
-        ws_link.insert(ignore_permissions=True)
-    
-    # Add Transactions links
-    for link in transactions_links:
-        ws_link = frappe.new_doc("Workspace Link")
-        ws_link.parent = "Abandoned Property Restoration"
-        ws_link.parentfield = "links"
-        ws_link.parenttype = "Workspace"
-        ws_link.label = link["label"]
-        ws_link.link_type = link["link_type"]
-        ws_link.link_to = link["link_to"]
-        ws_link.icon = link["icon"]
-        ws_link.insert(ignore_permissions=True)
-    
-    frappe.db.commit()
-    
-    # Create content JSON with headers for each section
-    content_blocks = [
-        # Masters Section
-        {"id": generate_id(), "type": "header", "data": {"text": "<span class=\"h4\"><b>Masters</b></span>", "col": 12}},
-    ]
-    for link in masters_links:
-        content_blocks.append({"id": generate_id(), "type": "shortcut", "data": {"shortcut_name": link["link_to"], "col": 3}})
-    
+    # Spacer
     content_blocks.append({"id": generate_id(), "type": "spacer", "data": {"col": 12}})
     
-    # Transactions Section
-    content_blocks.append({"id": generate_id(), "type": "header", "data": {"text": "<span class=\"h4\"><b>Transactions</b></span>", "col": 12}})
-    for link in transactions_links:
-        content_blocks.append({"id": generate_id(), "type": "shortcut", "data": {"shortcut_name": link["link_to"], "col": 3}})
+    # Transactions Section Header
+    content_blocks.append({
+        "id": generate_id(),
+        "type": "header", 
+        "data": {"text": "<span class=\"h4\"><b>Transactions</b></span>", "col": 12}
+    })
+    
+    # Transactions Shortcuts
+    transactions = [
+        ("Abandoned Property", "Abandoned Property"),
+        ("Citizen Property Report", "Citizen Property Report"),
+        ("Property Inspection", "Property Inspection"),
+        ("Restoration Project", "Restoration Project"),
+        ("Material Salvage", "Material Salvage"),
+        ("Material Exchange", "Material Exchange"),
+        ("Material Sale", "Material Sale"),
+        ("Reward Claim", "Reward Claim"),
+    ]
+    
+    for label, shortcut_name in transactions:
+        content_blocks.append({
+            "id": generate_id(),
+            "type": "shortcut",
+            "data": {"shortcut_name": shortcut_name, "col": 3}
+        })
     
     # Update content via SQL
     frappe.db.sql("""
@@ -116,6 +110,6 @@ def create_abandoned_property_workspace():
     frappe.db.commit()
     
     print("SUCCESS: Workspace created!")
-    print("- Masters: {0} links".format(len(masters_links)))
-    print("- Transactions: {0} links".format(len(transactions_links)))
+    print("- Masters: {0} shortcuts".format(len(masters)))
+    print("- Transactions: {0} shortcuts".format(len(transactions)))
     print("Please hard refresh your browser (Ctrl+Shift+R)")
