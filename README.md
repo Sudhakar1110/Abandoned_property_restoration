@@ -40,11 +40,19 @@ The application includes **44 DocTypes**:
 
 1. Install the app in your Frappe bench:
 ```bash
-bench get-app abandoned_property_restoration <repository_url>
+# Get the app (use --skip-assets to avoid Frappe v15 esbuild ordering issue)
+bench get-app --skip-assets https://github.com/Sudhakar1110/Abandoned_property_restoration.git
+
+# Install on your site
 bench --site <site_name> install-app abandoned_property_restoration
+
+# Build assets after the app is installed
+bench build
 ```
 
 2. After installation, the fixtures will be loaded automatically providing initial reference data.
+
+> **Note for Frappe v15 users**: If you encounter an esbuild error during `bench get-app`, use the `--skip-assets` flag as shown above. This is a known Frappe v15 interaction where the asset build runs before the app is registered in `apps.txt`. Once installed, `bench build` will build the assets successfully.
 
 ## License
 
