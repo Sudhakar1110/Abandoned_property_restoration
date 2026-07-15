@@ -40,8 +40,8 @@ def create_abandoned_property_workspace():
     workspace.insert(ignore_permissions=True)
     frappe.db.commit()
     
-    # Now add shortcuts to the child table via SQL
-    shortcuts = [
+    # Define shortcuts by category
+    masters_shortcuts = [
         {"label": "Property Category", "shortcut_name": "Property Category", "url": "/app/property-category", "icon": "fa fa-th", "col": 3},
         {"label": "Property Type", "shortcut_name": "Property Type", "url": "/app/property-type", "icon": "fa fa-building", "col": 3},
         {"label": "Restoration Category", "shortcut_name": "Restoration Category", "url": "/app/restoration-category", "icon": "fa fa-refresh", "col": 3},
@@ -53,6 +53,9 @@ def create_abandoned_property_workspace():
         {"label": "Inspector", "shortcut_name": "Inspector", "url": "/app/inspector", "icon": "fa fa-search", "col": 3},
         {"label": "Government Department", "shortcut_name": "Government Department", "url": "/app/government-department", "icon": "fa fa-institution", "col": 3},
         {"label": "Reward Type", "shortcut_name": "Reward Type", "url": "/app/reward-type", "icon": "fa fa-gift", "col": 3},
+    ]
+    
+    transactions_shortcuts = [
         {"label": "Abandoned Property", "shortcut_name": "Abandoned Property", "url": "/app/abandoned-property", "icon": "fa fa-home", "col": 3},
         {"label": "Citizen Property Report", "shortcut_name": "Citizen Property Report", "url": "/app/citizen-property-report", "icon": "fa fa-flag", "col": 3},
         {"label": "Property Inspection", "shortcut_name": "Property Inspection", "url": "/app/property-inspection", "icon": "fa fa-clipboard", "col": 3},
@@ -63,8 +66,19 @@ def create_abandoned_property_workspace():
         {"label": "Reward Claim", "shortcut_name": "Reward Claim", "url": "/app/reward-claim", "icon": "fa fa-money", "col": 3},
     ]
     
-    for sc in shortcuts:
-        # Insert into Workspace Shortcut table
+    reports_shortcuts = [
+        {"label": "Abandoned Property Summary", "shortcut_name": "Abandoned Property Summary", "url": "/app/query-report/Abandoned%20Property%20Summary", "icon": "fa fa-file-text", "col": 3},
+        {"label": "Restoration Status Report", "shortcut_name": "Restoration Status Report", "url": "/app/query-report/Restoration%20Status%20Report", "icon": "fa fa-file-text", "col": 3},
+        {"label": "Property Inspection Report", "shortcut_name": "Property Inspection Report", "url": "/app/query-report/Property%20Inspection%20Report", "icon": "fa fa-file-text", "col": 3},
+        {"label": "Material Salvage Report", "shortcut_name": "Material Salvage Report", "url": "/app/query-report/Material%20Salvage%20Report", "icon": "fa fa-file-text", "col": 3},
+        {"label": "Material Exchange Report", "shortcut_name": "Material Exchange Report", "url": "/app/query-report/Material%20Exchange%20Report", "icon": "fa fa-file-text", "col": 3},
+        {"label": "Citizen Reward Report", "shortcut_name": "Citizen Reward Report", "url": "/app/query-report/Citizen%20Reward%20Report", "icon": "fa fa-file-text", "col": 3},
+    ]
+    
+    all_shortcuts = masters_shortcuts + transactions_shortcuts + reports_shortcuts
+    
+    # Add all shortcuts to child table
+    for sc in all_shortcuts:
         ws_shortcut = frappe.new_doc("Workspace Shortcut")
         ws_shortcut.parent = "Abandoned Property Restoration"
         ws_shortcut.parentfield = "shortcuts"
@@ -78,22 +92,26 @@ def create_abandoned_property_workspace():
     
     frappe.db.commit()
     
-    # Create content JSON
+    # Create content JSON with proper section organization
     content_blocks = [
+        # Masters Section
         {"id": generate_id(), "type": "header", "data": {"text": "<span class=\"h4\"><b>Masters</b></span>", "col": 12}},
     ]
-    
-    # Masters shortcuts
-    masters = shortcuts[:11]
-    for sc in masters:
+    for sc in masters_shortcuts:
         content_blocks.append({"id": generate_id(), "type": "shortcut", "data": {"shortcut_name": sc["shortcut_name"], "col": sc["col"]}})
     
     content_blocks.append({"id": generate_id(), "type": "spacer", "data": {"col": 12}})
-    content_blocks.append({"id": generate_id(), "type": "header", "data": {"text": "<span class=\"h4\"><b>Transactions</b></span>", "col": 12}})
     
-    # Transactions shortcuts
-    transactions = shortcuts[11:]
-    for sc in transactions:
+    # Transactions Section
+    content_blocks.append({"id": generate_id(), "type": "header", "data": {"text": "<span class=\"h4\"><b>Transactions</b></span>", "col": 12}})
+    for sc in transactions_shortcuts:
+        content_blocks.append({"id": generate_id(), "type": "shortcut", "data": {"shortcut_name": sc["shortcut_name"], "col": sc["col"]}})
+    
+    content_blocks.append({"id": generate_id(), "type": "spacer", "data": {"col": 12}})
+    
+    # Reports Section
+    content_blocks.append({"id": generate_id(), "type": "header", "data": {"text": "<span class=\"h4\"><b>Reports</b></span>", "col": 12}})
+    for sc in reports_shortcuts:
         content_blocks.append({"id": generate_id(), "type": "shortcut", "data": {"shortcut_name": sc["shortcut_name"], "col": sc["col"]}})
     
     # Update content via SQL
@@ -104,5 +122,8 @@ def create_abandoned_property_workspace():
     """, (frappe.json.dumps(content_blocks), "Abandoned Property Restoration"))
     frappe.db.commit()
     
-    print("SUCCESS: Workspace created with {0} shortcuts!".format(len(shortcuts)))
+    print("SUCCESS: Workspace created!")
+    print("- Masters: {0} shortcuts".format(len(masters_shortcuts)))
+    print("- Transactions: {0} shortcuts".format(len(transactions_shortcuts)))
+    print("- Reports: {0} shortcuts".format(len(reports_shortcuts)))
     print("Please hard refresh your browser (Ctrl+Shift+R)")
