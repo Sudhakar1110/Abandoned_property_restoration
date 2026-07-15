@@ -2,6 +2,7 @@
     "doctype":  "Workspace",
     "name":  "Abandoned Property Restoration",
     "title":  "Abandoned Property Restoration",
+    "label":  "Abandoned Property Restoration",
     "icon":  "octicon octicon-tools",
     "module":  "restoration",
     "public":  1,
