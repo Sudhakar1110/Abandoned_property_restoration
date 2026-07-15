@@ -40,8 +40,7 @@ def create_abandoned_property_workspace():
     workspace.insert(ignore_permissions=True)
     frappe.db.commit()
     
-    # Use links child table instead of shortcuts - this organizes by section
-    # Masters links
+    # Masters links - only DocTypes
     masters_links = [
         {"label": "Property Category", "link_type": "DocType", "link_to": "Property Category", "icon": "fa fa-th"},
         {"label": "Property Type", "link_type": "DocType", "link_to": "Property Type", "icon": "fa fa-building"},
@@ -67,18 +66,20 @@ def create_abandoned_property_workspace():
         {"label": "Reward Claim", "link_type": "DocType", "link_to": "Reward Claim", "icon": "fa fa-money"},
     ]
     
-    reports_links = [
-        {"label": "Abandoned Property Summary", "link_type": "Report", "link_to": "Abandoned Property Summary", "icon": "fa fa-file-text"},
-        {"label": "Restoration Status Report", "link_type": "Report", "link_to": "Restoration Status Report", "icon": "fa fa-file-text"},
-        {"label": "Property Inspection Report", "link_type": "Report", "link_to": "Property Inspection Report", "icon": "fa fa-file-text"},
-        {"label": "Material Salvage Report", "link_type": "Report", "link_to": "Material Salvage Report", "icon": "fa fa-file-text"},
-        {"label": "Material Exchange Report", "link_type": "Report", "link_to": "Material Exchange Report", "icon": "fa fa-file-text"},
-        {"label": "Citizen Reward Report", "link_type": "Report", "link_to": "Citizen Reward Report", "icon": "fa fa-file-text"},
-    ]
+    # Add Masters links
+    for link in masters_links:
+        ws_link = frappe.new_doc("Workspace Link")
+        ws_link.parent = "Abandoned Property Restoration"
+        ws_link.parentfield = "links"
+        ws_link.parenttype = "Workspace"
+        ws_link.label = link["label"]
+        ws_link.link_type = link["link_type"]
+        ws_link.link_to = link["link_to"]
+        ws_link.icon = link["icon"]
+        ws_link.insert(ignore_permissions=True)
     
-    # Add all links to child table
-    all_links = masters_links + transactions_links + reports_links
-    for link in all_links:
+    # Add Transactions links
+    for link in transactions_links:
         ws_link = frappe.new_doc("Workspace Link")
         ws_link.parent = "Abandoned Property Restoration"
         ws_link.parentfield = "links"
@@ -91,15 +92,20 @@ def create_abandoned_property_workspace():
     
     frappe.db.commit()
     
-    # Create content JSON with cards for each section
+    # Create content JSON with headers for each section
     content_blocks = [
-        # Masters Card
-        {"id": generate_id(), "type": "card", "data": {"card_name": "Masters", "col": 4}},
-        # Transactions Card
-        {"id": generate_id(), "type": "card", "data": {"card_name": "Transactions", "col": 4}},
-        # Reports Card
-        {"id": generate_id(), "type": "card", "data": {"card_name": "Reports", "col": 4}},
+        # Masters Section
+        {"id": generate_id(), "type": "header", "data": {"text": "<span class=\"h4\"><b>Masters</b></span>", "col": 12}},
     ]
+    for link in masters_links:
+        content_blocks.append({"id": generate_id(), "type": "shortcut", "data": {"shortcut_name": link["link_to"], "col": 3}})
+    
+    content_blocks.append({"id": generate_id(), "type": "spacer", "data": {"col": 12}})
+    
+    # Transactions Section
+    content_blocks.append({"id": generate_id(), "type": "header", "data": {"text": "<span class=\"h4\"><b>Transactions</b></span>", "col": 12}})
+    for link in transactions_links:
+        content_blocks.append({"id": generate_id(), "type": "shortcut", "data": {"shortcut_name": link["link_to"], "col": 3}})
     
     # Update content via SQL
     frappe.db.sql("""
@@ -112,5 +118,4 @@ def create_abandoned_property_workspace():
     print("SUCCESS: Workspace created!")
     print("- Masters: {0} links".format(len(masters_links)))
     print("- Transactions: {0} links".format(len(transactions_links)))
-    print("- Reports: {0} links".format(len(reports_links)))
     print("Please hard refresh your browser (Ctrl+Shift+R)")
