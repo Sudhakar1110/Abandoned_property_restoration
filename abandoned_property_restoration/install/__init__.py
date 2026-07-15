@@ -14,7 +14,7 @@ def after_uninstall():
 
 
 def create_workspace():
-    """Create or update the Abandoned Property Restoration workspace."""
+    """Create the Abandoned Property Restoration workspace."""
     if not frappe.db.exists("Workspace", "Abandoned Property Restoration"):
         workspace = frappe.new_doc("Workspace")
         workspace.name = "Abandoned Property Restoration"
@@ -24,30 +24,19 @@ def create_workspace():
         workspace.module = "restoration"
         workspace.public = 1
         workspace.sequence_id = 1
+        workspace.is_standard = 1
         
         # Add roles
         roles = ["System Manager", "Property Administrator", "Restoration Manager", "Government Officer", "View Only User"]
         for role in roles:
             workspace.append("roles", {"role": role})
         
-        # Add blocks
-        workspace.blocks = frappe.json.dumps([
+        # Add content with card blocks
+        workspace.content = frappe.json.dumps([
             {
                 "id": "masters-header",
                 "type": "header",
                 "data": {"title": "Masters"}
-            },
-            {
-                "id": "masters-quick-create",
-                "type": "quick_list",
-                "data": {
-                    "label": "Quick Create",
-                    "quick_list_options": [
-                        {"label": "Property Category", "doc_type": "Property Category", "action": "new"},
-                        {"label": "Property Type", "doc_type": "Property Type", "action": "new"},
-                        {"label": "Citizen", "doc_type": "Citizen", "action": "new"}
-                    ]
-                }
             },
             {
                 "id": "masters-card-1",

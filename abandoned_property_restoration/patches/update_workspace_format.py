@@ -3,30 +3,18 @@ import frappe
 
 def execute():
     """
-    Update the Abandoned Property Restoration workspace to use the new block format.
-    This patch migrates from the old content format to the new blocks format.
+    Update the Abandoned Property Restoration workspace with proper card blocks.
+    This fixes the workspace format for Frappe v15.
     """
     if frappe.db.exists("Workspace", "Abandoned Property Restoration"):
         workspace = frappe.get_doc("Workspace", "Abandoned Property Restoration")
         
-        # Define new blocks structure
-        blocks = [
+        # Define content with proper card format
+        content = [
             {
                 "id": "masters-header",
                 "type": "header",
                 "data": {"title": "Masters"}
-            },
-            {
-                "id": "masters-quick-create",
-                "type": "quick_list",
-                "data": {
-                    "label": "Quick Create",
-                    "quick_list_options": [
-                        {"label": "Property Category", "doc_type": "Property Category", "action": "new"},
-                        {"label": "Property Type", "doc_type": "Property Type", "action": "new"},
-                        {"label": "Citizen", "doc_type": "Citizen", "action": "new"}
-                    ]
-                }
             },
             {
                 "id": "masters-card-1",
@@ -167,12 +155,12 @@ def execute():
             }
         ]
         
-        # Update workspace with new blocks format
-        workspace.blocks = frappe.json.dumps(blocks)
+        # Update workspace with correct content format
+        workspace.content = frappe.json.dumps(content)
         workspace.icon = "fa fa-home"
         workspace.save(ignore_permissions=True)
         frappe.db.commit()
         
-        print("Workspace updated successfully with new block format")
+        print("Workspace updated successfully")
     else:
         print("Workspace 'Abandoned Property Restoration' not found")
