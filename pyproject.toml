@@ -1,6 +1,6 @@
 [build-system]
-requires = ["flit_core >=3.2,<4"]
-build-backend = "flit_core.buildapi"
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
 
 [project]
 name = "abandoned_property_restoration"
@@ -10,6 +10,5 @@ authors = [{name = "Abandoned Property Restoration Team"}]
 requires-python = ">=3.10"
 dependencies = []
 
-[tool.flit.metadata]
-requires-python = ">=3.10"
-module_name = "abandoned_property_restoration"
+[tool.setuptools.packages.find]
+include = ["abandoned_property_restoration*"]
