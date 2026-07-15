@@ -14,8 +14,116 @@ def after_uninstall():
 
 
 def create_workspace():
-    """Create the Abandoned Property Restoration workspace."""
-    if not frappe.db.exists("Workspace", "Abandoned Property Restoration"):
+    """Create or update the Abandoned Property Restoration workspace."""
+    workspace_content = [
+        {"type": "header", "name": "masters", "hidden": False},
+        {
+            "type": "card",
+            "name": "masters-property",
+            "hidden": False,
+            "data": {
+                "label": "Property Masters",
+                "icon": "fa fa-building",
+                "items": [
+                    {"type": "link", "name": "property-category", "label": "Property Category", "doc_type": "Property Category", "icon": "fa fa-th", "link": "/app/property-category"},
+                    {"type": "link", "name": "property-type", "label": "Property Type", "doc_type": "Property Type", "icon": "fa fa-building", "link": "/app/property-type"},
+                    {"type": "link", "name": "restoration-category", "label": "Restoration Category", "doc_type": "Restoration Category", "icon": "fa fa-refresh", "link": "/app/restoration-category"}
+                ]
+            }
+        },
+        {
+            "type": "card",
+            "name": "masters-material",
+            "hidden": False,
+            "data": {
+                "label": "Material Masters",
+                "icon": "fa fa-cubes",
+                "items": [
+                    {"type": "link", "name": "material-category", "label": "Material Category", "doc_type": "Material Category", "icon": "fa fa-cubes", "link": "/app/material-category"},
+                    {"type": "link", "name": "material-condition", "label": "Material Condition", "doc_type": "Material Condition", "icon": "fa fa-check-circle", "link": "/app/material-condition"}
+                ]
+            }
+        },
+        {
+            "type": "card",
+            "name": "masters-people",
+            "hidden": False,
+            "data": {
+                "label": "People",
+                "icon": "fa fa-users",
+                "items": [
+                    {"type": "link", "name": "citizen", "label": "Citizen", "doc_type": "Citizen", "icon": "fa fa-user", "link": "/app/citizen"},
+                    {"type": "link", "name": "contractor", "label": "Contractor", "doc_type": "Contractor", "icon": "fa fa-briefcase", "link": "/app/contractor"},
+                    {"type": "link", "name": "engineer", "label": "Engineer", "doc_type": "Engineer", "icon": "fa fa-wrench", "link": "/app/engineer"},
+                    {"type": "link", "name": "inspector", "label": "Inspector", "doc_type": "Inspector", "icon": "fa fa-search", "link": "/app/inspector"}
+                ]
+            }
+        },
+        {
+            "type": "card",
+            "name": "masters-organization",
+            "hidden": False,
+            "data": {
+                "label": "Organization",
+                "icon": "fa fa-institution",
+                "items": [
+                    {"type": "link", "name": "government-department", "label": "Government Department", "doc_type": "Government Department", "icon": "fa fa-institution", "link": "/app/government-department"},
+                    {"type": "link", "name": "reward-type", "label": "Reward Type", "doc_type": "Reward Type", "icon": "fa fa-gift", "link": "/app/reward-type"}
+                ]
+            }
+        },
+        {"type": "header", "name": "transactions", "hidden": False},
+        {
+            "type": "card",
+            "name": "transactions-property",
+            "hidden": False,
+            "data": {
+                "label": "Property Management",
+                "icon": "fa fa-home",
+                "items": [
+                    {"type": "link", "name": "abandoned-property", "label": "Abandoned Property", "doc_type": "Abandoned Property", "icon": "fa fa-home", "link": "/app/abandoned-property"},
+                    {"type": "link", "name": "citizen-property-report", "label": "Citizen Property Report", "doc_type": "Citizen Property Report", "icon": "fa fa-flag", "link": "/app/citizen-property-report"},
+                    {"type": "link", "name": "property-inspection", "label": "Property Inspection", "doc_type": "Property Inspection", "icon": "fa fa-clipboard", "link": "/app/property-inspection"}
+                ]
+            }
+        },
+        {
+            "type": "card",
+            "name": "transactions-restoration",
+            "hidden": False,
+            "data": {
+                "label": "Restoration",
+                "icon": "fa fa-refresh",
+                "items": [
+                    {"type": "link", "name": "restoration-project", "label": "Restoration Project", "doc_type": "Restoration Project", "icon": "fa fa-tasks", "link": "/app/restoration-project"},
+                    {"type": "link", "name": "material-salvage", "label": "Material Salvage", "doc_type": "Material Salvage", "icon": "fa fa-recycle", "link": "/app/material-salvage"},
+                    {"type": "link", "name": "material-exchange", "label": "Material Exchange", "doc_type": "Material Exchange", "icon": "fa fa-exchange", "link": "/app/material-exchange"},
+                    {"type": "link", "name": "material-sale", "label": "Material Sale", "doc_type": "Material Sale", "icon": "fa fa-shopping-cart", "link": "/app/material-sale"}
+                ]
+            }
+        },
+        {
+            "type": "card",
+            "name": "transactions-rewards",
+            "hidden": False,
+            "data": {
+                "label": "Rewards",
+                "icon": "fa fa-gift",
+                "items": [
+                    {"type": "link", "name": "reward-claim", "label": "Reward Claim", "doc_type": "Reward Claim", "icon": "fa fa-money", "link": "/app/reward-claim"}
+                ]
+            }
+        }
+    ]
+    
+    if frappe.db.exists("Workspace", "Abandoned Property Restoration"):
+        # Update existing workspace
+        workspace = frappe.get_doc("Workspace", "Abandoned Property Restoration")
+        workspace.content = frappe.json.dumps(workspace_content)
+        workspace.icon = "fa fa-home"
+        workspace.save(ignore_permissions=True)
+    else:
+        # Create new workspace
         workspace = frappe.new_doc("Workspace")
         workspace.name = "Abandoned Property Restoration"
         workspace.title = "Abandoned Property Restoration"
@@ -25,159 +133,16 @@ def create_workspace():
         workspace.public = 1
         workspace.sequence_id = 1
         workspace.is_standard = 1
+        workspace.content = frappe.json.dumps(workspace_content)
         
         # Add roles
         roles = ["System Manager", "Property Administrator", "Restoration Manager", "Government Officer", "View Only User"]
         for role in roles:
             workspace.append("roles", {"role": role})
         
-        # Add content with card blocks
-        workspace.content = frappe.json.dumps([
-            {
-                "id": "masters-header",
-                "type": "header",
-                "data": {"title": "Masters"}
-            },
-            {
-                "id": "masters-card-1",
-                "type": "card",
-                "data": {
-                    "label": "Property Masters",
-                    "icon": "fa fa-building",
-                    "items": [
-                        {"label": "Property Category", "doc_type": "Property Category", "link": "/app/property-category"},
-                        {"label": "Property Type", "doc_type": "Property Type", "link": "/app/property-type"},
-                        {"label": "Restoration Category", "doc_type": "Restoration Category", "link": "/app/restoration-category"}
-                    ]
-                }
-            },
-            {
-                "id": "masters-card-2",
-                "type": "card",
-                "data": {
-                    "label": "Material Masters",
-                    "icon": "fa fa-cubes",
-                    "items": [
-                        {"label": "Material Category", "doc_type": "Material Category", "link": "/app/material-category"},
-                        {"label": "Material Condition", "doc_type": "Material Condition", "link": "/app/material-condition"}
-                    ]
-                }
-            },
-            {
-                "id": "masters-card-3",
-                "type": "card",
-                "data": {
-                    "label": "People",
-                    "icon": "fa fa-users",
-                    "items": [
-                        {"label": "Citizen", "doc_type": "Citizen", "link": "/app/citizen"},
-                        {"label": "Contractor", "doc_type": "Contractor", "link": "/app/contractor"},
-                        {"label": "Engineer", "doc_type": "Engineer", "link": "/app/engineer"},
-                        {"label": "Inspector", "doc_type": "Inspector", "link": "/app/inspector"}
-                    ]
-                }
-            },
-            {
-                "id": "masters-card-4",
-                "type": "card",
-                "data": {
-                    "label": "Organization",
-                    "icon": "fa fa-institution",
-                    "items": [
-                        {"label": "Government Department", "doc_type": "Government Department", "link": "/app/government-department"},
-                        {"label": "Reward Type", "doc_type": "Reward Type", "link": "/app/reward-type"}
-                    ]
-                }
-            },
-            {
-                "id": "transactions-header",
-                "type": "header",
-                "data": {"title": "Transactions"}
-            },
-            {
-                "id": "transactions-card-1",
-                "type": "card",
-                "data": {
-                    "label": "Property Management",
-                    "icon": "fa fa-home",
-                    "items": [
-                        {"label": "Abandoned Property", "doc_type": "Abandoned Property", "link": "/app/abandoned-property"},
-                        {"label": "Citizen Property Report", "doc_type": "Citizen Property Report", "link": "/app/citizen-property-report"},
-                        {"label": "Property Inspection", "doc_type": "Property Inspection", "link": "/app/property-inspection"}
-                    ]
-                }
-            },
-            {
-                "id": "transactions-card-2",
-                "type": "card",
-                "data": {
-                    "label": "Restoration",
-                    "icon": "fa fa-refresh",
-                    "items": [
-                        {"label": "Restoration Project", "doc_type": "Restoration Project", "link": "/app/restoration-project"},
-                        {"label": "Material Salvage", "doc_type": "Material Salvage", "link": "/app/material-salvage"},
-                        {"label": "Material Exchange", "doc_type": "Material Exchange", "link": "/app/material-exchange"},
-                        {"label": "Material Sale", "doc_type": "Material Sale", "link": "/app/material-sale"}
-                    ]
-                }
-            },
-            {
-                "id": "transactions-card-3",
-                "type": "card",
-                "data": {
-                    "label": "Rewards",
-                    "icon": "fa fa-gift",
-                    "items": [
-                        {"label": "Reward Claim", "doc_type": "Reward Claim", "link": "/app/reward-claim"}
-                    ]
-                }
-            },
-            {
-                "id": "reports-header",
-                "type": "header",
-                "data": {"title": "Reports"}
-            },
-            {
-                "id": "reports-card-1",
-                "type": "card",
-                "data": {
-                    "label": "Property Reports",
-                    "icon": "fa fa-file-text",
-                    "items": [
-                        {"label": "Abandoned Property Summary", "link": "/app/query-report/Abandoned%20Property%20Summary"},
-                        {"label": "Restoration Status Report", "link": "/app/query-report/Restoration%20Status%20Report"},
-                        {"label": "Property Inspection Report", "link": "/app/query-report/Property%20Inspection%20Report"}
-                    ]
-                }
-            },
-            {
-                "id": "reports-card-2",
-                "type": "card",
-                "data": {
-                    "label": "Material Reports",
-                    "icon": "fa fa-cubes",
-                    "items": [
-                        {"label": "Material Salvage Report", "link": "/app/query-report/Material%20Salvage%20Report"},
-                        {"label": "Material Exchange Report", "link": "/app/query-report/Material%20Exchange%20Report"}
-                    ]
-                }
-            },
-            {
-                "id": "reports-card-3",
-                "type": "card",
-                "data": {
-                    "label": "Other Reports",
-                    "icon": "fa fa-bar-chart",
-                    "items": [
-                        {"label": "Citizen Reward Report", "link": "/app/query-report/Citizen%20Reward%20Report"},
-                        {"label": "Restoration Cost Report", "link": "/app/query-report/Restoration%20Cost%20Report"},
-                        {"label": "Project Progress Report", "link": "/app/query-report/Project%20Progress%20Report"}
-                    ]
-                }
-            }
-        ])
-        
         workspace.insert(ignore_permissions=True)
+    
+    frappe.db.commit()
 
 
 def create_custom_fields():
