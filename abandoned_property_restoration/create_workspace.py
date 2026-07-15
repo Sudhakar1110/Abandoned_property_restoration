@@ -30,18 +30,18 @@ def create_abandoned_property_workspace():
     for role in ["System Manager", "Property Administrator", "Restoration Manager", "Government Officer", "View Only User"]:
         workspace.append("roles", {"role": role})
     
-    # Add number cards (this creates the card blocks)
+    # Add number cards - need number_card_name field
     number_cards = [
-        {"label": "Masters", "color": "#4CAF50"},
-        {"label": "Transactions", "color": "#2196F3"},
-        {"label": "Reports", "color": "#FF9800"},
+        {"number_card_name": "Masters", "label": "Masters", "color": "#4CAF50"},
+        {"number_card_name": "Transactions", "label": "Transactions", "color": "#2196F3"},
+        {"number_card_name": "Reports", "label": "Reports", "color": "#FF9800"},
     ]
     
     for card in number_cards:
         workspace.append("number_cards", {
+            "number_card_name": card["number_card_name"],
             "label": card["label"],
             "color": card["color"],
-            "doc_view": "List",
         })
     
     workspace.insert(ignore_permissions=True)
