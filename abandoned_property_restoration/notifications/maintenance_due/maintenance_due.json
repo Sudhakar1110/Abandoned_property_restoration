@@ -11,7 +11,7 @@
  "message": "Maintenance schedule {{ doc.name }} is due for property {{ doc.property }}.",
  "modified": "2024-01-01 00:00:00.000000",
  "modified_by": "Administrator",
- "module": "__init__",
+ "module": "restoration",
  "name": "Maintenance Due",
  "owner": "Administrator",
  "parent": "Maintenance Schedule",

@@ -11,7 +11,7 @@
  "message": "Your reward claim {{ doc.name }} status has been updated to {{ doc.claim_status }}.",
  "modified": "2024-01-01 00:00:00.000000",
  "modified_by": "Administrator",
- "module": "__init__",
+ "module": "restoration",
  "name": "Reward Claim Status",
  "owner": "Administrator",
  "parent": "Reward Claim",
