@@ -40,10 +40,11 @@ def create_abandoned_property_workspace():
     workspace.insert(ignore_permissions=True)
     frappe.db.commit()
     
-    # Create content JSON with only section cards
+    # Create content JSON with Masters, Transactions, Reports cards
     content_blocks = [
         {"id": generate_id(), "type": "card", "data": {"card_name": "Masters", "col": 4}},
         {"id": generate_id(), "type": "card", "data": {"card_name": "Transactions", "col": 4}},
+        {"id": generate_id(), "type": "card", "data": {"card_name": "Reports", "col": 4}},
     ]
     
     # Update content via SQL
@@ -54,5 +55,5 @@ def create_abandoned_property_workspace():
     """, (frappe.json.dumps(content_blocks), "Abandoned Property Restoration"))
     frappe.db.commit()
     
-    print("SUCCESS: Workspace created with Masters and Transactions cards only!")
+    print("SUCCESS: Workspace created with Masters, Transactions, Reports cards!")
     print("Please hard refresh your browser (Ctrl+Shift+R)")
