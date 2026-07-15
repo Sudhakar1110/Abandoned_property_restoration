@@ -9,18 +9,6 @@ import frappe
 def create_abandoned_property_workspace():
     """Create the Abandoned Property Restoration workspace with proper cards."""
     
-    # First, let's check an existing workspace format
-    # Check ERPNext workspace if available
-    if frappe.db.exists("Workspace", "Selling"):
-        erpnext_workspace = frappe.get_doc("Workspace", "Selling")
-        print("ERPNext Selling workspace content sample:")
-        if erpnext_workspace.content:
-            content = erpnext_workspace.content
-            if len(content) > 200:
-                print(content[:200] + "...")
-            else:
-                print(content)
-    
     # Delete existing workspace if it exists
     if frappe.db.exists("Workspace", "Abandoned Property Restoration"):
         frappe.delete_doc("Workspace", "Abandoned Property Restoration", force=True)
@@ -45,13 +33,12 @@ def create_abandoned_property_workspace():
     workspace.insert(ignore_permissions=True)
     frappe.db.commit()
     
-    # Update content via SQL to ensure proper format
+    # Update content via SQL to ensure proper format - using 'id' not 'name' for blocks
     workspace_content = [
-        {"type": "header", "name": "Masters", "hidden": False},
+        {"id": "masters-header", "type": "header", "data": {"title": "Masters"}},
         {
+            "id": "masters-property",
             "type": "card",
-            "name": "Property Masters",
-            "hidden": False,
             "data": {
                 "label": "Property Masters",
                 "icon": "fa fa-building",
@@ -63,9 +50,8 @@ def create_abandoned_property_workspace():
             }
         },
         {
+            "id": "masters-material",
             "type": "card",
-            "name": "Material Masters",
-            "hidden": False,
             "data": {
                 "label": "Material Masters",
                 "icon": "fa fa-cubes",
@@ -76,9 +62,8 @@ def create_abandoned_property_workspace():
             }
         },
         {
+            "id": "masters-people",
             "type": "card",
-            "name": "People",
-            "hidden": False,
             "data": {
                 "label": "People",
                 "icon": "fa fa-users",
@@ -91,9 +76,8 @@ def create_abandoned_property_workspace():
             }
         },
         {
+            "id": "masters-organization",
             "type": "card",
-            "name": "Organization",
-            "hidden": False,
             "data": {
                 "label": "Organization",
                 "icon": "fa fa-institution",
@@ -103,11 +87,10 @@ def create_abandoned_property_workspace():
                 ]
             }
         },
-        {"type": "header", "name": "Transactions", "hidden": False},
+        {"id": "transactions-header", "type": "header", "data": {"title": "Transactions"}},
         {
+            "id": "transactions-property",
             "type": "card",
-            "name": "Property Management",
-            "hidden": False,
             "data": {
                 "label": "Property Management",
                 "icon": "fa fa-home",
@@ -119,9 +102,8 @@ def create_abandoned_property_workspace():
             }
         },
         {
+            "id": "transactions-restoration",
             "type": "card",
-            "name": "Restoration",
-            "hidden": False,
             "data": {
                 "label": "Restoration",
                 "icon": "fa fa-refresh",
@@ -134,9 +116,8 @@ def create_abandoned_property_workspace():
             }
         },
         {
+            "id": "transactions-rewards",
             "type": "card",
-            "name": "Rewards",
-            "hidden": False,
             "data": {
                 "label": "Rewards",
                 "icon": "fa fa-gift",
@@ -147,7 +128,7 @@ def create_abandoned_property_workspace():
         }
     ]
     
-    # Update via SQL to avoid any validation issues
+    # Update via SQL
     frappe.db.sql("""
         UPDATE `tabWorkspace` 
         SET content = %s 
@@ -155,5 +136,5 @@ def create_abandoned_property_workspace():
     """, (frappe.json.dumps(workspace_content), "Abandoned Property Restoration"))
     frappe.db.commit()
     
-    print("SUCCESS: Workspace 'Abandoned Property Restoration' created with {0} blocks!".format(len(workspace_content)))
-    print("Please hard refresh your browser (Ctrl+Shift+R) and check the workspace.")
+    print("SUCCESS: Workspace created with {0} blocks!".format(len(workspace_content)))
+    print("Please hard refresh your browser (Ctrl+Shift+R)")
