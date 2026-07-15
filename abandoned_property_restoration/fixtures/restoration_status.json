@@ -1,5 +1,6 @@
 [
  {
+  "doctype": "Restoration Status",
   "name": "Not Started",
   "owner": "Administrator",
   "modified_by": "Administrator",
@@ -7,6 +8,7 @@
   "is_active": 1
  },
  {
+  "doctype": "Restoration Status",
   "name": "Planning",
   "owner": "Administrator",
   "modified_by": "Administrator",
@@ -14,6 +16,7 @@
   "is_active": 1
  },
  {
+  "doctype": "Restoration Status",
   "name": "In Progress",
   "owner": "Administrator",
   "modified_by": "Administrator",
@@ -21,6 +24,7 @@
   "is_active": 1
  },
  {
+  "doctype": "Restoration Status",
   "name": "On Hold",
   "owner": "Administrator",
   "modified_by": "Administrator",
@@ -28,6 +32,7 @@
   "is_active": 1
  },
  {
+  "doctype": "Restoration Status",
   "name": "Completed",
   "owner": "Administrator",
   "modified_by": "Administrator",

@@ -1,5 +1,6 @@
 [
  {
+  "doctype": "Risk Level",
   "name": "Low",
   "owner": "Administrator",
   "modified_by": "Administrator",
@@ -8,6 +9,7 @@
   "is_active": 1
  },
  {
+  "doctype": "Risk Level",
   "name": "Medium",
   "owner": "Administrator",
   "modified_by": "Administrator",
@@ -16,6 +18,7 @@
   "is_active": 1
  },
  {
+  "doctype": "Risk Level",
   "name": "High",
   "owner": "Administrator",
   "modified_by": "Administrator",
@@ -24,6 +27,7 @@
   "is_active": 1
  },
  {
+  "doctype": "Risk Level",
   "name": "Critical",
   "owner": "Administrator",
   "modified_by": "Administrator",

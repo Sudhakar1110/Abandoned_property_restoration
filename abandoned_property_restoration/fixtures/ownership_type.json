@@ -1,5 +1,6 @@
 [
  {
+  "doctype": "Ownership Type",
   "name": "Private",
   "owner": "Administrator",
   "modified_by": "Administrator",
@@ -7,6 +8,7 @@
   "is_active": 1
  },
  {
+  "doctype": "Ownership Type",
   "name": "Government",
   "owner": "Administrator",
   "modified_by": "Administrator",
@@ -14,6 +16,7 @@
   "is_active": 1
  },
  {
+  "doctype": "Ownership Type",
   "name": "Religious Institution",
   "owner": "Administrator",
   "modified_by": "Administrator",
@@ -21,6 +24,7 @@
   "is_active": 1
  },
  {
+  "doctype": "Ownership Type",
   "name": "Trust",
   "owner": "Administrator",
   "modified_by": "Administrator",
@@ -28,6 +32,7 @@
   "is_active": 1
  },
  {
+  "doctype": "Ownership Type",
   "name": "Corporate",
   "owner": "Administrator",
   "modified_by": "Administrator",

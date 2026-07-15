@@ -1,5 +1,6 @@
 [
  {
+  "doctype": "Time Capsule Category",
   "name": "Restoration Progress",
   "owner": "Administrator",
   "modified_by": "Administrator",
@@ -7,6 +8,7 @@
   "is_active": 1
  },
  {
+  "doctype": "Time Capsule Category",
   "name": "Community Memory",
   "owner": "Administrator",
   "modified_by": "Administrator",
@@ -14,6 +16,7 @@
   "is_active": 1
  },
  {
+  "doctype": "Time Capsule Category",
   "name": "Historical Archive",
   "owner": "Administrator",
   "modified_by": "Administrator",
@@ -21,6 +24,7 @@
   "is_active": 1
  },
  {
+  "doctype": "Time Capsule Category",
   "name": "Project Documentation",
   "owner": "Administrator",
   "modified_by": "Administrator",

@@ -1,5 +1,6 @@
 [
  {
+  "doctype": "Historical Document Type",
   "name": "Old Title Deed",
   "owner": "Administrator",
   "modified_by": "Administrator",
@@ -7,6 +8,7 @@
   "is_active": 1
  },
  {
+  "doctype": "Historical Document Type",
   "name": "Historical Map",
   "owner": "Administrator",
   "modified_by": "Administrator",
@@ -14,6 +16,7 @@
   "is_active": 1
  },
  {
+  "doctype": "Historical Document Type",
   "name": "Land Records",
   "owner": "Administrator",
   "modified_by": "Administrator",
@@ -21,6 +24,7 @@
   "is_active": 1
  },
  {
+  "doctype": "Historical Document Type",
   "name": "Photographs",
   "owner": "Administrator",
   "modified_by": "Administrator",
@@ -28,6 +32,7 @@
   "is_active": 1
  },
  {
+  "doctype": "Historical Document Type",
   "name": "Correspondence",
   "owner": "Administrator",
   "modified_by": "Administrator",

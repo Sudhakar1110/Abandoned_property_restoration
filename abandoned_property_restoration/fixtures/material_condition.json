@@ -1,5 +1,6 @@
 [
  {
+  "doctype": "Material Condition",
   "name": "Excellent",
   "owner": "Administrator",
   "modified_by": "Administrator",
@@ -7,6 +8,7 @@
   "is_active": 1
  },
  {
+  "doctype": "Material Condition",
   "name": "Good",
   "owner": "Administrator",
   "modified_by": "Administrator",
@@ -14,6 +16,7 @@
   "is_active": 1
  },
  {
+  "doctype": "Material Condition",
   "name": "Fair",
   "owner": "Administrator",
   "modified_by": "Administrator",
@@ -21,6 +24,7 @@
   "is_active": 1
  },
  {
+  "doctype": "Material Condition",
   "name": "Poor",
   "owner": "Administrator",
   "modified_by": "Administrator",
@@ -28,6 +32,7 @@
   "is_active": 1
  },
  {
+  "doctype": "Material Condition",
   "name": "Damaged",
   "owner": "Administrator",
   "modified_by": "Administrator",

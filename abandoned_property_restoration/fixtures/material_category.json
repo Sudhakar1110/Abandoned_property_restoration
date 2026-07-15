@@ -1,5 +1,6 @@
 [
  {
+  "doctype": "Material Category",
   "name": "Wood",
   "owner": "Administrator",
   "modified_by": "Administrator",
@@ -7,6 +8,7 @@
   "is_active": 1
  },
  {
+  "doctype": "Material Category",
   "name": "Metal",
   "owner": "Administrator",
   "modified_by": "Administrator",
@@ -14,6 +16,7 @@
   "is_active": 1
  },
  {
+  "doctype": "Material Category",
   "name": "Concrete",
   "owner": "Administrator",
   "modified_by": "Administrator",
@@ -21,6 +24,7 @@
   "is_active": 1
  },
  {
+  "doctype": "Material Category",
   "name": "Glass",
   "owner": "Administrator",
   "modified_by": "Administrator",
@@ -28,6 +32,7 @@
   "is_active": 1
  },
  {
+  "doctype": "Material Category",
   "name": "Plastic",
   "owner": "Administrator",
   "modified_by": "Administrator",
@@ -35,6 +40,7 @@
   "is_active": 1
  },
  {
+  "doctype": "Material Category",
   "name": "Tiles",
   "owner": "Administrator",
   "modified_by": "Administrator",
