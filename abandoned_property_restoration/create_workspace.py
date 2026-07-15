@@ -14,7 +14,7 @@ def generate_id():
     return ''.join(secrets.choice(chars) for _ in range(10))
 
 def create_abandoned_property_workspace():
-    """Create the Abandoned Property Restoration workspace with proper cards."""
+    """Create the Abandoned Property Restoration workspace with shortcuts."""
     
     # Delete existing workspace if it exists
     if frappe.db.exists("Workspace", "Abandoned Property Restoration"):
@@ -40,17 +40,30 @@ def create_abandoned_property_workspace():
     workspace.insert(ignore_permissions=True)
     frappe.db.commit()
     
-    # ERPNext format: cards use 'card_name' not 'label', headers use 'text' with HTML
+    # Use shortcuts which directly link to doctypes
     workspace_content = [
         {"id": generate_id(), "type": "header", "data": {"text": "<span class=\"h4\"><b>Masters</b></span>", "col": 12}},
-        {"id": generate_id(), "type": "card", "data": {"card_name": "Property Masters", "col": 4}},
-        {"id": generate_id(), "type": "card", "data": {"card_name": "Material Masters", "col": 4}},
-        {"id": generate_id(), "type": "card", "data": {"card_name": "People", "col": 4}},
-        {"id": generate_id(), "type": "card", "data": {"card_name": "Organization", "col": 4}},
+        {"id": generate_id(), "type": "shortcut", "data": {"shortcut_name": "Property Category", "col": 3}},
+        {"id": generate_id(), "type": "shortcut", "data": {"shortcut_name": "Property Type", "col": 3}},
+        {"id": generate_id(), "type": "shortcut", "data": {"shortcut_name": "Restoration Category", "col": 3}},
+        {"id": generate_id(), "type": "shortcut", "data": {"shortcut_name": "Material Category", "col": 3}},
+        {"id": generate_id(), "type": "shortcut", "data": {"shortcut_name": "Material Condition", "col": 3}},
+        {"id": generate_id(), "type": "shortcut", "data": {"shortcut_name": "Citizen", "col": 3}},
+        {"id": generate_id(), "type": "shortcut", "data": {"shortcut_name": "Contractor", "col": 3}},
+        {"id": generate_id(), "type": "shortcut", "data": {"shortcut_name": "Engineer", "col": 3}},
+        {"id": generate_id(), "type": "shortcut", "data": {"shortcut_name": "Inspector", "col": 3}},
+        {"id": generate_id(), "type": "shortcut", "data": {"shortcut_name": "Government Department", "col": 3}},
+        {"id": generate_id(), "type": "shortcut", "data": {"shortcut_name": "Reward Type", "col": 3}},
+        {"id": generate_id(), "type": "spacer", "data": {"col": 12}},
         {"id": generate_id(), "type": "header", "data": {"text": "<span class=\"h4\"><b>Transactions</b></span>", "col": 12}},
-        {"id": generate_id(), "type": "card", "data": {"card_name": "Property Management", "col": 4}},
-        {"id": generate_id(), "type": "card", "data": {"card_name": "Restoration", "col": 4}},
-        {"id": generate_id(), "type": "card", "data": {"card_name": "Rewards", "col": 4}},
+        {"id": generate_id(), "type": "shortcut", "data": {"shortcut_name": "Abandoned Property", "col": 3}},
+        {"id": generate_id(), "type": "shortcut", "data": {"shortcut_name": "Citizen Property Report", "col": 3}},
+        {"id": generate_id(), "type": "shortcut", "data": {"shortcut_name": "Property Inspection", "col": 3}},
+        {"id": generate_id(), "type": "shortcut", "data": {"shortcut_name": "Restoration Project", "col": 3}},
+        {"id": generate_id(), "type": "shortcut", "data": {"shortcut_name": "Material Salvage", "col": 3}},
+        {"id": generate_id(), "type": "shortcut", "data": {"shortcut_name": "Material Exchange", "col": 3}},
+        {"id": generate_id(), "type": "shortcut", "data": {"shortcut_name": "Material Sale", "col": 3}},
+        {"id": generate_id(), "type": "shortcut", "data": {"shortcut_name": "Reward Claim", "col": 3}},
     ]
     
     # Update via SQL
@@ -61,5 +74,5 @@ def create_abandoned_property_workspace():
     """, (frappe.json.dumps(workspace_content), "Abandoned Property Restoration"))
     frappe.db.commit()
     
-    print("SUCCESS: Workspace created with {0} blocks!".format(len(workspace_content)))
+    print("SUCCESS: Workspace created with {0} blocks using shortcuts!".format(len(workspace_content)))
     print("Please hard refresh your browser (Ctrl+Shift+R)")

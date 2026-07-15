@@ -15,5 +15,12 @@ def check_format():
         print("=== ERPNext Selling Workspace ===")
         print("Content length:", len(ws.content) if ws.content else 0)
         print()
-        print("Content preview:")
-        print(ws.content[:3000] if ws.content else "No content")
+        print("Full Content:")
+        print(ws.content if ws.content else "No content")
+        print()
+        
+    # Check workspace charts/cards
+    print("=== Checking Workspace Charts ===")
+    charts = frappe.get_all("Workspace Chart", fields=["name", "item", "label", "doctype"])
+    for c in charts[:10]:
+        print(c)
