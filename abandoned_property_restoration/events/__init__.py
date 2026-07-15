@@ -94,6 +94,10 @@ def material_salvage_on_update(doc, method):
             )
 
 
+def material_salvage_after_insert(doc, method):
+    pass
+
+
 def material_exchange_on_update(doc, method):
     if doc.has_value_changed("exchange_status"):
         if doc.exchange_status == "Completed":
@@ -105,6 +109,10 @@ def material_exchange_on_update(doc, method):
             )
 
 
+def material_exchange_after_insert(doc, method):
+    pass
+
+
 def material_sale_on_update(doc, method):
     if doc.has_value_changed("sale_status"):
         if doc.sale_status == "Completed":
@@ -114,6 +122,10 @@ def material_sale_on_update(doc, method):
                 "Property Administrator",
                 f"Material sale {doc.name} completed"
             )
+
+
+def material_sale_after_insert(doc, method):
+    pass
 
 
 def reward_claim_on_update(doc, method):
@@ -134,6 +146,10 @@ def reward_claim_on_update(doc, method):
             )
 
 
+def reward_claim_after_insert(doc, method):
+    pass
+
+
 def historical_record_on_update(doc, method):
     if doc.has_value_changed("record_status"):
         if doc.record_status == "Archived":
@@ -145,6 +161,10 @@ def historical_record_on_update(doc, method):
             )
 
 
+def historical_record_after_insert(doc, method):
+    pass
+
+
 def maintenance_schedule_on_update(doc, method):
     if doc.has_value_changed("maintenance_status"):
         if doc.maintenance_status == "Scheduled":
@@ -154,6 +174,10 @@ def maintenance_schedule_on_update(doc, method):
                 "Contractor",
                 f"Maintenance scheduled for {doc.property}"
             )
+
+
+def maintenance_schedule_after_insert(doc, method):
+    pass
 
 
 def abandoned_property_on_update(doc, method):
@@ -173,6 +197,9 @@ def abandoned_property_on_update(doc, method):
                 f"Property {doc.property_name} restoration completed"
             )
 
+
+def abandoned_property_after_insert(doc, method):
+    pass
 
 
 def send_notification(doc, subject, for_role, message):
