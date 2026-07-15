@@ -6,7 +6,6 @@ Run with: bench --site abp.bizaxl.local execute abandoned_property_restoration.c
 
 import frappe
 import json
-import os
 
 def create_abandoned_property_workspace():
     """Create the Abandoned Property Restoration workspace."""
@@ -15,9 +14,6 @@ def create_abandoned_property_workspace():
     if frappe.db.exists("Workspace", "Abandoned Property Restoration"):
         frappe.delete_doc("Workspace", "Abandoned Property Restoration", force=True)
         print("Deleted existing workspace")
-    
-    # Delete any existing links
-    frappe.db.sql("DELETE FROM `tabWorkspace Link` WHERE parent = 'Abandoned Property Restoration'")
     
     # Create workspace
     workspace = frappe.new_doc("Workspace")
@@ -34,7 +30,7 @@ def create_abandoned_property_workspace():
     for role in ["System Manager", "Property Administrator", "Restoration Manager", "Government Officer", "View Only User"]:
         workspace.append("roles", {"role": role})
     
-    # Add links to the links child table
+    # Add links to child table
     links_data = [
         # Masters
         {"label": "Property Category", "link_type": "DocType", "link_to": "Property Category", "icon": "fa fa-th", "col": 3},
@@ -65,5 +61,34 @@ def create_abandoned_property_workspace():
     workspace.insert(ignore_permissions=True)
     frappe.db.commit()
     
-    print("SUCCESS: Workspace created with {0} links!".format(len(links_data)))
+    # Update content JSON with link blocks format
+    content = json.dumps([
+        {"id": "header1", "type": "header", "data": {"text": "<span class=\"h4\"><b>Masters</b></span>", "col": 12}},
+        {"id": "link1", "type": "link", "data": {"link_to": "Property Category", "col": 3}},
+        {"id": "link2", "type": "link", "data": {"link_to": "Property Type", "col": 3}},
+        {"id": "link3", "type": "link", "data": {"link_to": "Restoration Category", "col": 3}},
+        {"id": "link4", "type": "link", "data": {"link_to": "Material Category", "col": 3}},
+        {"id": "link5", "type": "link", "data": {"link_to": "Material Condition", "col": 3}},
+        {"id": "link6", "type": "link", "data": {"link_to": "Citizen", "col": 3}},
+        {"id": "link7", "type": "link", "data": {"link_to": "Contractor", "col": 3}},
+        {"id": "link8", "type": "link", "data": {"link_to": "Engineer", "col": 3}},
+        {"id": "link9", "type": "link", "data": {"link_to": "Inspector", "col": 3}},
+        {"id": "link10", "type": "link", "data": {"link_to": "Government Department", "col": 3}},
+        {"id": "link11", "type": "link", "data": {"link_to": "Reward Type", "col": 3}},
+        {"id": "spacer1", "type": "spacer", "data": {"col": 12}},
+        {"id": "header2", "type": "header", "data": {"text": "<span class=\"h4\"><b>Transactions</b></span>", "col": 12}},
+        {"id": "link12", "type": "link", "data": {"link_to": "Abandoned Property", "col": 3}},
+        {"id": "link13", "type": "link", "data": {"link_to": "Citizen Property Report", "col": 3}},
+        {"id": "link14", "type": "link", "data": {"link_to": "Property Inspection", "col": 3}},
+        {"id": "link15", "type": "link", "data": {"link_to": "Restoration Project", "col": 3}},
+        {"id": "link16", "type": "link", "data": {"link_to": "Material Salvage", "col": 3}},
+        {"id": "link17", "type": "link", "data": {"link_to": "Material Exchange", "col": 3}},
+        {"id": "link18", "type": "link", "data": {"link_to": "Material Sale", "col": 3}},
+        {"id": "link19", "type": "link", "data": {"link_to": "Reward Claim", "col": 3}},
+    ])
+    
+    frappe.db.sql("UPDATE `tabWorkspace` SET content = %s WHERE name = %s", (content, "Abandoned Property Restoration"))
+    frappe.db.commit()
+    
+    print("SUCCESS: Workspace created!")
     print("Please hard refresh your browser (Ctrl+Shift+R)")
