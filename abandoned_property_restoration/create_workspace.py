@@ -40,66 +40,31 @@ def create_abandoned_property_workspace():
     workspace.insert(ignore_permissions=True)
     frappe.db.commit()
     
-    # Define shortcuts - these will be in content JSON with headers
-    content_blocks = []
-    
-    # Masters Section Header
-    content_blocks.append({
-        "id": generate_id(),
-        "type": "header", 
-        "data": {"text": "<span class=\"h4\"><b>Masters</b></span>", "col": 12}
-    })
-    
-    # Masters Shortcuts
-    masters = [
-        ("Property Category", "Property Category"),
-        ("Property Type", "Property Type"),
-        ("Restoration Category", "Restoration Category"),
-        ("Material Category", "Material Category"),
-        ("Material Condition", "Material Condition"),
-        ("Citizen", "Citizen"),
-        ("Contractor", "Contractor"),
-        ("Engineer", "Engineer"),
-        ("Inspector", "Inspector"),
-        ("Government Department", "Government Department"),
-        ("Reward Type", "Reward Type"),
+    # Add shortcuts to child table
+    shortcuts = [
+        "Property Category", "Property Type", "Restoration Category", "Material Category", "Material Condition",
+        "Citizen", "Contractor", "Engineer", "Inspector", "Government Department", "Reward Type",
+        "Abandoned Property", "Citizen Property Report", "Property Inspection", "Restoration Project",
+        "Material Salvage", "Material Exchange", "Material Sale", "Reward Claim"
     ]
     
-    for label, shortcut_name in masters:
-        content_blocks.append({
-            "id": generate_id(),
-            "type": "shortcut",
-            "data": {"shortcut_name": shortcut_name, "col": 3}
-        })
+    for sc_name in shortcuts:
+        ws_sc = frappe.new_doc("Workspace Shortcut")
+        ws_sc.parent = "Abandoned Property Restoration"
+        ws_sc.parentfield = "shortcuts"
+        ws_sc.parenttype = "Workspace"
+        ws_sc.label = sc_name
+        ws_sc.shortcut_name = sc_name
+        ws_sc.col = 3
+        ws_sc.insert(ignore_permissions=True)
     
-    # Spacer
-    content_blocks.append({"id": generate_id(), "type": "spacer", "data": {"col": 12}})
+    frappe.db.commit()
     
-    # Transactions Section Header
-    content_blocks.append({
-        "id": generate_id(),
-        "type": "header", 
-        "data": {"text": "<span class=\"h4\"><b>Transactions</b></span>", "col": 12}
-    })
-    
-    # Transactions Shortcuts
-    transactions = [
-        ("Abandoned Property", "Abandoned Property"),
-        ("Citizen Property Report", "Citizen Property Report"),
-        ("Property Inspection", "Property Inspection"),
-        ("Restoration Project", "Restoration Project"),
-        ("Material Salvage", "Material Salvage"),
-        ("Material Exchange", "Material Exchange"),
-        ("Material Sale", "Material Sale"),
-        ("Reward Claim", "Reward Claim"),
+    # Create content JSON with number cards for each section
+    content_blocks = [
+        {"id": generate_id(), "type": "card", "data": {"card_name": "Masters", "col": 4}},
+        {"id": generate_id(), "type": "card", "data": {"card_name": "Transactions", "col": 4}},
     ]
-    
-    for label, shortcut_name in transactions:
-        content_blocks.append({
-            "id": generate_id(),
-            "type": "shortcut",
-            "data": {"shortcut_name": shortcut_name, "col": 3}
-        })
     
     # Update content via SQL
     frappe.db.sql("""
@@ -110,6 +75,6 @@ def create_abandoned_property_workspace():
     frappe.db.commit()
     
     print("SUCCESS: Workspace created!")
-    print("- Masters: {0} shortcuts".format(len(masters)))
-    print("- Transactions: {0} shortcuts".format(len(transactions)))
+    print("- Shortcuts: {0}".format(len(shortcuts)))
+    print("- Cards: Masters, Transactions")
     print("Please hard refresh your browser (Ctrl+Shift+R)")
