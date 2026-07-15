@@ -197,7 +197,23 @@
  "parent_page": "",
  "public": 1,
  "restrict_to_domain": "",
- "roles": [],
+ "roles": [
+ {
+  "role": "System Manager"
+ },
+ {
+  "role": "Property Administrator"
+ },
+ {
+  "role": "Restoration Manager"
+ },
+ {
+  "role": "Government Officer"
+ },
+ {
+  "role": "View Only User"
+ }
+ ],
  "sequence_id": 1,
  "shortcuts": [],
  "title": "Abandoned Property Restoration"
