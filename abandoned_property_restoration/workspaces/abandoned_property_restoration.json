@@ -1,0 +1,163 @@
+{
+ "doctype": "Workspace",
+ "name": "Abandoned Property Restoration",
+ "title": "Abandoned Property Restoration",
+ "label": "Abandoned Property Restoration",
+ "icon": "fa fa-home",
+ "module": "restoration",
+ "public": 1,
+ "sequence_id": 1,
+ "is_standard": 1,
+ "roles": [
+  {
+   "role": "System Manager"
+  },
+  {
+   "role": "Property Administrator"
+  },
+  {
+   "role": "Restoration Manager"
+  },
+  {
+   "role": "Government Officer"
+  },
+  {
+   "role": "View Only User"
+  }
+ ],
+ "links": [
+  {
+   "label": "Property Category",
+   "link_type": "DocType",
+   "link_to": "Property Category",
+   "icon": "fa fa-th",
+   "col": 3
+  },
+  {
+   "label": "Property Type",
+   "link_type": "DocType",
+   "link_to": "Property Type",
+   "icon": "fa fa-building",
+   "col": 3
+  },
+  {
+   "label": "Restoration Category",
+   "link_type": "DocType",
+   "link_to": "Restoration Category",
+   "icon": "fa fa-refresh",
+   "col": 3
+  },
+  {
+   "label": "Material Category",
+   "link_type": "DocType",
+   "link_to": "Material Category",
+   "icon": "fa fa-cubes",
+   "col": 3
+  },
+  {
+   "label": "Material Condition",
+   "link_type": "DocType",
+   "link_to": "Material Condition",
+   "icon": "fa fa-check-circle",
+   "col": 3
+  },
+  {
+   "label": "Citizen",
+   "link_type": "DocType",
+   "link_to": "Citizen",
+   "icon": "fa fa-user",
+   "col": 3
+  },
+  {
+   "label": "Contractor",
+   "link_type": "DocType",
+   "link_to": "Contractor",
+   "icon": "fa fa-briefcase",
+   "col": 3
+  },
+  {
+   "label": "Engineer",
+   "link_type": "DocType",
+   "link_to": "Engineer",
+   "icon": "fa fa-wrench",
+   "col": 3
+  },
+  {
+   "label": "Inspector",
+   "link_type": "DocType",
+   "link_to": "Inspector",
+   "icon": "fa fa-search",
+   "col": 3
+  },
+  {
+   "label": "Government Department",
+   "link_type": "DocType",
+   "link_to": "Government Department",
+   "icon": "fa fa-institution",
+   "col": 3
+  },
+  {
+   "label": "Reward Type",
+   "link_type": "DocType",
+   "link_to": "Reward Type",
+   "icon": "fa fa-gift",
+   "col": 3
+  },
+  {
+   "label": "Abandoned Property",
+   "link_type": "DocType",
+   "link_to": "Abandoned Property",
+   "icon": "fa fa-home",
+   "col": 3
+  },
+  {
+   "label": "Citizen Property Report",
+   "link_type": "DocType",
+   "link_to": "Citizen Property Report",
+   "icon": "fa fa-flag",
+   "col": 3
+  },
+  {
+   "label": "Property Inspection",
+   "link_type": "DocType",
+   "link_to": "Property Inspection",
+   "icon": "fa fa-clipboard",
+   "col": 3
+  },
+  {
+   "label": "Restoration Project",
+   "link_type": "DocType",
+   "link_to": "Restoration Project",
+   "icon": "fa fa-tasks",
+   "col": 3
+  },
+  {
+   "label": "Material Salvage",
+   "link_type": "DocType",
+   "link_to": "Material Salvage",
+   "icon": "fa fa-recycle",
+   "col": 3
+  },
+  {
+   "label": "Material Exchange",
+   "link_type": "DocType",
+   "link_to": "Material Exchange",
+   "icon": "fa fa-exchange",
+   "col": 3
+  },
+  {
+   "label": "Material Sale",
+   "link_type": "DocType",
+   "link_to": "Material Sale",
+   "icon": "fa fa-shopping-cart",
+   "col": 3
+  },
+  {
+   "label": "Reward Claim",
+   "link_type": "DocType",
+   "link_to": "Reward Claim",
+   "icon": "fa fa-money",
+   "col": 3
+  }
+ ]
+}
