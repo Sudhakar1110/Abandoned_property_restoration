@@ -31,32 +31,49 @@ def create_abandoned_property_workspace():
         workspace.append("roles", {"role": role})
     
     workspace.insert(ignore_permissions=True)
+    
+    # Add links to child table (not shortcuts)
+    links = [
+        # Masters
+        {"label": "Property Category", "link_type": "DocType", "link_to": "Property Category"},
+        {"label": "Property Type", "link_type": "DocType", "link_to": "Property Type"},
+        {"label": "Restoration Category", "link_type": "DocType", "link_to": "Restoration Category"},
+        {"label": "Material Category", "link_type": "DocType", "link_to": "Material Category"},
+        {"label": "Material Condition", "link_type": "DocType", "link_to": "Material Condition"},
+        {"label": "Citizen", "link_type": "DocType", "link_to": "Citizen"},
+        {"label": "Contractor", "link_type": "DocType", "link_to": "Contractor"},
+        {"label": "Engineer", "link_type": "DocType", "link_to": "Engineer"},
+        {"label": "Inspector", "link_type": "DocType", "link_to": "Inspector"},
+        {"label": "Government Department", "link_type": "DocType", "link_to": "Government Department"},
+        {"label": "Reward Type", "link_type": "DocType", "link_to": "Reward Type"},
+        # Transactions
+        {"label": "Abandoned Property", "link_type": "DocType", "link_to": "Abandoned Property"},
+        {"label": "Citizen Property Report", "link_type": "DocType", "link_to": "Citizen Property Report"},
+        {"label": "Property Inspection", "link_type": "DocType", "link_to": "Property Inspection"},
+        {"label": "Restoration Project", "link_type": "DocType", "link_to": "Restoration Project"},
+        {"label": "Material Salvage", "link_type": "DocType", "link_to": "Material Salvage"},
+        {"label": "Material Exchange", "link_type": "DocType", "link_to": "Material Exchange"},
+        {"label": "Material Sale", "link_type": "DocType", "link_to": "Material Sale"},
+        {"label": "Reward Claim", "link_type": "DocType", "link_to": "Reward Claim"},
+    ]
+    
+    for link in links:
+        ws_link = frappe.new_doc("Workspace Link")
+        ws_link.parent = "Abandoned Property Restoration"
+        ws_link.parentfield = "links"
+        ws_link.parenttype = "Workspace"
+        ws_link.label = link["label"]
+        ws_link.link_type = link["link_type"]
+        ws_link.link_to = link["link_to"]
+        ws_link.insert(ignore_permissions=True)
+    
     frappe.db.commit()
     
-    # Update content using SQL - ERPNext format with headers for Masters, Transactions, Reports
+    # Update content with headers
     content = json.dumps([
         {"id": "H1", "type": "header", "data": {"text": "<span class=\"h4\"><b>Masters</b></span>", "col": 12}},
-        {"id": "S1", "type": "shortcut", "data": {"shortcut_name": "Property Category", "col": 3}},
-        {"id": "S2", "type": "shortcut", "data": {"shortcut_name": "Property Type", "col": 3}},
-        {"id": "S3", "type": "shortcut", "data": {"shortcut_name": "Restoration Category", "col": 3}},
-        {"id": "S4", "type": "shortcut", "data": {"shortcut_name": "Material Category", "col": 3}},
-        {"id": "S5", "type": "shortcut", "data": {"shortcut_name": "Material Condition", "col": 3}},
-        {"id": "S6", "type": "shortcut", "data": {"shortcut_name": "Citizen", "col": 3}},
-        {"id": "S7", "type": "shortcut", "data": {"shortcut_name": "Contractor", "col": 3}},
-        {"id": "S8", "type": "shortcut", "data": {"shortcut_name": "Engineer", "col": 3}},
-        {"id": "S9", "type": "shortcut", "data": {"shortcut_name": "Inspector", "col": 3}},
-        {"id": "S10", "type": "shortcut", "data": {"shortcut_name": "Government Department", "col": 3}},
-        {"id": "S11", "type": "shortcut", "data": {"shortcut_name": "Reward Type", "col": 3}},
         {"id": "SP1", "type": "spacer", "data": {"col": 12}},
         {"id": "H2", "type": "header", "data": {"text": "<span class=\"h4\"><b>Transactions</b></span>", "col": 12}},
-        {"id": "S12", "type": "shortcut", "data": {"shortcut_name": "Abandoned Property", "col": 3}},
-        {"id": "S13", "type": "shortcut", "data": {"shortcut_name": "Citizen Property Report", "col": 3}},
-        {"id": "S14", "type": "shortcut", "data": {"shortcut_name": "Property Inspection", "col": 3}},
-        {"id": "S15", "type": "shortcut", "data": {"shortcut_name": "Restoration Project", "col": 3}},
-        {"id": "S16", "type": "shortcut", "data": {"shortcut_name": "Material Salvage", "col": 3}},
-        {"id": "S17", "type": "shortcut", "data": {"shortcut_name": "Material Exchange", "col": 3}},
-        {"id": "S18", "type": "shortcut", "data": {"shortcut_name": "Material Sale", "col": 3}},
-        {"id": "S19", "type": "shortcut", "data": {"shortcut_name": "Reward Claim", "col": 3}},
         {"id": "SP2", "type": "spacer", "data": {"col": 12}},
         {"id": "H3", "type": "header", "data": {"text": "<span class=\"h4\"><b>Reports</b></span>", "col": 12}},
     ])
@@ -64,5 +81,5 @@ def create_abandoned_property_workspace():
     frappe.db.sql("UPDATE `tabWorkspace` SET content = %s WHERE name = %s", (content, "Abandoned Property Restoration"))
     frappe.db.commit()
     
-    print("SUCCESS: Workspace created with Masters, Transactions, Reports sections!")
+    print("SUCCESS: Workspace created with {0} links!".format(len(links)))
     print("Please hard refresh your browser (Ctrl+Shift+R)")
