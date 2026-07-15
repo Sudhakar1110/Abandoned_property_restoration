@@ -54,6 +54,74 @@ bench build
 
 > **Note for Frappe v15 users**: If you encounter an esbuild error during `bench get-app`, use the `--skip-assets` flag as shown above. This is a known Frappe v15 interaction where the asset build runs before the app is registered in `apps.txt`. Once installed, `bench build` will build the assets successfully.
 
+## Troubleshooting
+
+### Socket.IO Connection Error
+
+If you see an error like:
+```
+Error connecting to socket.io: Unauthorized: Error: getaddrinfo EAI_AGAIN your-domain.local
+```
+
+This indicates a DNS resolution issue with your site's configured domain. Here's how to fix it:
+
+#### Option 1: Add Domain to Hosts File (Recommended for Local Development)
+
+Edit the `/etc/hosts` file and add:
+```
+127.0.0.1    your-domain.local
+```
+
+#### Option 2: Configure Correct Site URL
+
+Update your site's `site_config.json` file:
+```bash
+# Edit the site config
+bench --site <site_name> set-config host_name http://correct-domain:8000
+
+# Or manually edit:
+# /path/to/frappe-bench/sites/<site_name>/site_config.json
+```
+
+Add or update:
+```json
+{
+  "host_name": "http://your-correct-domain:8000"
+}
+```
+
+#### Option 3: Check DNS Configuration
+
+If using a custom domain, ensure:
+1. DNS A records point to your server IP
+2. Your firewall allows traffic on port 8000 (Frappe) and 9000 (Socket.IO)
+3. The domain resolves correctly: `ping your-domain.local`
+
+### Workspace Blocks Not Displaying
+
+If workspace shows "doc" or "The block can not be displayed correctly":
+
+1. **Check Socket.IO Connection**: The error above often causes this
+2. **Verify Permissions**: Ensure your user role has access to the doctypes
+3. **Clear Cache**:
+   ```bash
+   bench --site <site_name> clear-cache
+   bench --site <site_name> clear-website-cache
+   ```
+4. **Rebuild Assets**:
+   ```bash
+   bench build --app abandoned_property_restoration
+   ```
+
+### Common Issues
+
+| Issue | Solution |
+|-------|----------|
+| Socket.IO connection refused | Ensure `bench start` is running and socket.io port (9000) is accessible |
+| DNS EAI_AGAIN error | Add domain to `/etc/hosts` or fix DNS configuration |
+| Workspace blocks missing | Check browser console for socket.io errors, fix connectivity first |
+| Permission denied | Verify user role is in workspace allowed roles |
+
 ## License
 
 MIT License
