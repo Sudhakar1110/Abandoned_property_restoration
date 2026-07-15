@@ -31,6 +31,26 @@ def create_abandoned_property_workspace():
         workspace.append("roles", {"role": role})
     
     workspace.insert(ignore_permissions=True)
+    
+    # Add shortcuts to child table
+    shortcuts = [
+        "Property Category", "Property Type", "Restoration Category", "Material Category",
+        "Material Condition", "Citizen", "Contractor", "Engineer", "Inspector",
+        "Government Department", "Reward Type", "Abandoned Property",
+        "Citizen Property Report", "Property Inspection", "Restoration Project",
+        "Material Salvage", "Material Exchange", "Material Sale", "Reward Claim"
+    ]
+    
+    for sc_name in shortcuts:
+        ws_sc = frappe.new_doc("Workspace Shortcut")
+        ws_sc.parent = "Abandoned Property Restoration"
+        ws_sc.parentfield = "shortcuts"
+        ws_sc.parenttype = "Workspace"
+        ws_sc.label = sc_name
+        ws_sc.shortcut_name = sc_name
+        ws_sc.col = 3
+        ws_sc.insert(ignore_permissions=True)
+    
     frappe.db.commit()
     
     # Update content using SQL - ERPNext format with headers
@@ -62,5 +82,5 @@ def create_abandoned_property_workspace():
     frappe.db.sql("UPDATE `tabWorkspace` SET content = %s WHERE name = %s", (content, "Abandoned Property Restoration"))
     frappe.db.commit()
     
-    print("SUCCESS: Workspace created!")
+    print("SUCCESS: Workspace created with {0} shortcuts!".format(len(shortcuts)))
     print("Please hard refresh your browser (Ctrl+Shift+R)")
