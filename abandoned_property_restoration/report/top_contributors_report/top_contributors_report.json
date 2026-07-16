@@ -1,0 +1,9 @@
+{
+ "doctype": "Report",
+ "name": "Top Contributors Report",
+ "module": "restoration",
+ "is_standard": "Yes",
+ "ref_doctype": "Citizen",
+ "report_type": "Script Report",
+ "disabled": 0
+}

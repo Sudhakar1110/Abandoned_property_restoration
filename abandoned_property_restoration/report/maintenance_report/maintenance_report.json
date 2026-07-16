@@ -1,0 +1,9 @@
+{
+ "doctype": "Report",
+ "name": "Maintenance Report",
+ "module": "restoration",
+ "is_standard": "Yes",
+ "ref_doctype": "Maintenance Schedule",
+ "report_type": "Script Report",
+ "disabled": 0
+}

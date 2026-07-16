@@ -1,0 +1,9 @@
+{
+ "doctype": "Report",
+ "name": "Material Exchange Report",
+ "module": "restoration",
+ "is_standard": "Yes",
+ "ref_doctype": "Material Exchange",
+ "report_type": "Script Report",
+ "disabled": 0
+}

@@ -1,0 +1,9 @@
+{
+ "doctype": "Report",
+ "name": "District Wise Restoration Report",
+ "module": "restoration",
+ "is_standard": "Yes",
+ "ref_doctype": "Abandoned Property",
+ "report_type": "Script Report",
+ "disabled": 0
+}

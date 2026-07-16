@@ -1,0 +1,9 @@
+{
+ "doctype": "Report",
+ "name": "Digital Archive Report",
+ "module": "restoration",
+ "is_standard": "Yes",
+ "ref_doctype": "Digital Time Capsule",
+ "report_type": "Script Report",
+ "disabled": 0
+}

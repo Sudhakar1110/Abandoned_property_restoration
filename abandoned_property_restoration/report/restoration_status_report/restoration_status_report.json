@@ -1,0 +1,9 @@
+{
+ "doctype": "Report",
+ "name": "Restoration Status Report",
+ "module": "restoration",
+ "is_standard": "Yes",
+ "ref_doctype": "Restoration Project",
+ "report_type": "Script Report",
+ "disabled": 0
+}

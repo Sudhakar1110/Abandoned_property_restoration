@@ -1,0 +1,9 @@
+{
+ "doctype": "Report",
+ "name": "Material Salvage Report",
+ "module": "restoration",
+ "is_standard": "Yes",
+ "ref_doctype": "Material Salvage",
+ "report_type": "Script Report",
+ "disabled": 0
+}

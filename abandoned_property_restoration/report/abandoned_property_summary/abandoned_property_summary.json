@@ -1,0 +1,9 @@
+{
+ "doctype": "Report",
+ "name": "Abandoned Property Summary",
+ "module": "restoration",
+ "is_standard": "Yes",
+ "ref_doctype": "Abandoned Property",
+ "report_type": "Script Report",
+ "disabled": 0
+}
