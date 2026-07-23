@@ -49,7 +49,7 @@ This application provides an end-to-end solution for managing the lifecycle of a
 | Report | Description |
 |--------|-------------|
 | **Abandoned Property Summary** | Overview of all abandoned properties with status and risk levels |
-| **Client Reward Report** | Track rewards issued to clients for reporting properties |
+| **Citizen Reward Report** | Track rewards issued to clients for reporting properties |
 | **Digital Archive Report** | Browse the digital time capsule contents |
 | **District Wise Restoration Report** | Restoration activity grouped by district |
 | **Historical Records Report** | Historical documentation and records |
