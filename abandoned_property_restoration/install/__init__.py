@@ -5,6 +5,7 @@ def after_install():
     create_module_def()
     create_roles()
     create_reports()
+    create_dashboard_charts()
     create_workspace()
     create_demo_data()
     create_custom_fields()
@@ -17,6 +18,7 @@ def after_migrate():
     """Ensure Module Def exists and reports, workspace & demo data are updated after migration."""
     create_module_def()
     create_reports()
+    create_dashboard_charts()
     create_workspace()
     create_demo_data()
     frappe.db.commit()
@@ -78,6 +80,62 @@ def create_reports():
         except Exception as e:
             frappe.log_error(f"Could not create/update report {report_data['name']}: {e}")
 
+def create_dashboard_charts():
+    """Create interactive dashboard charts for the workspace."""
+    charts = [
+        {
+            "chart_name": "Property Status Distribution",
+            "chart_type": "Group By",
+            "document_type": "Abandoned Property",
+            "based_on": "property_status",
+            "group_by_type": "Count",
+            "type": "Donut",
+            "is_public": 1,
+            "filters_json": "[]",
+        },
+        {
+            "chart_name": "Restoration Project Status",
+            "chart_type": "Group By",
+            "document_type": "Restoration Project",
+            "based_on": "project_status",
+            "group_by_type": "Count",
+            "type": "Bar",
+            "is_public": 1,
+            "filters_json": "[]",
+        },
+        {
+            "chart_name": "Risk Level Distribution",
+            "chart_type": "Group By",
+            "document_type": "Abandoned Property",
+            "based_on": "risk_level",
+            "group_by_type": "Count",
+            "type": "Pie",
+            "is_public": 1,
+            "filters_json": "[]",
+        },
+        {
+            "chart_name": "Inspection Status Overview",
+            "chart_type": "Group By",
+            "document_type": "Property Inspection",
+            "based_on": "inspection_status",
+            "group_by_type": "Count",
+            "type": "Bar",
+            "is_public": 1,
+            "filters_json": "[]",
+        },
+    ]
+    for chart_data in charts:
+        if not frappe.db.exists("Dashboard Chart", chart_data["chart_name"]):
+            try:
+                doc = frappe.get_doc({
+                    "doctype": "Dashboard Chart",
+                    **chart_data,
+                })
+                doc.insert(ignore_permissions=True)
+            except Exception as e:
+                _safe_log_error("Dashboard Charts", f"Failed to create chart '{chart_data['chart_name']}': {str(e)[:80]}")
+
+
 def create_roles():
     """Create custom roles required by the app before workspace creation."""
     roles = [
@@ -97,15 +155,28 @@ def create_roles():
 
 def create_workspace():
     """Create or update the Abandoned Property Restoration workspace."""
-    # Content JSON defines the workspace layout structure (headers + empty cards)
+    # Content JSON defines the workspace layout structure (headers, charts, cards)
     # Individual links are managed via the links child table below
     workspace_content = [
+        {"id": "hdr_dashboard", "type": "header", "data": {"text": "Dashboard", "col": 12}},
+        {"id": "chart-property-status", "type": "chart", "data": {"chart_name": "Property Status Distribution", "col": 6}},
+        {"id": "chart-project-status", "type": "chart", "data": {"chart_name": "Restoration Project Status", "col": 6}},
+        {"id": "chart-risk-level", "type": "chart", "data": {"chart_name": "Risk Level Distribution", "col": 6}},
+        {"id": "chart-inspection-status", "type": "chart", "data": {"chart_name": "Inspection Status Overview", "col": 6}},
         {"id": "hdr_masters", "type": "header", "data": {"text": "Masters", "col": 12}},
         {"id": "card_masters", "type": "card", "data": {"card_name": "Masters"}},
         {"id": "hdr_transactions", "type": "header", "data": {"text": "Transactions", "col": 12}},
         {"id": "card_transactions", "type": "card", "data": {"card_name": "Transactions"}},
         {"id": "hdr_reports", "type": "header", "data": {"text": "Reports", "col": 12}},
         {"id": "card_reports", "type": "card", "data": {"card_name": "Reports"}}
+    ]
+    
+    # Chart entries for the workspace charts child table
+    workspace_charts = [
+        {"chart_name": "Property Status Distribution", "label": "Property Status"},
+        {"chart_name": "Restoration Project Status", "label": "Project Status"},
+        {"chart_name": "Risk Level Distribution", "label": "Risk Level"},
+        {"chart_name": "Inspection Status Overview", "label": "Inspection Status"},
     ]
     
     # Build the links child table for proper URL resolution
@@ -161,6 +232,10 @@ def create_workspace():
         workspace.set("links", [])
         for link_data in workspace_links:
             workspace.append("links", link_data)
+        # Clear and repopulate charts child table
+        workspace.set("charts", [])
+        for chart_data in workspace_charts:
+            workspace.append("charts", chart_data)
         workspace.save(ignore_permissions=True)
     else:
         # Create new workspace
@@ -183,6 +258,10 @@ def create_workspace():
         # Add links child table for proper URL resolution
         for link_data in workspace_links:
             workspace.append("links", link_data)
+        
+        # Add charts child table
+        for chart_data in workspace_charts:
+            workspace.append("charts", chart_data)
         
         workspace.insert(ignore_permissions=True)
     
