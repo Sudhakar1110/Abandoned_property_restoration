@@ -190,8 +190,10 @@ def create_workspace():
 
 
 def create_demo_data():
-    """Create demo data for testing and evaluating the app."""        if frappe.db.exists("Abandoned Property", {"property_name": "Oakwood Manor"}):
-        return  # Demo data already exists, skip
+    """Create demo data for testing and evaluating the app."""
+    if frappe.db.exists("Abandoned Property", {"property_name": "Oakwood Manor"}):
+        frappe.log_error("Demo data already exists, skipping.", "Demo Data")
+        return
     
     try:
         # ===== LOCATIONS =====
