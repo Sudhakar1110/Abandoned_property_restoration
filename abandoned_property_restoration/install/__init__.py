@@ -13,7 +13,7 @@ def after_install():
 
 
 def after_migrate():
-    """Ensure Module Def exists and reports, charts & workspace are updated after migration."""
+    """Ensure Module Def exists and reports & workspace are updated after migration."""
     create_module_def()
     create_reports()
     create_workspace()
