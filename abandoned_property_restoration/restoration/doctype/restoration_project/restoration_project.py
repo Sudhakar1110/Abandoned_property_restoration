@@ -17,13 +17,17 @@ class RestorationProject(Document):
     
     def calculate_total_cost(self):
         if self.name:
-            total = frappe.db.sql("""
-                SELECT SUM(total_amount) as total
-                FROM `tabExpense Entry`
-                WHERE parent_project = %s
-            """, self.name)
-            if total and total[0][0]:
-                self.total_cost = total[0][0]
+            try:
+                total = frappe.db.sql("""
+                    SELECT SUM(total_amount) as total
+                    FROM `tabExpense Entry`
+                    WHERE parent_project = %s
+                """, self.name)
+                if total and total[0][0]:
+                    self.total_cost = total[0][0]
+            except Exception:
+                # Column may not exist yet during fresh install
+                pass
     
     def on_submit(self):
         self.update_property_status()

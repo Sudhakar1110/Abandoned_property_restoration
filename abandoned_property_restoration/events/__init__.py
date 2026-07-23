@@ -150,14 +150,15 @@ def reward_claim_after_insert(doc, method):
 
 
 def historical_record_on_update(doc, method):
-    if doc.has_value_changed("record_status"):
-        if doc.record_status == "Archived":
-            send_notification(
-                doc,
-                "Historical Record Added",
-                "Property Manager",
-                f"New historical record {doc.record_title} archived"
-            )
+    if doc.meta.has_field("record_status"):
+        if doc.has_value_changed("record_status"):
+            if doc.record_status == "Archived":
+                send_notification(
+                    doc,
+                    "Historical Record Added",
+                    "Property Manager",
+                    f"New historical record {doc.title or doc.name} archived"
+                )
 
 
 def historical_record_after_insert(doc, method):

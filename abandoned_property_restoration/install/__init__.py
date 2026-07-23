@@ -387,7 +387,7 @@ def create_demo_data():
     # ===== DIGITAL TIME CAPSULE =====
     def create_time_capsule():
         if not frappe.db.exists("Digital Time Capsule", {"capsule_name": "Oakwood Manor History"}):
-            frappe.get_doc({"doctype": "Digital Time Capsule", "capsule_id": "DTC-001", "capsule_name": "Oakwood Manor History", "property": "Oakwood Manor", "category": "Documentation", "title": "Oakwood Manor - Original Blueprints", "description": "Original architectural blueprints from 1925, scanned and preserved", "record_date": "2026-07-01", "preservation_method": "Digital Only", "status": "Active", "creation_date": "2026-07-01"}).insert(ignore_permissions=True)
+            frappe.get_doc({"doctype": "Digital Time Capsule", "capsule_id": "DTC-001", "capsule_name": "Oakwood Manor History", "property": "Oakwood Manor", "category": "Documentation", "title": "Oakwood Manor - Original Blueprints", "description": "Original architectural blueprints from 1925, scanned and preserved", "record_date": "2026-07-01", "preservation_method": "Digital Only", "status": "Sealed", "creation_date": "2026-07-01"}).insert(ignore_permissions=True)
     _create_section("Digital Time Capsule", create_time_capsule)
 
     # ===== HISTORICAL RECORD =====
@@ -399,8 +399,8 @@ def create_demo_data():
     # ===== REWARD CLAIMS =====
     def create_rewards():
         if not frappe.db.exists("Reward Claim", {"claim_id": "RWD-001"}):
-            frappe.get_doc({"doctype": "Reward Claim", "claim_id": "RWD-001", "report_name": "Cedar Mill - Reward Claim", "property_name": "Cedar Mill", "client": "michael_chen", "client_name": "Michael Chen", "reward_type": "Cash", "reward_amount": 5000, "claim_status": "Approved"}).insert(ignore_permissions=True)
-            frappe.get_doc({"doctype": "Reward Claim", "claim_id": "RWD-002", "report_name": "Birchwood Villa - Reward Claim", "property_name": "Birchwood Villa", "client": "emily_rodriguez", "client_name": "Emily Rodriguez", "reward_type": "Cash", "reward_amount": 2500, "claim_status": "Pending"}).insert(ignore_permissions=True)
+            frappe.get_doc({"doctype": "Reward Claim", "claim_id": "RWD-001", "report_name": "CPR-002", "property_name": "Cedar Mill", "client": "michael_chen", "client_name": "Michael Chen", "reward_type": "Cash", "reward_amount": 5000, "claim_status": "Approved"}).insert(ignore_permissions=True)
+            frappe.get_doc({"doctype": "Reward Claim", "claim_id": "RWD-002", "report_name": "CPR-003", "property_name": "Birchwood Villa", "client": "emily_rodriguez", "client_name": "Emily Rodriguez", "reward_type": "Cash", "reward_amount": 2500, "claim_status": "Pending"}).insert(ignore_permissions=True)
     _create_section("Reward Claims", create_rewards)
 
     frappe.publish_realtime("bench_event", {"message": "Demo data creation completed"})
