@@ -16,6 +16,7 @@ def after_migrate():
     """Ensure Module Def exists and reports are created after migration."""
     create_module_def()
     create_reports()
+    frappe.db.commit()
 
 
 def after_uninstall():
