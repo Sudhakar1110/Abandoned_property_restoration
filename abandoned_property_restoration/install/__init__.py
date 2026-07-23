@@ -259,9 +259,9 @@ def create_demo_data():
         # ===== ABANDONED PROPERTIES =====
         property_list = [
             {"property_name": "Oakwood Manor", "address": "123 Oak Street", "city": "Los Angeles", "state": "California", "country": "United States", "district": "Los Angeles County", "property_type": "House", "property_category": "Residential", "property_status": "Under Restoration", "risk_level": "Medium", "ownership_type": "Private", "estimated_area": 2500},
-            {"property_name": "Maple Warehouse", "address": "456 Maple Avenue", "city": "Houston", "state": "Texas", "country": "United States", "district": "Harris County", "property_type": "Factory", "property_category": "Commercial", "property_status": "Identified", "risk_level": "High", "ownership_type": "Company", "estimated_area": 15000},
+            {"property_name": "Maple Warehouse", "address": "456 Maple Avenue", "city": "Houston", "state": "Texas", "country": "United States", "district": "Harris County", "property_type": "Factory", "property_category": "Commercial", "property_status": "Vacant", "risk_level": "High", "ownership_type": "Company", "estimated_area": 15000},
             {"property_name": "Pine Street Apartments", "address": "789 Pine Road", "city": "Los Angeles", "state": "California", "country": "United States", "district": "Los Angeles County", "property_type": "Apartment", "property_category": "Residential", "property_status": "Restored", "risk_level": "Low", "ownership_type": "Corporate", "estimated_area": 8000},
-            {"property_name": "Cedar Mill", "address": "321 Cedar Lane", "city": "Houston", "state": "Texas", "country": "United States", "district": "Harris County", "property_type": "Warehouse", "property_category": "Industrial", "property_status": "Under Assessment", "risk_level": "Critical", "ownership_type": "Private", "estimated_area": 20000},
+            {"property_name": "Cedar Mill", "address": "321 Cedar Lane", "city": "Houston", "state": "Texas", "country": "United States", "district": "Harris County", "property_type": "Warehouse", "property_category": "Industrial", "property_status": "Abandoned", "risk_level": "Critical", "ownership_type": "Private", "estimated_area": 20000},
             {"property_name": "Birchwood Villa", "address": "555 Birch Boulevard", "city": "Los Angeles", "state": "California", "country": "United States", "district": "Los Angeles County", "property_type": "Townhouse", "property_category": "Residential", "property_status": "Under Restoration", "risk_level": "Medium", "ownership_type": "Trust", "estimated_area": 1800},
         ]
         for idx, p in enumerate(property_list, 1):
@@ -343,7 +343,7 @@ def create_demo_data():
         frappe.db.commit()
         frappe.publish_realtime("bench_event", {"message": "Demo data created successfully"})
     except Exception as e:
-        frappe.log_error(f"Could not create demo data: {e}", "Demo Data Creation")
+        frappe.log_error(f"Demo data creation failed: {str(e)[:100]}", "Demo Data Creation")
 
 
 def create_custom_fields():
