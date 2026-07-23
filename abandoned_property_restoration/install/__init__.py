@@ -159,6 +159,10 @@ def create_workspace():
     # Individual links are managed via the links child table below
     workspace_content = [
         {"id": "hdr_dashboard", "type": "header", "data": {"text": "Dashboard", "col": 12}},
+        {"id": "chart-property-status", "type": "chart", "data": {"chart_name": "Property Status Distribution", "col": 6}},
+        {"id": "chart-project-status", "type": "chart", "data": {"chart_name": "Restoration Project Status", "col": 6}},
+        {"id": "chart-risk-level", "type": "chart", "data": {"chart_name": "Risk Level Distribution", "col": 6}},
+        {"id": "chart-inspection-status", "type": "chart", "data": {"chart_name": "Inspection Status Overview", "col": 6}},
         {"id": "hdr_masters", "type": "header", "data": {"text": "Masters", "col": 12}},
         {"id": "card_masters", "type": "card", "data": {"card_name": "Masters"}},
         {"id": "hdr_transactions", "type": "header", "data": {"text": "Transactions", "col": 12}},
