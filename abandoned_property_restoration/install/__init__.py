@@ -5,7 +5,6 @@ def after_install():
     create_module_def()
     create_roles()
     create_reports()
-    create_dashboard_charts()
     create_workspace()
     create_custom_fields()
     create_property_doctypes()
@@ -17,7 +16,6 @@ def after_migrate():
     """Ensure Module Def exists and reports, charts & workspace are updated after migration."""
     create_module_def()
     create_reports()
-    create_dashboard_charts()
     create_workspace()
     frappe.db.commit()
 
@@ -230,22 +228,6 @@ def create_workspace():
     for item in ["Abandoned Property Summary", "Citizen Reward Report", "Digital Archive Report", "District Wise Restoration Report", "Historical Records Report", "Maintenance Report", "Material Exchange Report", "Material Salvage Report", "Project Progress Report", "Property Inspection Report", "Property Timeline Report", "Restoration Cost Report", "Restoration Status Report", "Top Contributors Report"]:
         add_link(item, item, "Report")
     
-    # Chart definitions for workspace charts child table
-    workspace_charts = [
-        {
-            "chart_name": "Property Status Distribution",
-            "label": "Property Status"
-        },
-        {
-            "chart_name": "Restoration Project Status",
-            "label": "Project Status"
-        },
-        {
-            "chart_name": "Monthly Client Reports",
-            "label": "Monthly Reports"
-        },
-    ]
-
     if frappe.db.exists("Workspace", "Abandoned Property Restoration"):
         # Update existing workspace
         workspace = frappe.get_doc("Workspace", "Abandoned Property Restoration")
@@ -255,10 +237,6 @@ def create_workspace():
         workspace.set("links", [])
         for link_data in workspace_links:
             workspace.append("links", link_data)
-        # Add charts to the charts child table
-        workspace.set("charts", [])
-        for chart_data in workspace_charts:
-            workspace.append("charts", chart_data)
         workspace.save(ignore_permissions=True)
     else:
         # Create new workspace
@@ -281,10 +259,6 @@ def create_workspace():
         # Add links child table for proper URL resolution
         for link_data in workspace_links:
             workspace.append("links", link_data)
-        
-        # Add charts to the charts child table
-        for chart_data in workspace_charts:
-            workspace.append("charts", chart_data)
         
         workspace.insert(ignore_permissions=True)
     
