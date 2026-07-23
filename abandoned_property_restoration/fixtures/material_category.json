@@ -52,5 +52,14 @@
   "idx": 6,
   "is_active": 1,
   "category_name": "Tiles"
+ },
+ {
+  "doctype": "Material Category",
+  "name": "Brick",
+  "owner": "Administrator",
+  "modified_by": "Administrator",
+  "idx": 7,
+  "is_active": 1,
+  "category_name": "Brick"
  }
 ]

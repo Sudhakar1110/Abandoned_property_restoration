@@ -70,5 +70,14 @@
   "idx": 8,
   "is_active": 1,
   "property_type_name": "Land"
+ },
+ {
+  "doctype": "Property Type",
+  "name": "Townhouse",
+  "owner": "Administrator",
+  "modified_by": "Administrator",
+  "idx": 9,
+  "is_active": 1,
+  "property_type_name": "Townhouse"
  }
 ]

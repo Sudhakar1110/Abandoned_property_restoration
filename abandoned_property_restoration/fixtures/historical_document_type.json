@@ -43,5 +43,14 @@
   "idx": 5,
   "is_active": 1,
   "document_type_name": "Correspondence"
+ },
+ {
+  "doctype": "Historical Document Type",
+  "name": "Assessment Report",
+  "owner": "Administrator",
+  "modified_by": "Administrator",
+  "idx": 6,
+  "is_active": 1,
+  "document_type_name": "Assessment Report"
  }
 ]

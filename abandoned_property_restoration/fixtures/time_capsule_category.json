@@ -34,5 +34,14 @@
   "idx": 4,
   "is_active": 1,
   "category_name": "Project Documentation"
+ },
+ {
+  "doctype": "Time Capsule Category",
+  "name": "Documentation",
+  "owner": "Administrator",
+  "modified_by": "Administrator",
+  "idx": 5,
+  "is_active": 1,
+  "category_name": "Documentation"
  }
 ]

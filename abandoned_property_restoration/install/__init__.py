@@ -189,47 +189,100 @@ def create_workspace():
     frappe.db.commit()
 
 
+def _ensure_fixture_records():
+    """Ensure fixture-like reference records needed by demo data exist.
+    
+    This is needed because fixture files are only loaded on install_app,
+    not on migrate. On existing sites, newly added fixture values won't
+    exist unless we create them here.
+    """
+    # Property Types
+    for pt_name in ["Townhouse"]:
+        if not frappe.db.exists("Property Type", pt_name):
+            try:
+                frappe.get_doc({
+                    "doctype": "Property Type",
+                    "property_type_name": pt_name,
+                }).insert(ignore_permissions=True)
+            except Exception:
+                pass  # Skip if it already exists by another name
+
+    # Material Categories
+    for mc_name in ["Brick"]:
+        if not frappe.db.exists("Material Category", {"category_name": mc_name}):
+            try:
+                frappe.get_doc({
+                    "doctype": "Material Category",
+                    "category_name": mc_name,
+                }).insert(ignore_permissions=True)
+            except Exception:
+                pass
+
+    # Time Capsule Categories
+    for tc_name in ["Documentation"]:
+        if not frappe.db.exists("Time Capsule Category", tc_name):
+            try:
+                frappe.get_doc({
+                    "doctype": "Time Capsule Category",
+                    "category_name": tc_name,
+                }).insert(ignore_permissions=True)
+            except Exception:
+                pass
+
+    # Historical Document Types
+    for dt_name in ["Assessment Report"]:
+        if not frappe.db.exists("Historical Document Type", dt_name):
+            try:
+                frappe.get_doc({
+                    "doctype": "Historical Document Type",
+                    "document_type_name": dt_name,
+                }).insert(ignore_permissions=True)
+            except Exception:
+                pass
+
+    frappe.db.commit()
+
+
+def _create_section(label, create_fn):
+    """Wrap a demo data section in its own try/except to prevent cascade failures."""
+    try:
+        create_fn()
+        frappe.db.commit()
+        frappe.log_error(f"Demo data section '{label}' completed", "Demo Data")
+    except Exception as e:
+        frappe.log_error(f"Demo data section '{label}' failed: {str(e)[:200]}", "Demo Data")
+
+
 def create_demo_data():
     """Create demo data for testing and evaluating the app."""
     if frappe.db.exists("Abandoned Property", {"property_name": "Oakwood Manor"}):
         frappe.log_error("Demo data already exists, skipping.", "Demo Data")
         return
-    
-    try:
-        # ===== LOCATIONS =====
-        if not frappe.db.exists("Country", {"country_name": "United States"}):
-            country = frappe.get_doc({"doctype": "Country", "country_name": "United States", "code": "US"})
-            country.insert(ignore_permissions=True)
-        
-        if not frappe.db.exists("State", {"state_name": "California"}):
-            state = frappe.get_doc({"doctype": "State", "state_name": "California", "country": "United States"})
-            state.insert(ignore_permissions=True)
-        
-        if not frappe.db.exists("State", {"state_name": "Texas"}):
-            state = frappe.get_doc({"doctype": "State", "state_name": "Texas", "country": "United States"})
-            state.insert(ignore_permissions=True)
-        
-        if not frappe.db.exists("District", {"district_name": "Los Angeles County"}):
-            district = frappe.get_doc({"doctype": "District", "district_name": "Los Angeles County", "state": "California"})
-            district.insert(ignore_permissions=True)
-        
-        if not frappe.db.exists("District", {"district_name": "Harris County"}):
-            district = frappe.get_doc({"doctype": "District", "district_name": "Harris County", "state": "Texas"})
-            district.insert(ignore_permissions=True)
-        
-        if not frappe.db.exists("City", {"city_name": "Los Angeles"}):
-            city = frappe.get_doc({"doctype": "City", "city_name": "Los Angeles", "state": "California", "country": "United States"})
-            city.insert(ignore_permissions=True)
-        
-        if not frappe.db.exists("City", {"city_name": "Houston"}):
-            city = frappe.get_doc({"doctype": "City", "city_name": "Houston", "state": "Texas", "country": "United States"})
-            city.insert(ignore_permissions=True)
-        
-        frappe.db.commit()  # Commit locations before creating other records
 
-        # ===== PEOPLES & ENTITIES =====
-        client_names = ["sarah_johnson", "michael_chen", "emily_rodriguez"]
-        if not frappe.db.exists("Client", client_names[0]):
+    # First, ensure all reference records exist
+    _ensure_fixture_records()
+
+    # ===== LOCATIONS =====
+    def create_locations():
+        if not frappe.db.exists("Country", {"country_name": "United States"}):
+            frappe.get_doc({"doctype": "Country", "country_name": "United States", "code": "US"}).insert(ignore_permissions=True)
+        if not frappe.db.exists("State", {"state_name": "California"}):
+            frappe.get_doc({"doctype": "State", "state_name": "California", "country": "United States"}).insert(ignore_permissions=True)
+        if not frappe.db.exists("State", {"state_name": "Texas"}):
+            frappe.get_doc({"doctype": "State", "state_name": "Texas", "country": "United States"}).insert(ignore_permissions=True)
+        if not frappe.db.exists("District", {"district_name": "Los Angeles County"}):
+            frappe.get_doc({"doctype": "District", "district_name": "Los Angeles County", "state": "California"}).insert(ignore_permissions=True)
+        if not frappe.db.exists("District", {"district_name": "Harris County"}):
+            frappe.get_doc({"doctype": "District", "district_name": "Harris County", "state": "Texas"}).insert(ignore_permissions=True)
+        if not frappe.db.exists("City", {"city_name": "Los Angeles"}):
+            frappe.get_doc({"doctype": "City", "city_name": "Los Angeles", "state": "California", "country": "United States"}).insert(ignore_permissions=True)
+        if not frappe.db.exists("City", {"city_name": "Houston"}):
+            frappe.get_doc({"doctype": "City", "city_name": "Houston", "state": "Texas", "country": "United States"}).insert(ignore_permissions=True)
+    _create_section("Locations", create_locations)
+
+    # ===== PEOPLES & ENTITIES =====
+    def create_peoples():
+        if not frappe.db.exists("Client", "sarah_johnson"):
             clients = [
                 {"client_id": "sarah_johnson", "client_name": "Sarah Johnson", "email": "sarah.j@email.com", "phone": "+1-555-0101"},
                 {"client_id": "michael_chen", "client_name": "Michael Chen", "email": "michael.c@email.com", "phone": "+1-555-0102"},
@@ -237,26 +290,22 @@ def create_demo_data():
             ]
             for cd in clients:
                 frappe.get_doc({"doctype": "Client", **cd}).insert(ignore_permissions=True)
-
         if not frappe.db.exists("Contractor", {"contractor_name": "Premier Builders Inc"}):
             frappe.get_doc({"doctype": "Contractor", "contractor_id": "premier_builders_inc", "contractor_name": "Premier Builders Inc", "email": "info@premierbuilders.com", "phone": "+1-555-0201"}).insert(ignore_permissions=True)
             frappe.get_doc({"doctype": "Contractor", "contractor_id": "heritage_restoration_llc", "contractor_name": "Heritage Restoration LLC", "email": "contact@heritagerestoration.com", "phone": "+1-555-0202"}).insert(ignore_permissions=True)
-
         if not frappe.db.exists("Engineer", {"engineer_name": "David Wilson"}):
             frappe.get_doc({"doctype": "Engineer", "engineer_id": "david_wilson", "engineer_name": "David Wilson", "email": "david.w@engineering.com", "phone": "+1-555-0301"}).insert(ignore_permissions=True)
             frappe.get_doc({"doctype": "Engineer", "engineer_id": "lisa_thompson", "engineer_name": "Lisa Thompson", "email": "lisa.t@engineering.com", "phone": "+1-555-0302"}).insert(ignore_permissions=True)
-
         if not frappe.db.exists("Field Agent", "james_martinez"):
             frappe.get_doc({"doctype": "Field Agent", "field_agent_id": "james_martinez", "field_agent_name": "James Martinez", "email": "james.m@fieldservices.com", "phone": "+1-555-0401"}).insert(ignore_permissions=True)
             frappe.get_doc({"doctype": "Field Agent", "field_agent_id": "amanda_lee", "field_agent_name": "Amanda Lee", "email": "amanda.l@fieldservices.com", "phone": "+1-555-0402"}).insert(ignore_permissions=True)
-
         if not frappe.db.exists("Department", "property_acquisitions"):
             frappe.get_doc({"doctype": "Department", "department_id": "property_acquisitions", "department_name": "Property Acquisitions", "contact_person": "Robert Brown", "email": "acquisitions@company.com"}).insert(ignore_permissions=True)
             frappe.get_doc({"doctype": "Department", "department_id": "restoration_operations", "department_name": "Restoration Operations", "contact_person": "Karen Davis", "email": "operations@company.com"}).insert(ignore_permissions=True)
+    _create_section("Peoples & Entities", create_peoples)
 
-        frappe.db.commit()
-
-        # ===== ABANDONED PROPERTIES =====
+    # ===== ABANDONED PROPERTIES =====
+    def create_properties():
         property_list = [
             {"property_name": "Oakwood Manor", "address": "123 Oak Street", "city": "Los Angeles", "state": "California", "country": "United States", "district": "Los Angeles County", "property_type": "House", "property_category": "Residential", "property_status": "Under Restoration", "risk_level": "Medium", "ownership_type": "Private", "estimated_area": 2500},
             {"property_name": "Maple Warehouse", "address": "456 Maple Avenue", "city": "Houston", "state": "Texas", "country": "United States", "district": "Harris County", "property_type": "Factory", "property_category": "Commercial", "property_status": "Vacant", "risk_level": "High", "ownership_type": "Company", "estimated_area": 15000},
@@ -264,14 +313,17 @@ def create_demo_data():
             {"property_name": "Cedar Mill", "address": "321 Cedar Lane", "city": "Houston", "state": "Texas", "country": "United States", "district": "Harris County", "property_type": "Warehouse", "property_category": "Industrial", "property_status": "Abandoned", "risk_level": "Critical", "ownership_type": "Private", "estimated_area": 20000},
             {"property_name": "Birchwood Villa", "address": "555 Birch Boulevard", "city": "Los Angeles", "state": "California", "country": "United States", "district": "Los Angeles County", "property_type": "Townhouse", "property_category": "Residential", "property_status": "Under Restoration", "risk_level": "Medium", "ownership_type": "Trust", "estimated_area": 1800},
         ]
-        for idx, p in enumerate(property_list, 1):
-            p["naming_series"] = "AP-.YYYY.-"
-            doc = frappe.get_doc({"doctype": "Abandoned Property", **p})
-            doc.insert(ignore_permissions=True)
+        for p in property_list:
+            # Wrap each property in its own try/except for resilience
+            try:
+                doc = frappe.get_doc({"doctype": "Abandoned Property", "naming_series": "AP-.YYYY.-", **p})
+                doc.insert(ignore_permissions=True)
+            except Exception as e:
+                frappe.log_error(f"Failed to create property '{p['property_name']}': {str(e)[:150]}", "Demo Data Properties")
+    _create_section("Abandoned Properties", create_properties)
 
-        frappe.db.commit()
-
-        # ===== CLIENT PROPERTY REPORTS =====
+    # ===== CLIENT PROPERTY REPORTS =====
+    def create_client_reports():
         report_list = [
             {"report_id": "CPR-001", "property_name": "Oakwood Manor", "client": "sarah_johnson", "client_name": "Sarah Johnson", "address": "123 Oak Street", "city": "Los Angeles", "state": "California", "country": "United States", "district": "Los Angeles County", "risk_level": "Medium", "status": "Restoration Assigned"},
             {"report_id": "CPR-002", "property_name": "Cedar Mill", "client": "michael_chen", "client_name": "Michael Chen", "address": "321 Cedar Lane", "city": "Houston", "state": "Texas", "country": "United States", "district": "Harris County", "risk_level": "Critical", "status": "Verified"},
@@ -280,10 +332,10 @@ def create_demo_data():
         for rd in report_list:
             if not frappe.db.exists("Client Property Report", {"report_id": rd["report_id"]}):
                 frappe.get_doc({"doctype": "Client Property Report", **rd}).insert(ignore_permissions=True)
+    _create_section("Client Property Reports", create_client_reports)
 
-        frappe.db.commit()
-
-        # ===== PROPERTY INSPECTIONS =====
+    # ===== PROPERTY INSPECTIONS =====
+    def create_inspections():
         inspection_list = [
             {"inspection_id": "INS-001", "property": "Oakwood Manor", "field_agent": "james_martinez", "engineer": "david_wilson", "inspection_date": "2026-06-15 10:00:00", "inspection_type": "Initial Inspection", "inspection_status": "Completed", "structure_condition": "Fair", "foundation_condition": "Good", "roof_condition": "Poor", "risk_level": "Medium", "estimated_restoration_cost": 150000},
             {"inspection_id": "INS-002", "property": "Cedar Mill", "field_agent": "amanda_lee", "engineer": "lisa_thompson", "inspection_date": "2026-06-20 14:00:00", "inspection_type": "Initial Inspection", "inspection_status": "Completed", "structure_condition": "Poor", "foundation_condition": "Fair", "roof_condition": "Critical", "risk_level": "Critical", "estimated_restoration_cost": 450000},
@@ -292,17 +344,18 @@ def create_demo_data():
         for ins in inspection_list:
             if not frappe.db.exists("Property Inspection", {"inspection_id": ins["inspection_id"]}):
                 frappe.get_doc({"doctype": "Property Inspection", **ins}).insert(ignore_permissions=True)
+    _create_section("Property Inspections", create_inspections)
 
-        frappe.db.commit()
-
-        # ===== RESTORATION PROJECTS =====
+    # ===== RESTORATION PROJECTS =====
+    def create_projects():
         if not frappe.db.exists("Restoration Project", {"project_name": "Oakwood Manor Restoration"}):
             frappe.get_doc({"doctype": "Restoration Project", "naming_series": "RP-.YYYY.-", "project_name": "Oakwood Manor Restoration", "property": "Oakwood Manor", "project_status": "In Progress", "project_priority": "High", "start_date": "2026-07-01", "expected_end_date": "2026-12-31", "engineer": "david_wilson", "contractor": "premier_builders_inc", "estimated_cost": 150000, "progress_percentage": 35, "current_phase": "Structural Repairs"}).insert(ignore_permissions=True)
+        if not frappe.db.exists("Restoration Project", {"project_name": "Birchwood Villa Restoration"}):
             frappe.get_doc({"doctype": "Restoration Project", "naming_series": "RP-.YYYY.-", "project_name": "Birchwood Villa Restoration", "property": "Birchwood Villa", "project_status": "Planning", "project_priority": "Medium", "start_date": "2026-08-15", "expected_end_date": "2027-02-28", "engineer": "lisa_thompson", "contractor": "heritage_restoration_llc", "estimated_cost": 85000, "progress_percentage": 10, "current_phase": "Assessment & Planning"}).insert(ignore_permissions=True)
+    _create_section("Restoration Projects", create_projects)
 
-        frappe.db.commit()
-
-        # ===== RESTORATION PROGRESS =====
+    # ===== RESTORATION PROGRESS =====
+    def create_progress():
         progress_list = [
             {"restoration_project": "Oakwood Manor Restoration", "property": "Oakwood Manor", "update_date": "2026-07-15", "progress_percentage": 15, "work_completed": "Initial debris removal and structural assessment", "current_phase": "Assessment"},
             {"restoration_project": "Oakwood Manor Restoration", "property": "Oakwood Manor", "update_date": "2026-08-01", "progress_percentage": 25, "work_completed": "Roof protection installed, interior demolition done", "current_phase": "Structural Repairs"},
@@ -310,10 +363,10 @@ def create_demo_data():
         ]
         for pe in progress_list:
             frappe.get_doc({"doctype": "Restoration Progress", **pe}).insert(ignore_permissions=True)
+    _create_section("Restoration Progress", create_progress)
 
-        frappe.db.commit()
-
-        # ===== MATERIAL SALVAGE =====
+    # ===== MATERIAL SALVAGE =====
+    def create_materials():
         material_list = [
             {"property": "Oakwood Manor", "material_name": "Vintage Hardwood Flooring", "material_category": "Wood", "quantity": 500, "condition": "Good", "status": "Available"},
             {"property": "Oakwood Manor", "material_name": "Brass Door Handles", "material_category": "Metal", "quantity": 25, "condition": "Excellent", "status": "Available"},
@@ -322,28 +375,28 @@ def create_demo_data():
         ]
         for m in material_list:
             frappe.get_doc({"doctype": "Material Salvage", **m}).insert(ignore_permissions=True)
+    _create_section("Material Salvage", create_materials)
 
-        frappe.db.commit()
-
-        # ===== DIGITAL TIME CAPSULE =====
+    # ===== DIGITAL TIME CAPSULE =====
+    def create_time_capsule():
         if not frappe.db.exists("Digital Time Capsule", {"capsule_name": "Oakwood Manor History"}):
             frappe.get_doc({"doctype": "Digital Time Capsule", "capsule_name": "Oakwood Manor History", "property": "Oakwood Manor", "category": "Documentation", "title": "Oakwood Manor - Original Blueprints", "description": "Original architectural blueprints from 1925, scanned and preserved", "record_date": "2026-07-01", "preservation_method": "Digital Only", "status": "Active"}).insert(ignore_permissions=True)
+    _create_section("Digital Time Capsule", create_time_capsule)
 
-        # ===== HISTORICAL RECORD =====
+    # ===== HISTORICAL RECORD =====
+    def create_historical():
         if not frappe.db.exists("Historical Record", {"record_title": "Oakwood Manor - Historical Assessment"}):
             frappe.get_doc({"doctype": "Historical Record", "record_title": "Oakwood Manor - Historical Assessment", "property": "Oakwood Manor", "document_type": "Assessment Report", "description": "Historical significance assessment for Oakwood Manor (1925) by architect Frank Peterson", "record_date": "2026-06-20", "record_status": "Archived"}).insert(ignore_permissions=True)
+    _create_section("Historical Record", create_historical)
 
-        frappe.db.commit()
-
-        # ===== REWARD CLAIMS =====
+    # ===== REWARD CLAIMS =====
+    def create_rewards():
         if not frappe.db.exists("Reward Claim", {"claim_id": "RWD-001"}):
             frappe.get_doc({"doctype": "Reward Claim", "claim_id": "RWD-001", "property_name": "Cedar Mill", "client": "michael_chen", "client_name": "Michael Chen", "reward_type": "Cash", "reward_amount": 5000, "claim_status": "Approved"}).insert(ignore_permissions=True)
             frappe.get_doc({"doctype": "Reward Claim", "claim_id": "RWD-002", "property_name": "Birchwood Villa", "client": "emily_rodriguez", "client_name": "Emily Rodriguez", "reward_type": "Cash", "reward_amount": 2500, "claim_status": "Pending"}).insert(ignore_permissions=True)
+    _create_section("Reward Claims", create_rewards)
 
-        frappe.db.commit()
-        frappe.publish_realtime("bench_event", {"message": "Demo data created successfully"})
-    except Exception as e:
-        frappe.log_error(f"Demo data creation failed: {str(e)[:100]}", "Demo Data Creation")
+    frappe.publish_realtime("bench_event", {"message": "Demo data creation completed"})
 
 
 def create_custom_fields():
