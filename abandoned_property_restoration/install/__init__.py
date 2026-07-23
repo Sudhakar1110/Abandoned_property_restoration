@@ -190,177 +190,153 @@ def create_workspace():
 
 
 def create_demo_data():
-    """Create demo data for testing and evaluating the app."""
-    if frappe.db.exists("Abandoned Property", "DEMO-001"):
+    """Create demo data for testing and evaluating the app."""        if frappe.db.exists("Abandoned Property", {"property_name": "Oakwood Manor"}):
         return  # Demo data already exists, skip
     
     try:
         # ===== LOCATIONS =====
-        if not frappe.db.exists("Country", "United States"):
-            country = frappe.get_doc({"doctype": "Country", "country_name": "United States", "code": "US", "date_format": "mm/dd/yyyy", "time_format": "hh:mm:ss"})
+        if not frappe.db.exists("Country", {"country_name": "United States"}):
+            country = frappe.get_doc({"doctype": "Country", "country_name": "United States", "code": "US"})
             country.insert(ignore_permissions=True)
         
-        if not frappe.db.exists("State", "California"):
+        if not frappe.db.exists("State", {"state_name": "California"}):
             state = frappe.get_doc({"doctype": "State", "state_name": "California", "country": "United States"})
             state.insert(ignore_permissions=True)
         
-        if not frappe.db.exists("State", "Texas"):
+        if not frappe.db.exists("State", {"state_name": "Texas"}):
             state = frappe.get_doc({"doctype": "State", "state_name": "Texas", "country": "United States"})
             state.insert(ignore_permissions=True)
         
-        if not frappe.db.exists("District", "Los Angeles County"):
+        if not frappe.db.exists("District", {"district_name": "Los Angeles County"}):
             district = frappe.get_doc({"doctype": "District", "district_name": "Los Angeles County", "state": "California"})
             district.insert(ignore_permissions=True)
         
-        if not frappe.db.exists("District", "Harris County"):
+        if not frappe.db.exists("District", {"district_name": "Harris County"}):
             district = frappe.get_doc({"doctype": "District", "district_name": "Harris County", "state": "Texas"})
             district.insert(ignore_permissions=True)
         
-        if not frappe.db.exists("City", "Los Angeles"):
+        if not frappe.db.exists("City", {"city_name": "Los Angeles"}):
             city = frappe.get_doc({"doctype": "City", "city_name": "Los Angeles", "state": "California", "country": "United States"})
             city.insert(ignore_permissions=True)
         
-        if not frappe.db.exists("City", "Houston"):
+        if not frappe.db.exists("City", {"city_name": "Houston"}):
             city = frappe.get_doc({"doctype": "City", "city_name": "Houston", "state": "Texas", "country": "United States"})
             city.insert(ignore_permissions=True)
         
+        frappe.db.commit()  # Commit locations before creating other records
+
         # ===== PEOPLES & ENTITIES =====
-        # Clients
-        client_data = [
-            {"client_name": "Sarah Johnson", "email": "sarah.j@email.com", "phone": "+1-555-0101", "city": "Los Angeles", "state": "California"},
-            {"client_name": "Michael Chen", "email": "michael.c@email.com", "phone": "+1-555-0102", "city": "Houston", "state": "Texas"},
-            {"client_name": "Emily Rodriguez", "email": "emily.r@email.com", "phone": "+1-555-0103", "city": "Los Angeles", "state": "California"},
-        ]
-        for cd in client_data:
-            if not frappe.db.exists("Client", cd["client_name"]):
-                doc = frappe.get_doc({"doctype": "Client", "client_id": cd["client_name"].lower().replace(" ", "_"), "client_name": cd["client_name"], "email": cd["email"], "phone": cd["phone"]})
-                doc.insert(ignore_permissions=True)
+        client_names = ["sarah_johnson", "michael_chen", "emily_rodriguez"]
+        if not frappe.db.exists("Client", client_names[0]):
+            clients = [
+                {"client_id": "sarah_johnson", "client_name": "Sarah Johnson", "email": "sarah.j@email.com", "phone": "+1-555-0101"},
+                {"client_id": "michael_chen", "client_name": "Michael Chen", "email": "michael.c@email.com", "phone": "+1-555-0102"},
+                {"client_id": "emily_rodriguez", "client_name": "Emily Rodriguez", "email": "emily.r@email.com", "phone": "+1-555-0103"},
+            ]
+            for cd in clients:
+                frappe.get_doc({"doctype": "Client", **cd}).insert(ignore_permissions=True)
 
-        # Contractors
-        contractor_data = [
-            {"contractor_name": "Premier Builders Inc", "email": "info@premierbuilders.com", "phone": "+1-555-0201"},
-            {"contractor_name": "Heritage Restoration LLC", "email": "contact@heritagerestoration.com", "phone": "+1-555-0202"},
-        ]
-        for cd in contractor_data:
-            if not frappe.db.exists("Contractor", cd["contractor_name"]):
-                doc = frappe.get_doc({"doctype": "Contractor", "contractor_name": cd["contractor_name"], "email": cd["email"], "phone": cd["phone"]})
-                doc.insert(ignore_permissions=True)
+        if not frappe.db.exists("Contractor", "Premier Builders Inc"):
+            frappe.get_doc({"doctype": "Contractor", "contractor_name": "Premier Builders Inc", "email": "info@premierbuilders.com", "phone": "+1-555-0201"}).insert(ignore_permissions=True)
+            frappe.get_doc({"doctype": "Contractor", "contractor_name": "Heritage Restoration LLC", "email": "contact@heritagerestoration.com", "phone": "+1-555-0202"}).insert(ignore_permissions=True)
 
-        # Engineers
-        engineer_data = [
-            {"engineer_name": "David Wilson", "email": "david.w@engineering.com", "phone": "+1-555-0301", "specialization": "Structural Engineering"},
-            {"engineer_name": "Lisa Thompson", "email": "lisa.t@engineering.com", "phone": "+1-555-0302", "specialization": "Civil Engineering"},
-        ]
-        for ed in engineer_data:
-            if not frappe.db.exists("Engineer", ed["engineer_name"]):
-                doc = frappe.get_doc({"doctype": "Engineer", "engineer_name": ed["engineer_name"], "email": ed["email"], "phone": ed["phone"]})
-                doc.insert(ignore_permissions=True)
+        if not frappe.db.exists("Engineer", "David Wilson"):
+            frappe.get_doc({"doctype": "Engineer", "engineer_id": "david_wilson", "engineer_name": "David Wilson", "email": "david.w@engineering.com", "phone": "+1-555-0301"}).insert(ignore_permissions=True)
+            frappe.get_doc({"doctype": "Engineer", "engineer_id": "lisa_thompson", "engineer_name": "Lisa Thompson", "email": "lisa.t@engineering.com", "phone": "+1-555-0302"}).insert(ignore_permissions=True)
 
-        # Field Agents
-        agent_data = [
-            {"field_agent_name": "James Martinez", "email": "james.m@fieldservices.com", "phone": "+1-555-0401"},
-            {"field_agent_name": "Amanda Lee", "email": "amanda.l@fieldservices.com", "phone": "+1-555-0402"},
-        ]
-        for ad in agent_data:
-            if not frappe.db.exists("Field Agent", ad["field_agent_name"]):
-                doc = frappe.get_doc({"doctype": "Field Agent", "field_agent_id": ad["field_agent_name"].lower().replace(" ", "_"), "field_agent_name": ad["field_agent_name"], "email": ad["email"], "phone": ad["phone"]})
-                doc.insert(ignore_permissions=True)
+        if not frappe.db.exists("Field Agent", "james_martinez"):
+            frappe.get_doc({"doctype": "Field Agent", "field_agent_id": "james_martinez", "field_agent_name": "James Martinez", "email": "james.m@fieldservices.com", "phone": "+1-555-0401"}).insert(ignore_permissions=True)
+            frappe.get_doc({"doctype": "Field Agent", "field_agent_id": "amanda_lee", "field_agent_name": "Amanda Lee", "email": "amanda.l@fieldservices.com", "phone": "+1-555-0402"}).insert(ignore_permissions=True)
 
-        # Departments
-        dept_data = [
-            {"department_name": "Property Acquisitions", "contact_person": "Robert Brown", "email": "acquisitions@company.com"},
-            {"department_name": "Restoration Operations", "contact_person": "Karen Davis", "email": "operations@company.com"},
-        ]
-        for dd in dept_data:
-            if not frappe.db.exists("Department", dd["department_name"]):
-                doc = frappe.get_doc({"doctype": "Department", "department_id": dd["department_name"].lower().replace(" ", "_"), "department_name": dd["department_name"], "contact_person": dd["contact_person"], "email": dd["email"]})
-                doc.insert(ignore_permissions=True)
+        if not frappe.db.exists("Department", "property_acquisitions"):
+            frappe.get_doc({"doctype": "Department", "department_id": "property_acquisitions", "department_name": "Property Acquisitions", "contact_person": "Robert Brown", "email": "acquisitions@company.com"}).insert(ignore_permissions=True)
+            frappe.get_doc({"doctype": "Department", "department_id": "restoration_operations", "department_name": "Restoration Operations", "contact_person": "Karen Davis", "email": "operations@company.com"}).insert(ignore_permissions=True)
 
-        # ===== PROPERTIES =====
-        properties = [
-            {"name": "DEMO-001", "property_name": "Oakwood Manor", "address": "123 Oak Street", "city": "Los Angeles", "state": "California", "country": "United States", "district": "Los Angeles County", "property_type": "House", "property_category": "Residential", "property_status": "Under Restoration", "risk_level": "Medium", "ownership_type": "Private", "owner_name": "Unknown", "estimated_area": 2500, "restoration_status": "Restoration Started"},
-            {"name": "DEMO-002", "property_name": "Maple Warehouse", "address": "456 Maple Avenue", "city": "Houston", "state": "Texas", "country": "United States", "district": "Harris County", "property_type": "Factory", "property_category": "Commercial", "property_status": "Identified", "risk_level": "High", "ownership_type": "Company", "owner_name": "ABC Corp", "estimated_area": 15000, "restoration_status": "Identified"},
-            {"name": "DEMO-003", "property_name": "Pine Street Apartments", "address": "789 Pine Road", "city": "Los Angeles", "state": "California", "country": "United States", "district": "Los Angeles County", "property_type": "Apartment", "property_category": "Residential", "property_status": "Restored", "risk_level": "Low", "ownership_type": "Corporate", "owner_name": "Westside Properties", "estimated_area": 8000, "restoration_status": "Completed"},
-            {"name": "DEMO-004", "property_name": "Cedar Mill", "address": "321 Cedar Lane", "city": "Houston", "state": "Texas", "country": "United States", "district": "Harris County", "property_type": "Warehouse", "property_category": "Industrial", "property_status": "Under Assessment", "risk_level": "Critical", "ownership_type": "Private", "owner_name": "Estate of John Miller", "estimated_area": 20000, "restoration_status": "Under Assessment"},
-            {"name": "DEMO-005", "property_name": "Birchwood Villa", "address": "555 Birch Boulevard", "city": "Los Angeles", "state": "California", "country": "United States", "district": "Los Angeles County", "property_type": "Townhouse", "property_category": "Residential", "property_status": "Under Restoration", "risk_level": "Medium", "ownership_type": "Trust", "estimated_area": 1800, "restoration_status": "Restoration Started"},
+        frappe.db.commit()
+
+        # ===== ABANDONED PROPERTIES =====
+        property_list = [
+            {"property_name": "Oakwood Manor", "address": "123 Oak Street", "city": "Los Angeles", "state": "California", "country": "United States", "district": "Los Angeles County", "property_type": "House", "property_category": "Residential", "property_status": "Under Restoration", "risk_level": "Medium", "ownership_type": "Private", "estimated_area": 2500},
+            {"property_name": "Maple Warehouse", "address": "456 Maple Avenue", "city": "Houston", "state": "Texas", "country": "United States", "district": "Harris County", "property_type": "Factory", "property_category": "Commercial", "property_status": "Identified", "risk_level": "High", "ownership_type": "Company", "estimated_area": 15000},
+            {"property_name": "Pine Street Apartments", "address": "789 Pine Road", "city": "Los Angeles", "state": "California", "country": "United States", "district": "Los Angeles County", "property_type": "Apartment", "property_category": "Residential", "property_status": "Restored", "risk_level": "Low", "ownership_type": "Corporate", "estimated_area": 8000},
+            {"property_name": "Cedar Mill", "address": "321 Cedar Lane", "city": "Houston", "state": "Texas", "country": "United States", "district": "Harris County", "property_type": "Warehouse", "property_category": "Industrial", "property_status": "Under Assessment", "risk_level": "Critical", "ownership_type": "Private", "estimated_area": 20000},
+            {"property_name": "Birchwood Villa", "address": "555 Birch Boulevard", "city": "Los Angeles", "state": "California", "country": "United States", "district": "Los Angeles County", "property_type": "Townhouse", "property_category": "Residential", "property_status": "Under Restoration", "risk_level": "Medium", "ownership_type": "Trust", "estimated_area": 1800},
         ]
-        for p in properties:
-            if not frappe.db.exists("Abandoned Property", p["name"]):
-                doc = frappe.get_doc({"doctype": "Abandoned Property", **p, "docstatus": 1})
-                doc.insert(ignore_permissions=True)
+        for idx, p in enumerate(property_list, 1):
+            p["naming_series"] = "AP-.YYYY.-"
+            doc = frappe.get_doc({"doctype": "Abandoned Property", **p})
+            doc.insert(ignore_permissions=True)
+
+        frappe.db.commit()
 
         # ===== CLIENT PROPERTY REPORTS =====
-        reports_data = [
-            {"report_id": "CPR-001", "property_name": "Oakwood Manor", "client": "Sarah Johnson", "client_name": "Sarah Johnson", "address": "123 Oak Street", "city": "Los Angeles", "state": "California", "country": "United States", "district": "Los Angeles County", "risk_level": "Medium", "status": "Restoration Assigned"},
-            {"report_id": "CPR-002", "property_name": "Cedar Mill", "client": "Michael Chen", "client_name": "Michael Chen", "address": "321 Cedar Lane", "city": "Houston", "state": "Texas", "country": "United States", "district": "Harris County", "risk_level": "Critical", "status": "Verified"},
-            {"report_id": "CPR-003", "property_name": "Birchwood Villa", "client": "Emily Rodriguez", "client_name": "Emily Rodriguez", "address": "555 Birch Boulevard", "city": "Los Angeles", "state": "California", "country": "United States", "district": "Los Angeles County", "risk_level": "Medium", "status": "New"},
+        report_list = [
+            {"report_id": "CPR-001", "property_name": "Oakwood Manor", "client": "sarah_johnson", "client_name": "Sarah Johnson", "address": "123 Oak Street", "city": "Los Angeles", "state": "California", "country": "United States", "district": "Los Angeles County", "risk_level": "Medium", "status": "Restoration Assigned"},
+            {"report_id": "CPR-002", "property_name": "Cedar Mill", "client": "michael_chen", "client_name": "Michael Chen", "address": "321 Cedar Lane", "city": "Houston", "state": "Texas", "country": "United States", "district": "Harris County", "risk_level": "Critical", "status": "Verified"},
+            {"report_id": "CPR-003", "property_name": "Birchwood Villa", "client": "emily_rodriguez", "client_name": "Emily Rodriguez", "address": "555 Birch Boulevard", "city": "Los Angeles", "state": "California", "country": "United States", "district": "Los Angeles County", "risk_level": "Medium", "status": "New"},
         ]
-        for rd in reports_data:
-            if not frappe.db.exists("Client Property Report", rd["report_id"]):
-                doc = frappe.get_doc({"doctype": "Client Property Report", **rd, "docstatus": 1})
-                doc.insert(ignore_permissions=True)
+        for rd in report_list:
+            if not frappe.db.exists("Client Property Report", {"report_id": rd["report_id"]}):
+                frappe.get_doc({"doctype": "Client Property Report", **rd}).insert(ignore_permissions=True)
+
+        frappe.db.commit()
 
         # ===== PROPERTY INSPECTIONS =====
-        inspections = [
-            {"inspection_id": "INS-001", "property": "DEMO-001", "field_agent": "James Martinez", "engineer": "David Wilson", "inspection_date": "2026-06-15 10:00:00", "inspection_type": "Initial Inspection", "inspection_status": "Completed", "structure_condition": "Fair", "foundation_condition": "Good", "roof_condition": "Poor", "risk_level": "Medium", "estimated_restoration_cost": 150000},
-            {"inspection_id": "INS-002", "property": "DEMO-004", "field_agent": "Amanda Lee", "engineer": "Lisa Thompson", "inspection_date": "2026-06-20 14:00:00", "inspection_type": "Initial Inspection", "inspection_status": "Completed", "structure_condition": "Poor", "foundation_condition": "Fair", "roof_condition": "Critical", "risk_level": "Critical", "estimated_restoration_cost": 450000},
-            {"inspection_id": "INS-003", "property": "DEMO-005", "field_agent": "James Martinez", "engineer": "David Wilson", "inspection_date": "2026-07-01 09:00:00", "inspection_type": "Initial Inspection", "inspection_status": "In Progress", "structure_condition": "Good", "foundation_condition": "Good", "roof_condition": "Fair", "risk_level": "Medium", "estimated_restoration_cost": 85000},
+        inspection_list = [
+            {"inspection_id": "INS-001", "property": "Oakwood Manor", "field_agent": "james_martinez", "engineer": "david_wilson", "inspection_date": "2026-06-15 10:00:00", "inspection_type": "Initial Inspection", "inspection_status": "Completed", "structure_condition": "Fair", "foundation_condition": "Good", "roof_condition": "Poor", "risk_level": "Medium", "estimated_restoration_cost": 150000},
+            {"inspection_id": "INS-002", "property": "Cedar Mill", "field_agent": "amanda_lee", "engineer": "lisa_thompson", "inspection_date": "2026-06-20 14:00:00", "inspection_type": "Initial Inspection", "inspection_status": "Completed", "structure_condition": "Poor", "foundation_condition": "Fair", "roof_condition": "Critical", "risk_level": "Critical", "estimated_restoration_cost": 450000},
+            {"inspection_id": "INS-003", "property": "Birchwood Villa", "field_agent": "james_martinez", "engineer": "david_wilson", "inspection_date": "2026-07-01 09:00:00", "inspection_type": "Initial Inspection", "inspection_status": "In Progress", "structure_condition": "Good", "foundation_condition": "Good", "roof_condition": "Fair", "risk_level": "Medium", "estimated_restoration_cost": 85000},
         ]
-        for ins in inspections:
-            if not frappe.db.exists("Property Inspection", ins["inspection_id"]):
-                doc = frappe.get_doc({"doctype": "Property Inspection", **ins, "docstatus": 1})
-                doc.insert(ignore_permissions=True)
+        for ins in inspection_list:
+            if not frappe.db.exists("Property Inspection", {"inspection_id": ins["inspection_id"]}):
+                frappe.get_doc({"doctype": "Property Inspection", **ins}).insert(ignore_permissions=True)
+
+        frappe.db.commit()
 
         # ===== RESTORATION PROJECTS =====
-        projects = [
-            {"project_name": "Oakwood Manor Restoration", "property": "DEMO-001", "project_status": "In Progress", "project_priority": "High", "start_date": "2026-07-01", "expected_end_date": "2026-12-31", "engineer": "David Wilson", "contractor": "Premier Builders Inc", "estimated_cost": 150000, "progress_percentage": 35, "current_phase": "Structural Repairs"},
-            {"project_name": "Birchwood Villa Restoration", "property": "DEMO-005", "project_status": "Planning", "project_priority": "Medium", "start_date": "2026-08-15", "expected_end_date": "2027-02-28", "engineer": "Lisa Thompson", "contractor": "Heritage Restoration LLC", "estimated_cost": 85000, "progress_percentage": 10, "current_phase": "Assessment & Planning"},
-        ]
-        for proj in projects:
-            if not frappe.db.exists("Restoration Project", proj["project_name"]):
-                doc = frappe.get_doc({"doctype": "Restoration Project", **proj})
-                doc.insert(ignore_permissions=True)
+        if not frappe.db.exists("Restoration Project", {"project_name": "Oakwood Manor Restoration"}):
+            frappe.get_doc({"doctype": "Restoration Project", "naming_series": "RP-.YYYY.-", "project_name": "Oakwood Manor Restoration", "property": "Oakwood Manor", "project_status": "In Progress", "project_priority": "High", "start_date": "2026-07-01", "expected_end_date": "2026-12-31", "engineer": "david_wilson", "contractor": "Premier Builders Inc", "estimated_cost": 150000, "progress_percentage": 35, "current_phase": "Structural Repairs"}).insert(ignore_permissions=True)
+            frappe.get_doc({"doctype": "Restoration Project", "naming_series": "RP-.YYYY.-", "project_name": "Birchwood Villa Restoration", "property": "Birchwood Villa", "project_status": "Planning", "project_priority": "Medium", "start_date": "2026-08-15", "expected_end_date": "2027-02-28", "engineer": "lisa_thompson", "contractor": "Heritage Restoration LLC", "estimated_cost": 85000, "progress_percentage": 10, "current_phase": "Assessment & Planning"}).insert(ignore_permissions=True)
+
+        frappe.db.commit()
 
         # ===== RESTORATION PROGRESS =====
-        progress_entries = [
-            {"restoration_project": "Oakwood Manor Restoration", "property": "DEMO-001", "update_date": "2026-07-15", "progress_percentage": 15, "work_completed": "Initial debris removal and structural assessment completed", "current_phase": "Assessment"},
-            {"restoration_project": "Oakwood Manor Restoration", "property": "DEMO-001", "update_date": "2026-08-01", "progress_percentage": 25, "work_completed": "Roof temporary protection installed, interior demolition completed", "current_phase": "Structural Repairs"},
-            {"restoration_project": "Oakwood Manor Restoration", "property": "DEMO-001", "update_date": "2026-08-20", "progress_percentage": 35, "work_completed": "Foundation repairs completed, electrical rewiring started", "current_phase": "Structural Repairs"},
+        progress_list = [
+            {"restoration_project": "Oakwood Manor Restoration", "property": "Oakwood Manor", "update_date": "2026-07-15", "progress_percentage": 15, "work_completed": "Initial debris removal and structural assessment", "current_phase": "Assessment"},
+            {"restoration_project": "Oakwood Manor Restoration", "property": "Oakwood Manor", "update_date": "2026-08-01", "progress_percentage": 25, "work_completed": "Roof protection installed, interior demolition done", "current_phase": "Structural Repairs"},
+            {"restoration_project": "Oakwood Manor Restoration", "property": "Oakwood Manor", "update_date": "2026-08-20", "progress_percentage": 35, "work_completed": "Foundation repairs done, electrical rewiring started", "current_phase": "Structural Repairs"},
         ]
-        for pe in progress_entries:
-            doc = frappe.get_doc({"doctype": "Restoration Progress", **pe})
-            doc.insert(ignore_permissions=True)
+        for pe in progress_list:
+            frappe.get_doc({"doctype": "Restoration Progress", **pe}).insert(ignore_permissions=True)
+
+        frappe.db.commit()
 
         # ===== MATERIAL SALVAGE =====
-        materials = [
-            {"property": "DEMO-001", "material_name": "Vintage Hardwood Flooring", "material_category": "Wood", "quantity": 500, "condition": "Good", "status": "Available"},
-            {"property": "DEMO-001", "material_name": "Brass Door Handles", "material_category": "Metal", "quantity": 25, "condition": "Excellent", "status": "Available"},
-            {"property": "DEMO-001", "material_name": "Clay Roof Tiles", "material_category": "Brick", "quantity": 2000, "condition": "Fair", "status": "Available"},
-            {"property": "DEMO-004", "material_name": "Steel Beams", "material_category": "Metal", "quantity": 50, "condition": "Good", "status": "Available"},
+        material_list = [
+            {"property": "Oakwood Manor", "material_name": "Vintage Hardwood Flooring", "material_category": "Wood", "quantity": 500, "condition": "Good", "status": "Available"},
+            {"property": "Oakwood Manor", "material_name": "Brass Door Handles", "material_category": "Metal", "quantity": 25, "condition": "Excellent", "status": "Available"},
+            {"property": "Oakwood Manor", "material_name": "Clay Roof Tiles", "material_category": "Brick", "quantity": 2000, "condition": "Fair", "status": "Available"},
+            {"property": "Cedar Mill", "material_name": "Steel Beams", "material_category": "Metal", "quantity": 50, "condition": "Good", "status": "Available"},
         ]
-        for m in materials:
-            doc = frappe.get_doc({"doctype": "Material Salvage", **m})
-            doc.insert(ignore_permissions=True)
+        for m in material_list:
+            frappe.get_doc({"doctype": "Material Salvage", **m}).insert(ignore_permissions=True)
+
+        frappe.db.commit()
 
         # ===== DIGITAL TIME CAPSULE =====
-        if not frappe.db.exists("Digital Time Capsule", "TCC-001"):
-            tc = frappe.get_doc({"doctype": "Digital Time Capsule", "capsule_name": "Oakwood Manor History", "property": "DEMO-001", "category": "Documentation", "title": "Oakwood Manor - Original Blueprints", "description": "Original architectural blueprints from 1925, scanned and preserved", "record_date": "2026-07-01", "preservation_method": "Digital Only", "status": "Active"})
-            tc.insert(ignore_permissions=True)
+        if not frappe.db.exists("Digital Time Capsule", {"capsule_name": "Oakwood Manor History"}):
+            frappe.get_doc({"doctype": "Digital Time Capsule", "capsule_name": "Oakwood Manor History", "property": "Oakwood Manor", "category": "Documentation", "title": "Oakwood Manor - Original Blueprints", "description": "Original architectural blueprints from 1925, scanned and preserved", "record_date": "2026-07-01", "preservation_method": "Digital Only", "status": "Active"}).insert(ignore_permissions=True)
 
         # ===== HISTORICAL RECORD =====
-        if not frappe.db.exists("Historical Record", "HR-001"):
-            hr = frappe.get_doc({"doctype": "Historical Record", "record_title": "Oakwood Manor - Historical Assessment", "property": "DEMO-001", "document_type": "Assessment Report", "description": "Historical significance assessment report for Oakwood Manor, built in 1925 by renowned architect Frank Peterson", "record_date": "2026-06-20", "record_status": "Archived"})
-            hr.insert(ignore_permissions=True)
+        if not frappe.db.exists("Historical Record", {"record_title": "Oakwood Manor - Historical Assessment"}):
+            frappe.get_doc({"doctype": "Historical Record", "record_title": "Oakwood Manor - Historical Assessment", "property": "Oakwood Manor", "document_type": "Assessment Report", "description": "Historical significance assessment for Oakwood Manor (1925) by architect Frank Peterson", "record_date": "2026-06-20", "record_status": "Archived"}).insert(ignore_permissions=True)
+
+        frappe.db.commit()
 
         # ===== REWARD CLAIMS =====
-        claims = [
-            {"claim_id": "RWD-001", "property_name": "Cedar Mill", "client": "Michael Chen", "client_name": "Michael Chen", "reward_type": "Cash", "reward_amount": 5000, "claim_status": "Approved"},
-            {"claim_id": "RWD-002", "property_name": "Birchwood Villa", "client": "Emily Rodriguez", "client_name": "Emily Rodriguez", "reward_type": "Cash", "reward_amount": 2500, "claim_status": "Pending"},
-        ]
-        for c in claims:
-            if not frappe.db.exists("Reward Claim", c["claim_id"]):
-                doc = frappe.get_doc({"doctype": "Reward Claim", **c})
-                doc.insert(ignore_permissions=True)
+        if not frappe.db.exists("Reward Claim", {"claim_id": "RWD-001"}):
+            frappe.get_doc({"doctype": "Reward Claim", "claim_id": "RWD-001", "property_name": "Cedar Mill", "client": "michael_chen", "client_name": "Michael Chen", "reward_type": "Cash", "reward_amount": 5000, "claim_status": "Approved"}).insert(ignore_permissions=True)
+            frappe.get_doc({"doctype": "Reward Claim", "claim_id": "RWD-002", "property_name": "Birchwood Villa", "client": "emily_rodriguez", "client_name": "Emily Rodriguez", "reward_type": "Cash", "reward_amount": 2500, "claim_status": "Pending"}).insert(ignore_permissions=True)
 
         frappe.db.commit()
         frappe.publish_realtime("bench_event", {"message": "Demo data created successfully"})
