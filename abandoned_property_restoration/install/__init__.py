@@ -249,6 +249,11 @@ def _safe_log_error(title, message):
         frappe.log_error(str(message)[:100], str(title)[:100])
     except Exception:
         pass
+    # Also print to console so errors are visible during migrate
+    try:
+        print(f"[Demo Data Error] {title}: {str(message)[:100]}")
+    except Exception:
+        pass
 
 
 def _create_section(label, create_fn):
@@ -336,14 +341,12 @@ def create_demo_data():
         for rd in report_list:
             if not frappe.db.exists("Client Property Report", {"report_id": rd["report_id"]}):
                 frappe.get_doc({"doctype": "Client Property Report", **rd}).insert(ignore_permissions=True)
-    _create_section("Client Property Reports", create_client_reports)
-
-    # ===== PROPERTY INSPECTIONS =====
+    _create_section("Client Property Reports", create_client_reports)        # ===== PROPERTY INSPECTIONS =====
     def create_inspections():
         inspection_list = [
-            {"inspection_id": "INS-001", "property": "Oakwood Manor", "field_agent": "james_martinez", "engineer": "david_wilson", "inspection_date": "2026-06-15 10:00:00", "inspection_type": "Initial Inspection", "inspection_status": "Completed", "structure_condition": "Fair", "foundation_condition": "Good", "roof_condition": "Poor", "risk_level": "Medium", "estimated_restoration_cost": 150000},
-            {"inspection_id": "INS-002", "property": "Cedar Mill", "field_agent": "amanda_lee", "engineer": "lisa_thompson", "inspection_date": "2026-06-20 14:00:00", "inspection_type": "Initial Inspection", "inspection_status": "Completed", "structure_condition": "Poor", "foundation_condition": "Fair", "roof_condition": "Critical", "risk_level": "Critical", "estimated_restoration_cost": 450000},
-            {"inspection_id": "INS-003", "property": "Birchwood Villa", "field_agent": "james_martinez", "engineer": "david_wilson", "inspection_date": "2026-07-01 09:00:00", "inspection_type": "Initial Inspection", "inspection_status": "In Progress", "structure_condition": "Good", "foundation_condition": "Good", "roof_condition": "Fair", "risk_level": "Medium", "estimated_restoration_cost": 85000},
+            {"inspection_id": "INS-001", "property": "Oakwood Manor", "inspector": "james_martinez", "engineer": "david_wilson", "inspection_date": "2026-06-15 10:00:00", "inspection_type": "Initial Inspection", "inspection_status": "Completed", "structure_condition": "Fair", "foundation_condition": "Good", "roof_condition": "Poor", "risk_level": "Medium", "estimated_restoration_cost": 150000},
+            {"inspection_id": "INS-002", "property": "Cedar Mill", "inspector": "amanda_lee", "engineer": "lisa_thompson", "inspection_date": "2026-06-20 14:00:00", "inspection_type": "Initial Inspection", "inspection_status": "Completed", "structure_condition": "Poor", "foundation_condition": "Fair", "roof_condition": "Critical", "risk_level": "Critical", "estimated_restoration_cost": 450000},
+            {"inspection_id": "INS-003", "property": "Birchwood Villa", "inspector": "james_martinez", "engineer": "david_wilson", "inspection_date": "2026-07-01 09:00:00", "inspection_type": "Initial Inspection", "inspection_status": "In Progress", "structure_condition": "Good", "foundation_condition": "Good", "roof_condition": "Fair", "risk_level": "Medium", "estimated_restoration_cost": 85000},
         ]
         for ins in inspection_list:
             if not frappe.db.exists("Property Inspection", {"inspection_id": ins["inspection_id"]}):
@@ -361,9 +364,9 @@ def create_demo_data():
     # ===== RESTORATION PROGRESS =====
     def create_progress():
         progress_list = [
-            {"restoration_project": "Oakwood Manor Restoration", "property": "Oakwood Manor", "update_date": "2026-07-15", "progress_percentage": 15, "work_completed": "Initial debris removal and structural assessment", "current_phase": "Assessment"},
-            {"restoration_project": "Oakwood Manor Restoration", "property": "Oakwood Manor", "update_date": "2026-08-01", "progress_percentage": 25, "work_completed": "Roof protection installed, interior demolition done", "current_phase": "Structural Repairs"},
-            {"restoration_project": "Oakwood Manor Restoration", "property": "Oakwood Manor", "update_date": "2026-08-20", "progress_percentage": 35, "work_completed": "Foundation repairs done, electrical rewiring started", "current_phase": "Structural Repairs"},
+            {"progress_id": "PRG-001", "restoration_project": "Oakwood Manor Restoration", "property": "Oakwood Manor", "update_date": "2026-07-15", "progress_percentage": 15, "work_completed": "Initial debris removal and structural assessment", "current_phase": "Assessment"},
+            {"progress_id": "PRG-002", "restoration_project": "Oakwood Manor Restoration", "property": "Oakwood Manor", "update_date": "2026-08-01", "progress_percentage": 25, "work_completed": "Roof protection installed, interior demolition done", "current_phase": "Structural Repairs"},
+            {"progress_id": "PRG-003", "restoration_project": "Oakwood Manor Restoration", "property": "Oakwood Manor", "update_date": "2026-08-20", "progress_percentage": 35, "work_completed": "Foundation repairs done, electrical rewiring started", "current_phase": "Structural Repairs"},
         ]
         for pe in progress_list:
             frappe.get_doc({"doctype": "Restoration Progress", **pe}).insert(ignore_permissions=True)
@@ -372,10 +375,10 @@ def create_demo_data():
     # ===== MATERIAL SALVAGE =====
     def create_materials():
         material_list = [
-            {"property": "Oakwood Manor", "material_name": "Vintage Hardwood Flooring", "material_category": "Wood", "quantity": 500, "condition": "Good", "status": "Available"},
-            {"property": "Oakwood Manor", "material_name": "Brass Door Handles", "material_category": "Metal", "quantity": 25, "condition": "Excellent", "status": "Available"},
-            {"property": "Oakwood Manor", "material_name": "Clay Roof Tiles", "material_category": "Brick", "quantity": 2000, "condition": "Fair", "status": "Available"},
-            {"property": "Cedar Mill", "material_name": "Steel Beams", "material_category": "Metal", "quantity": 50, "condition": "Good", "status": "Available"},
+            {"material_id": "MTL-001", "property": "Oakwood Manor", "material_name": "Vintage Hardwood Flooring", "material_type": "Wooden Materials", "material_category": "Wood", "quantity": 500, "unit": "Sq Ft", "condition": "Good", "status": "Available", "salvage_date": "2026-07-20"},
+            {"material_id": "MTL-002", "property": "Oakwood Manor", "material_name": "Brass Door Handles", "material_type": "Doors", "material_category": "Metal", "quantity": 25, "unit": "Pieces", "condition": "Excellent", "status": "Available", "salvage_date": "2026-07-20"},
+            {"material_id": "MTL-003", "property": "Oakwood Manor", "material_name": "Clay Roof Tiles", "material_type": "Tiles", "material_category": "Brick", "quantity": 2000, "unit": "Pieces", "condition": "Fair", "status": "Available", "salvage_date": "2026-07-25"},
+            {"material_id": "MTL-004", "property": "Cedar Mill", "material_name": "Steel Beams", "material_type": "Steel Materials", "material_category": "Metal", "quantity": 50, "unit": "Pieces", "condition": "Good", "status": "Available", "salvage_date": "2026-08-01"},
         ]
         for m in material_list:
             frappe.get_doc({"doctype": "Material Salvage", **m}).insert(ignore_permissions=True)
@@ -384,20 +387,20 @@ def create_demo_data():
     # ===== DIGITAL TIME CAPSULE =====
     def create_time_capsule():
         if not frappe.db.exists("Digital Time Capsule", {"capsule_name": "Oakwood Manor History"}):
-            frappe.get_doc({"doctype": "Digital Time Capsule", "capsule_name": "Oakwood Manor History", "property": "Oakwood Manor", "category": "Documentation", "title": "Oakwood Manor - Original Blueprints", "description": "Original architectural blueprints from 1925, scanned and preserved", "record_date": "2026-07-01", "preservation_method": "Digital Only", "status": "Active"}).insert(ignore_permissions=True)
+            frappe.get_doc({"doctype": "Digital Time Capsule", "capsule_id": "DTC-001", "capsule_name": "Oakwood Manor History", "property": "Oakwood Manor", "category": "Documentation", "title": "Oakwood Manor - Original Blueprints", "description": "Original architectural blueprints from 1925, scanned and preserved", "record_date": "2026-07-01", "preservation_method": "Digital Only", "status": "Active", "creation_date": "2026-07-01"}).insert(ignore_permissions=True)
     _create_section("Digital Time Capsule", create_time_capsule)
 
     # ===== HISTORICAL RECORD =====
     def create_historical():
-        if not frappe.db.exists("Historical Record", {"record_title": "Oakwood Manor - Historical Assessment"}):
-            frappe.get_doc({"doctype": "Historical Record", "record_title": "Oakwood Manor - Historical Assessment", "property": "Oakwood Manor", "document_type": "Assessment Report", "description": "Historical significance assessment for Oakwood Manor (1925) by architect Frank Peterson", "record_date": "2026-06-20", "record_status": "Archived"}).insert(ignore_permissions=True)
+        if not frappe.db.exists("Historical Record", {"title": "Oakwood Manor - Historical Assessment"}):
+            frappe.get_doc({"doctype": "Historical Record", "record_id": "HST-001", "title": "Oakwood Manor - Historical Assessment", "property": "Oakwood Manor", "document_type": "Assessment Report", "description": "Historical significance assessment for Oakwood Manor (1925) by architect Frank Peterson", "record_date": "2026-06-20"}).insert(ignore_permissions=True)
     _create_section("Historical Record", create_historical)
 
     # ===== REWARD CLAIMS =====
     def create_rewards():
         if not frappe.db.exists("Reward Claim", {"claim_id": "RWD-001"}):
-            frappe.get_doc({"doctype": "Reward Claim", "claim_id": "RWD-001", "property_name": "Cedar Mill", "client": "michael_chen", "client_name": "Michael Chen", "reward_type": "Cash", "reward_amount": 5000, "claim_status": "Approved"}).insert(ignore_permissions=True)
-            frappe.get_doc({"doctype": "Reward Claim", "claim_id": "RWD-002", "property_name": "Birchwood Villa", "client": "emily_rodriguez", "client_name": "Emily Rodriguez", "reward_type": "Cash", "reward_amount": 2500, "claim_status": "Pending"}).insert(ignore_permissions=True)
+            frappe.get_doc({"doctype": "Reward Claim", "claim_id": "RWD-001", "report_name": "Cedar Mill - Reward Claim", "property_name": "Cedar Mill", "client": "michael_chen", "client_name": "Michael Chen", "reward_type": "Cash", "reward_amount": 5000, "claim_status": "Approved"}).insert(ignore_permissions=True)
+            frappe.get_doc({"doctype": "Reward Claim", "claim_id": "RWD-002", "report_name": "Birchwood Villa - Reward Claim", "property_name": "Birchwood Villa", "client": "emily_rodriguez", "client_name": "Emily Rodriguez", "reward_type": "Cash", "reward_amount": 2500, "claim_status": "Pending"}).insert(ignore_permissions=True)
     _create_section("Reward Claims", create_rewards)
 
     frappe.publish_realtime("bench_event", {"message": "Demo data creation completed"})
