@@ -15,8 +15,8 @@ def execute(filters=None):
 def get_columns():
     return [
         {"label": _("Claim ID"), "fieldname": "name", "fieldtype": "Link", "options": "Reward Claim", "width": 150},
-        {"label": _("Citizen"), "fieldname": "citizen", "fieldtype": "Link", "options": "Citizen", "width": 150},
-        {"label": _("Citizen Report"), "fieldname": "report_name", "fieldtype": "Link", "options": "Citizen Property Report", "width": 150},
+        {"label": _("Client"), "fieldname": "client", "fieldtype": "Link", "options": "Client", "width": 150},
+        {"label": _("Client Report"), "fieldname": "report_name", "fieldtype": "Link", "options": "Client Property Report", "width": 150},
         {"label": _("Reward Type"), "fieldname": "reward_type", "fieldtype": "Link", "options": "Reward Type", "width": 120},
         {"label": _("Reward Amount"), "fieldname": "reward_amount", "fieldtype": "Currency", "width": 120},
         {"label": _("Claim Status"), "fieldname": "claim_status", "fieldtype": "Data", "width": 120},

@@ -49,7 +49,7 @@
    "fieldname": "client_report",
    "fieldtype": "Link",
    "label": "Citizen Report",
-   "options": "Citizen Property Report"
+   "options": "Client Property Report"
   },
   {
    "fieldname": "restoration_project",
@@ -89,8 +89,8 @@
   {
    "fieldname": "department",
    "fieldtype": "Link",
-   "label": "Government Department",
-   "options": "Government Department"
+   "label": "Department",
+   "options": "Department"
   },
   {
    "fieldname": "assignment_status",

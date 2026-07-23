@@ -72,7 +72,7 @@
    "fieldname": "client_report",
    "fieldtype": "Link",
    "label": "Citizen Report",
-   "options": "Citizen Property Report"
+   "options": "Client Property Report"
   },
   {
    "fieldname": "inspector",

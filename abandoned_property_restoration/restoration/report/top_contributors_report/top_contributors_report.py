@@ -14,7 +14,7 @@ def execute(filters=None):
 
 def get_columns():
     return [
-        {"label": _("Citizen"), "fieldname": "citizen", "fieldtype": "Link", "options": "Citizen", "width": 200},
+        {"label": _("Client"), "fieldname": "client", "fieldtype": "Link", "options": "Client", "width": 200},
         {"label": _("Total Reports"), "fieldname": "total_reports", "fieldtype": "Int", "width": 120},
         {"label": _("Verified Reports"), "fieldname": "verified_reports", "fieldtype": "Int", "width": 130},
         {"label": _("Pending Reports"), "fieldname": "pending_reports", "fieldtype": "Int", "width": 130},
@@ -32,10 +32,10 @@ def get_data(filters):
             SUM(CASE WHEN status = 'Pending' THEN 1 ELSE 0 END) as pending_reports,
             SUM(CASE WHEN status = 'Rejected' THEN 1 ELSE 0 END) as rejected_reports,
             COALESCE(SUM(rc.reward_amount), 0) as total_rewards
-        FROM `tabCitizen Property Report` cpr
+        FROM `tabClient Property Report` cpr
         LEFT JOIN `tabReward Claim` rc ON rc.property_report = cpr.name AND rc.claim_status = 'Approved'
         WHERE cpr.docstatus < 2
-        GROUP BY citizen
+        GROUP BY client
         ORDER BY total_reports DESC
     """
     

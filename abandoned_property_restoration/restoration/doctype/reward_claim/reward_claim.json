@@ -46,7 +46,7 @@
    "fieldtype": "Link",
    "in_list_view": 1,
    "label": "Citizen Report",
-   "options": "Citizen Property Report",
+   "options": "Client Property Report",
    "reqd": 1
   },
   {

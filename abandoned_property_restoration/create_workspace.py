@@ -27,7 +27,7 @@ def create_abandoned_property_workspace():
     workspace.is_standard = 1
     
     # Add roles
-    for role in ["System Manager", "Property Administrator", "Restoration Manager", "Government Officer", "View Only User"]:
+    for role in ["System Manager", "Property Manager", "Restoration Manager", "Approver", "View Only User"]:
         workspace.append("roles", {"role": role})
     
     # Add links to the links child table
@@ -37,11 +37,11 @@ def create_abandoned_property_workspace():
         {"label": "Restoration Category", "link_type": "DocType", "link_to": "Restoration Category"},
         {"label": "Material Category", "link_type": "DocType", "link_to": "Material Category"},
         {"label": "Material Condition", "link_type": "DocType", "link_to": "Material Condition"},
-        {"label": "Citizen", "link_type": "DocType", "link_to": "Citizen"},
+        {"label": "Client", "link_type": "DocType", "link_to": "Client"},
         {"label": "Contractor", "link_type": "DocType", "link_to": "Contractor"},
         {"label": "Engineer", "link_type": "DocType", "link_to": "Engineer"},
-        {"label": "Inspector", "link_type": "DocType", "link_to": "Inspector"},
-        {"label": "Government Department", "link_type": "DocType", "link_to": "Government Department"},
+        {"label": "Field Agent", "link_type": "DocType", "link_to": "Field Agent"},
+        {"label": "Department", "link_type": "DocType", "link_to": "Department"},
         {"label": "Reward Type", "link_type": "DocType", "link_to": "Reward Type"},
         {"label": "Abandoned Property", "link_type": "DocType", "link_to": "Abandoned Property"},
         {"label": "Client Property Report", "link_type": "DocType", "link_to": "Client Property Report"},
