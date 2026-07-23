@@ -243,13 +243,21 @@ def _ensure_fixture_records():
     frappe.db.commit()
 
 
+def _safe_log_error(title, message):
+    """Safely log an error, catching and ignoring secondary failures."""
+    try:
+        frappe.log_error(str(message)[:100], str(title)[:100])
+    except Exception:
+        pass
+
+
 def _create_section(label, create_fn):
     """Wrap a demo data section in its own try/except to prevent cascade failures."""
     try:
         create_fn()
         frappe.db.commit()
     except Exception as e:
-        frappe.log_error(f"Demo data section '{label}' failed: {str(e)[:200]}", "Demo Data")
+        _safe_log_error("Demo Data", f"Section '{label}' failed: {str(e)[:80]}")
 
 
 def create_demo_data():
@@ -309,12 +317,13 @@ def create_demo_data():
             {"property_name": "Birchwood Villa", "address": "555 Birch Boulevard", "city": "Los Angeles", "state": "California", "country": "United States", "district": "Los Angeles County", "property_type": "Townhouse", "property_category": "Residential", "property_status": "Under Restoration", "risk_level": "Medium", "ownership_type": "Trust", "estimated_area": 1800},
         ]
         for p in property_list:
-            # Wrap each property in its own try/except for resilience
+            if frappe.db.exists("Abandoned Property", p["property_name"]):
+                continue
             try:
                 doc = frappe.get_doc({"doctype": "Abandoned Property", "naming_series": "AP-.YYYY.-", **p})
                 doc.insert(ignore_permissions=True)
             except Exception as e:
-                frappe.log_error(f"Failed to create property '{p['property_name']}': {str(e)[:150]}", "Demo Data Properties")
+                _safe_log_error("Demo Data", f"Property '{p['property_name']}' failed: {str(e)[:80]}")
     _create_section("Abandoned Properties", create_properties)
 
     # ===== CLIENT PROPERTY REPORTS =====
