@@ -138,11 +138,59 @@ def create_workspace():
         }
     ]
     
+    # Build the links child table for proper URL resolution
+    workspace_links = []
+    
+    def add_card_break(label):
+        workspace_links.append({
+            "type": "Card Break",
+            "label": label,
+            "link_to": "",
+            "link_type": "",
+            "onboard": 0,
+            "hidden": 0,
+            "is_query_report": 0,
+            "dependencies": "",
+            "link_count": 0
+        })
+    
+    def add_link(label, link_to, link_type):
+        workspace_links.append({
+            "type": "Link",
+            "label": label,
+            "link_to": link_to,
+            "link_type": link_type,
+            "onboard": 0,
+            "hidden": 0,
+            "is_query_report": 0,
+            "dependencies": "",
+            "link_count": 0
+        })
+    
+    # Masters section
+    add_card_break("Masters")
+    for item in ["Citizen", "Contractor", "Engineer", "Inspector", "Government Department", "Location", "District", "City", "State", "Country", "Property Category", "Property Type", "Restoration Category", "Material Category", "Material Condition", "Reward Type", "Ownership Type", "Risk Level", "Restoration Status", "Project Priority"]:
+        add_link(item, item, "DocType")
+    
+    # Transactions section
+    add_card_break("Transactions")
+    for item in ["Abandoned Property", "Citizen Property Report", "Property Inspection", "Inspection Report", "Restoration Project", "Project Assignment", "Restoration Progress", "Before After Visualization", "Material Salvage", "Material Exchange", "Material Sale", "Digital Time Capsule", "Historical Record", "Maintenance Schedule", "Maintenance Visit", "Property Ownership Record", "Property Timeline", "Property Images", "Property Documents", "Reward Claim", "Project Cost", "Expense Entry"]:
+        add_link(item, item, "DocType")
+    
+    # Reports section
+    add_card_break("Reports")
+    for item in ["Abandoned Property Summary", "Citizen Reward Report", "Digital Archive Report", "District Wise Restoration Report", "Historical Records Report", "Maintenance Report", "Material Exchange Report", "Material Salvage Report", "Project Progress Report", "Property Inspection Report", "Property Timeline Report", "Restoration Cost Report", "Restoration Status Report", "Top Contributors Report"]:
+        add_link(item, item, "Report")
+    
     if frappe.db.exists("Workspace", "Abandoned Property Restoration"):
         # Update existing workspace
         workspace = frappe.get_doc("Workspace", "Abandoned Property Restoration")
         workspace.content = frappe.json.dumps(workspace_content)
         workspace.icon = "fa fa-home"
+        # Clear and repopulate links child table
+        workspace.set("links", [])
+        for link_data in workspace_links:
+            workspace.append("links", link_data)
         workspace.save(ignore_permissions=True)
     else:
         # Create new workspace
@@ -161,6 +209,10 @@ def create_workspace():
         roles = ["System Manager", "Property Administrator", "Restoration Manager", "Government Officer", "View Only User"]
         for role in roles:
             workspace.append("roles", {"role": role})
+        
+        # Add links child table for proper URL resolution
+        for link_data in workspace_links:
+            workspace.append("links", link_data)
         
         workspace.insert(ignore_permissions=True)
     
