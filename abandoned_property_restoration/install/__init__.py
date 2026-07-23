@@ -238,11 +238,11 @@ def create_demo_data():
             for cd in clients:
                 frappe.get_doc({"doctype": "Client", **cd}).insert(ignore_permissions=True)
 
-        if not frappe.db.exists("Contractor", "Premier Builders Inc"):
-            frappe.get_doc({"doctype": "Contractor", "contractor_name": "Premier Builders Inc", "email": "info@premierbuilders.com", "phone": "+1-555-0201"}).insert(ignore_permissions=True)
-            frappe.get_doc({"doctype": "Contractor", "contractor_name": "Heritage Restoration LLC", "email": "contact@heritagerestoration.com", "phone": "+1-555-0202"}).insert(ignore_permissions=True)
+        if not frappe.db.exists("Contractor", {"contractor_name": "Premier Builders Inc"}):
+            frappe.get_doc({"doctype": "Contractor", "contractor_id": "premier_builders_inc", "contractor_name": "Premier Builders Inc", "email": "info@premierbuilders.com", "phone": "+1-555-0201"}).insert(ignore_permissions=True)
+            frappe.get_doc({"doctype": "Contractor", "contractor_id": "heritage_restoration_llc", "contractor_name": "Heritage Restoration LLC", "email": "contact@heritagerestoration.com", "phone": "+1-555-0202"}).insert(ignore_permissions=True)
 
-        if not frappe.db.exists("Engineer", "David Wilson"):
+        if not frappe.db.exists("Engineer", {"engineer_name": "David Wilson"}):
             frappe.get_doc({"doctype": "Engineer", "engineer_id": "david_wilson", "engineer_name": "David Wilson", "email": "david.w@engineering.com", "phone": "+1-555-0301"}).insert(ignore_permissions=True)
             frappe.get_doc({"doctype": "Engineer", "engineer_id": "lisa_thompson", "engineer_name": "Lisa Thompson", "email": "lisa.t@engineering.com", "phone": "+1-555-0302"}).insert(ignore_permissions=True)
 
@@ -297,8 +297,8 @@ def create_demo_data():
 
         # ===== RESTORATION PROJECTS =====
         if not frappe.db.exists("Restoration Project", {"project_name": "Oakwood Manor Restoration"}):
-            frappe.get_doc({"doctype": "Restoration Project", "naming_series": "RP-.YYYY.-", "project_name": "Oakwood Manor Restoration", "property": "Oakwood Manor", "project_status": "In Progress", "project_priority": "High", "start_date": "2026-07-01", "expected_end_date": "2026-12-31", "engineer": "david_wilson", "contractor": "Premier Builders Inc", "estimated_cost": 150000, "progress_percentage": 35, "current_phase": "Structural Repairs"}).insert(ignore_permissions=True)
-            frappe.get_doc({"doctype": "Restoration Project", "naming_series": "RP-.YYYY.-", "project_name": "Birchwood Villa Restoration", "property": "Birchwood Villa", "project_status": "Planning", "project_priority": "Medium", "start_date": "2026-08-15", "expected_end_date": "2027-02-28", "engineer": "lisa_thompson", "contractor": "Heritage Restoration LLC", "estimated_cost": 85000, "progress_percentage": 10, "current_phase": "Assessment & Planning"}).insert(ignore_permissions=True)
+            frappe.get_doc({"doctype": "Restoration Project", "naming_series": "RP-.YYYY.-", "project_name": "Oakwood Manor Restoration", "property": "Oakwood Manor", "project_status": "In Progress", "project_priority": "High", "start_date": "2026-07-01", "expected_end_date": "2026-12-31", "engineer": "david_wilson", "contractor": "premier_builders_inc", "estimated_cost": 150000, "progress_percentage": 35, "current_phase": "Structural Repairs"}).insert(ignore_permissions=True)
+            frappe.get_doc({"doctype": "Restoration Project", "naming_series": "RP-.YYYY.-", "project_name": "Birchwood Villa Restoration", "property": "Birchwood Villa", "project_status": "Planning", "project_priority": "Medium", "start_date": "2026-08-15", "expected_end_date": "2027-02-28", "engineer": "lisa_thompson", "contractor": "heritage_restoration_llc", "estimated_cost": 85000, "progress_percentage": 10, "current_phase": "Assessment & Planning"}).insert(ignore_permissions=True)
 
         frappe.db.commit()
 
