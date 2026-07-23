@@ -57,9 +57,9 @@ def check_all():
             ("Restoration Project", "project_name", "Birchwood Villa Restoration"),
         ]),
         ("📈 PROGRESS", [
-            ("Restoration Progress", "work_completed", "Initial debris removal"),
-            ("Restoration Progress", "work_completed", "Roof protection installed"),
-            ("Restoration Progress", "work_completed", "Foundation repairs done"),
+            ("Restoration Progress", "restoration_project", "Oakwood Manor Restoration"),
+            ("Restoration Progress", "restoration_project", "Oakwood Manor Restoration"),
+            ("Restoration Progress", "restoration_project", "Oakwood Manor Restoration"),
         ]),
         ("♻️ MATERIAL SALVAGE", [
             ("Material Salvage", "material_name", "Vintage Hardwood Flooring"),
