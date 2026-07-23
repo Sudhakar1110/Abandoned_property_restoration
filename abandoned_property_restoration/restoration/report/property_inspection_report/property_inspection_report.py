@@ -16,7 +16,7 @@ def get_columns():
     return [
         {"label": _("Inspection ID"), "fieldname": "name", "fieldtype": "Link", "options": "Property Inspection", "width": 150},
         {"label": _("Property"), "fieldname": "property", "fieldtype": "Link", "options": "Abandoned Property", "width": 150},
-        {"label": _("Inspector"), "fieldname": "inspector", "fieldtype": "Link", "options": "Inspector", "width": 140},
+        {"label": _("Field Agent"), "fieldname": "field_agent", "fieldtype": "Link", "options": "Field Agent", "width": 140},
         {"label": _("Inspection Date"), "fieldname": "inspection_date", "fieldtype": "Date", "width": 120},
         {"label": _("Structure Condition"), "fieldname": "structure_condition", "fieldtype": "Data", "width": 120},
         {"label": _("Risk Level"), "fieldname": "risk_level", "fieldtype": "Data", "width": 100},
@@ -29,7 +29,7 @@ def get_data(filters):
         SELECT 
             name,
             property,
-            inspector,
+            field_agent,
             inspection_date,
             structure_condition,
             risk_level,

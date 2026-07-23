@@ -262,7 +262,7 @@ def maintenance_schedule_has_permission(doc, ptype, user):
     if "System Manager" in user_roles:
         return True
     
-    if "Property Administrator" in user_roles:
+    if "Property Manager" in user_roles:
         return True
     
     if "Restoration Manager" in user_roles:

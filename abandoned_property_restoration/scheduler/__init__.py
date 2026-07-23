@@ -75,7 +75,7 @@ def project_delayed_check():
         try:
             users = frappe.get_all(
                 "Has Role",
-                filters={"role": ["in", ["Property Administrator", "Restoration Manager"]]},
+                filters={"role": ["in", ["Property Manager", "Restoration Manager"]]},
                 pluck="parent"
             )
             
