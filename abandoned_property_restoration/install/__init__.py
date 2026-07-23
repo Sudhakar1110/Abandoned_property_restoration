@@ -34,101 +34,95 @@ def create_roles():
 def create_workspace():
     """Create or update the Abandoned Property Restoration workspace."""
     workspace_content = [
-        {"type": "header", "name": "masters", "hidden": False},
+        {"type": "header", "name": "masters", "hidden": False, "data": {"text": "Masters", "col": 12}},
         {
             "type": "card",
-            "name": "masters-property",
+            "name": "masters",
             "hidden": False,
             "data": {
-                "label": "Property Masters",
-                "icon": "fa fa-building",
-                "items": [
-                    {"type": "link", "name": "property-category", "label": "Property Category", "doc_type": "Property Category", "icon": "fa fa-th", "link": "/app/property-category"},
-                    {"type": "link", "name": "property-type", "label": "Property Type", "doc_type": "Property Type", "icon": "fa fa-building", "link": "/app/property-type"},
-                    {"type": "link", "name": "restoration-category", "label": "Restoration Category", "doc_type": "Restoration Category", "icon": "fa fa-refresh", "link": "/app/restoration-category"}
+                "card_name": "Masters",
+                "col": 12,
+                "links": [
+                    {"type": "link", "label": "Citizen", "link_to": "Citizen", "link_type": "DocType"},
+                    {"type": "link", "label": "Contractor", "link_to": "Contractor", "link_type": "DocType"},
+                    {"type": "link", "label": "Engineer", "link_to": "Engineer", "link_type": "DocType"},
+                    {"type": "link", "label": "Inspector", "link_to": "Inspector", "link_type": "DocType"},
+                    {"type": "link", "label": "Government Department", "link_to": "Government Department", "link_type": "DocType"},
+                    {"type": "link", "label": "Location", "link_to": "Location", "link_type": "DocType"},
+                    {"type": "link", "label": "District", "link_to": "District", "link_type": "DocType"},
+                    {"type": "link", "label": "City", "link_to": "City", "link_type": "DocType"},
+                    {"type": "link", "label": "State", "link_to": "State", "link_type": "DocType"},
+                    {"type": "link", "label": "Country", "link_to": "Country", "link_type": "DocType"},
+                    {"type": "link", "label": "Property Category", "link_to": "Property Category", "link_type": "DocType"},
+                    {"type": "link", "label": "Property Type", "link_to": "Property Type", "link_type": "DocType"},
+                    {"type": "link", "label": "Restoration Category", "link_to": "Restoration Category", "link_type": "DocType"},
+                    {"type": "link", "label": "Material Category", "link_to": "Material Category", "link_type": "DocType"},
+                    {"type": "link", "label": "Material Condition", "link_to": "Material Condition", "link_type": "DocType"},
+                    {"type": "link", "label": "Reward Type", "link_to": "Reward Type", "link_type": "DocType"},
+                    {"type": "link", "label": "Ownership Type", "link_to": "Ownership Type", "link_type": "DocType"},
+                    {"type": "link", "label": "Risk Level", "link_to": "Risk Level", "link_type": "DocType"},
+                    {"type": "link", "label": "Restoration Status", "link_to": "Restoration Status", "link_type": "DocType"},
+                    {"type": "link", "label": "Project Priority", "link_to": "Project Priority", "link_type": "DocType"}
                 ]
             }
         },
+        {"type": "header", "name": "transactions", "hidden": False, "data": {"text": "Transactions", "col": 12}},
         {
             "type": "card",
-            "name": "masters-material",
+            "name": "transactions",
             "hidden": False,
             "data": {
-                "label": "Material Masters",
-                "icon": "fa fa-cubes",
-                "items": [
-                    {"type": "link", "name": "material-category", "label": "Material Category", "doc_type": "Material Category", "icon": "fa fa-cubes", "link": "/app/material-category"},
-                    {"type": "link", "name": "material-condition", "label": "Material Condition", "doc_type": "Material Condition", "icon": "fa fa-check-circle", "link": "/app/material-condition"}
+                "card_name": "Transactions",
+                "col": 12,
+                "links": [
+                    {"type": "link", "label": "Abandoned Property", "link_to": "Abandoned Property", "link_type": "DocType"},
+                    {"type": "link", "label": "Citizen Property Report", "link_to": "Citizen Property Report", "link_type": "DocType"},
+                    {"type": "link", "label": "Property Inspection", "link_to": "Property Inspection", "link_type": "DocType"},
+                    {"type": "link", "label": "Inspection Report", "link_to": "Inspection Report", "link_type": "DocType"},
+                    {"type": "link", "label": "Restoration Project", "link_to": "Restoration Project", "link_type": "DocType"},
+                    {"type": "link", "label": "Project Assignment", "link_to": "Project Assignment", "link_type": "DocType"},
+                    {"type": "link", "label": "Restoration Progress", "link_to": "Restoration Progress", "link_type": "DocType"},
+                    {"type": "link", "label": "Before After Visualization", "link_to": "Before After Visualization", "link_type": "DocType"},
+                    {"type": "link", "label": "Material Salvage", "link_to": "Material Salvage", "link_type": "DocType"},
+                    {"type": "link", "label": "Material Exchange", "link_to": "Material Exchange", "link_type": "DocType"},
+                    {"type": "link", "label": "Material Sale", "link_to": "Material Sale", "link_type": "DocType"},
+                    {"type": "link", "label": "Digital Time Capsule", "link_to": "Digital Time Capsule", "link_type": "DocType"},
+                    {"type": "link", "label": "Historical Record", "link_to": "Historical Record", "link_type": "DocType"},
+                    {"type": "link", "label": "Maintenance Schedule", "link_to": "Maintenance Schedule", "link_type": "DocType"},
+                    {"type": "link", "label": "Maintenance Visit", "link_to": "Maintenance Visit", "link_type": "DocType"},
+                    {"type": "link", "label": "Property Ownership Record", "link_to": "Property Ownership Record", "link_type": "DocType"},
+                    {"type": "link", "label": "Property Timeline", "link_to": "Property Timeline", "link_type": "DocType"},
+                    {"type": "link", "label": "Property Images", "link_to": "Property Images", "link_type": "DocType"},
+                    {"type": "link", "label": "Property Documents", "link_to": "Property Documents", "link_type": "DocType"},
+                    {"type": "link", "label": "Reward Claim", "link_to": "Reward Claim", "link_type": "DocType"},
+                    {"type": "link", "label": "Project Cost", "link_to": "Project Cost", "link_type": "DocType"},
+                    {"type": "link", "label": "Expense Entry", "link_to": "Expense Entry", "link_type": "DocType"}
                 ]
             }
         },
+        {"type": "header", "name": "reports", "hidden": False, "data": {"text": "Reports", "col": 12}},
         {
             "type": "card",
-            "name": "masters-people",
+            "name": "reports",
             "hidden": False,
             "data": {
-                "label": "People",
-                "icon": "fa fa-users",
-                "items": [
-                    {"type": "link", "name": "citizen", "label": "Citizen", "doc_type": "Citizen", "icon": "fa fa-user", "link": "/app/citizen"},
-                    {"type": "link", "name": "contractor", "label": "Contractor", "doc_type": "Contractor", "icon": "fa fa-briefcase", "link": "/app/contractor"},
-                    {"type": "link", "name": "engineer", "label": "Engineer", "doc_type": "Engineer", "icon": "fa fa-wrench", "link": "/app/engineer"},
-                    {"type": "link", "name": "inspector", "label": "Inspector", "doc_type": "Inspector", "icon": "fa fa-search", "link": "/app/inspector"}
-                ]
-            }
-        },
-        {
-            "type": "card",
-            "name": "masters-organization",
-            "hidden": False,
-            "data": {
-                "label": "Organization",
-                "icon": "fa fa-institution",
-                "items": [
-                    {"type": "link", "name": "government-department", "label": "Government Department", "doc_type": "Government Department", "icon": "fa fa-institution", "link": "/app/government-department"},
-                    {"type": "link", "name": "reward-type", "label": "Reward Type", "doc_type": "Reward Type", "icon": "fa fa-gift", "link": "/app/reward-type"}
-                ]
-            }
-        },
-        {"type": "header", "name": "transactions", "hidden": False},
-        {
-            "type": "card",
-            "name": "transactions-property",
-            "hidden": False,
-            "data": {
-                "label": "Property Management",
-                "icon": "fa fa-home",
-                "items": [
-                    {"type": "link", "name": "abandoned-property", "label": "Abandoned Property", "doc_type": "Abandoned Property", "icon": "fa fa-home", "link": "/app/abandoned-property"},
-                    {"type": "link", "name": "citizen-property-report", "label": "Citizen Property Report", "doc_type": "Citizen Property Report", "icon": "fa fa-flag", "link": "/app/citizen-property-report"},
-                    {"type": "link", "name": "property-inspection", "label": "Property Inspection", "doc_type": "Property Inspection", "icon": "fa fa-clipboard", "link": "/app/property-inspection"}
-                ]
-            }
-        },
-        {
-            "type": "card",
-            "name": "transactions-restoration",
-            "hidden": False,
-            "data": {
-                "label": "Restoration",
-                "icon": "fa fa-refresh",
-                "items": [
-                    {"type": "link", "name": "restoration-project", "label": "Restoration Project", "doc_type": "Restoration Project", "icon": "fa fa-tasks", "link": "/app/restoration-project"},
-                    {"type": "link", "name": "material-salvage", "label": "Material Salvage", "doc_type": "Material Salvage", "icon": "fa fa-recycle", "link": "/app/material-salvage"},
-                    {"type": "link", "name": "material-exchange", "label": "Material Exchange", "doc_type": "Material Exchange", "icon": "fa fa-exchange", "link": "/app/material-exchange"},
-                    {"type": "link", "name": "material-sale", "label": "Material Sale", "doc_type": "Material Sale", "icon": "fa fa-shopping-cart", "link": "/app/material-sale"}
-                ]
-            }
-        },
-        {
-            "type": "card",
-            "name": "transactions-rewards",
-            "hidden": False,
-            "data": {
-                "label": "Rewards",
-                "icon": "fa fa-gift",
-                "items": [
-                    {"type": "link", "name": "reward-claim", "label": "Reward Claim", "doc_type": "Reward Claim", "icon": "fa fa-money", "link": "/app/reward-claim"}
+                "card_name": "Reports",
+                "col": 12,
+                "links": [
+                    {"type": "link", "label": "Abandoned Property Summary", "link_to": "Abandoned Property Summary", "link_type": "Report"},
+                    {"type": "link", "label": "Citizen Reward Report", "link_to": "Citizen Reward Report", "link_type": "Report"},
+                    {"type": "link", "label": "Digital Archive Report", "link_to": "Digital Archive Report", "link_type": "Report"},
+                    {"type": "link", "label": "District Wise Restoration Report", "link_to": "District Wise Restoration Report", "link_type": "Report"},
+                    {"type": "link", "label": "Historical Records Report", "link_to": "Historical Records Report", "link_type": "Report"},
+                    {"type": "link", "label": "Maintenance Report", "link_to": "Maintenance Report", "link_type": "Report"},
+                    {"type": "link", "label": "Material Exchange Report", "link_to": "Material Exchange Report", "link_type": "Report"},
+                    {"type": "link", "label": "Material Salvage Report", "link_to": "Material Salvage Report", "link_type": "Report"},
+                    {"type": "link", "label": "Project Progress Report", "link_to": "Project Progress Report", "link_type": "Report"},
+                    {"type": "link", "label": "Property Inspection Report", "link_to": "Property Inspection Report", "link_type": "Report"},
+                    {"type": "link", "label": "Property Timeline Report", "link_to": "Property Timeline Report", "link_type": "Report"},
+                    {"type": "link", "label": "Restoration Cost Report", "link_to": "Restoration Cost Report", "link_type": "Report"},
+                    {"type": "link", "label": "Restoration Status Report", "link_to": "Restoration Status Report", "link_type": "Report"},
+                    {"type": "link", "label": "Top Contributors Report", "link_to": "Top Contributors Report", "link_type": "Report"}
                 ]
             }
         }
