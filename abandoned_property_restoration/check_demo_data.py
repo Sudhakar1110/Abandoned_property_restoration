@@ -69,7 +69,7 @@ def check_all():
         ]),
         ("🏛️ TIME CAPSULE & HISTORY", [
             ("Digital Time Capsule", "capsule_name", "Oakwood Manor History"),
-            ("Historical Record", "record_title", "Oakwood Manor - Historical Assessment"),
+            ("Historical Record", "title", "Oakwood Manor - Historical Assessment"),
         ]),
         ("💰 REWARD CLAIMS", [
             ("Reward Claim", "claim_id", "RWD-001"),
