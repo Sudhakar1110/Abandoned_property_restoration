@@ -5,6 +5,7 @@ def after_install():
     create_module_def()
     create_roles()
     create_reports()
+    create_dashboard_charts()
     create_workspace()
     create_custom_fields()
     create_property_doctypes()
@@ -13,9 +14,10 @@ def after_install():
 
 
 def after_migrate():
-    """Ensure Module Def exists and reports are created after migration."""
+    """Ensure Module Def exists and reports & charts are created after migration."""
     create_module_def()
     create_reports()
+    create_dashboard_charts()
     frappe.db.commit()
 
 
@@ -95,6 +97,35 @@ def create_roles():
 def create_workspace():
     """Create or update the Abandoned Property Restoration workspace."""
     workspace_content = [
+        # Dashboard Charts Section
+        {"id": "hdr_dashboard", "type": "header", "data": {"text": "Dashboard", "col": 12}},
+        {
+            "id": "chart_property_status",
+            "type": "chart",
+            "data": {
+                "chart_name": "Property Status Distribution",
+                "col": 4,
+                "label": "Property Status"
+            }
+        },
+        {
+            "id": "chart_project_status",
+            "type": "chart",
+            "data": {
+                "chart_name": "Restoration Project Status",
+                "col": 4,
+                "label": "Project Status"
+            }
+        },
+        {
+            "id": "chart_monthly_reports",
+            "type": "chart",
+            "data": {
+                "chart_name": "Monthly Client Reports",
+                "col": 4,
+                "label": "Monthly Reports"
+            }
+        },
         {"id": "hdr_masters", "type": "header", "data": {"text": "Masters", "col": 12}},
         {
             "id": "card_masters",
@@ -262,6 +293,62 @@ def create_workspace():
         workspace.insert(ignore_permissions=True)
     
     frappe.db.commit()
+
+
+def create_dashboard_charts():
+    """Create dashboard charts and add them to the workspace."""
+    charts = [
+        {
+            "chart_name": "Property Status Distribution",
+            "chart_type": "Count",
+            "document_type": "Abandoned Property",
+            "group_by_based_on": "property_status",
+            "type": "donut",
+            "timeseries": 0,
+            "is_public": 1,
+        },
+        {
+            "chart_name": "Restoration Project Status",
+            "chart_type": "Count",
+            "document_type": "Restoration Project",
+            "group_by_based_on": "project_status",
+            "type": "bar",
+            "timeseries": 0,
+            "is_public": 1,
+        },
+        {
+            "chart_name": "Monthly Client Reports",
+            "chart_type": "Count",
+            "document_type": "Client Property Report",
+            "group_by_based_on": "creation",
+            "type": "line",
+            "timeseries": 1,
+            "timespan": "Monthly",
+            "time_interval": "Monthly",
+            "is_public": 1,
+        },
+    ]
+
+    for chart_data in charts:
+        try:
+            if not frappe.db.exists("Dashboard Chart", chart_data["chart_name"]):
+                chart_doc = frappe.get_doc({
+                    "doctype": "Dashboard Chart",
+                    "chart_name": chart_data["chart_name"],
+                    "chart_type": chart_data["chart_type"],
+                    "document_type": chart_data["document_type"],
+                    "group_by_based_on": chart_data["group_by_based_on"],
+                    "type": chart_data["type"],
+                    "timeseries": chart_data["timeseries"],
+                    "is_public": chart_data["is_public"],
+                })
+                if "timespan" in chart_data:
+                    chart_doc.timespan = chart_data["timespan"]
+                if "time_interval" in chart_data:
+                    chart_doc.time_interval = chart_data["time_interval"]
+                chart_doc.insert(ignore_permissions=True)
+        except Exception as e:
+            frappe.log_error(f"Could not create dashboard chart {chart_data['chart_name']}: {e}")
 
 
 def create_custom_fields():
