@@ -108,8 +108,18 @@ def create_reports():
     ]
     
     for report_data in reports:
-        if not frappe.db.exists("Report", report_data["name"]):
-            try:
+        try:
+            if frappe.db.exists("Report", report_data["name"]):
+                # Update existing report to Query Report type
+                report = frappe.get_doc("Report", report_data["name"])
+                if report.report_type != "Query Report":
+                    report.report_type = "Query Report"
+                    report.query = report_data["query"]
+                    report.report_name = report_data["name"]
+                    report.is_standard = "Yes"
+                    report.save(ignore_permissions=True)
+            else:
+                # Create new report
                 report = frappe.get_doc({
                     "doctype": "Report",
                     "name": report_data["name"],
@@ -122,8 +132,8 @@ def create_reports():
                     "disabled": 0,
                 })
                 report.insert(ignore_permissions=True)
-            except Exception as e:
-                frappe.log_error(f"Could not create report {report_data['name']}: {e}")
+        except Exception as e:
+            frappe.log_error(f"Could not create/update report {report_data['name']}: {e}")
 
 def create_roles():
     """Create custom roles required by the app before workspace creation."""
