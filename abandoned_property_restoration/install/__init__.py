@@ -34,93 +34,33 @@ def create_module_def():
 
 
 def create_reports():
-    """Create all 14 Query Reports programmatically."""
+    """Create all 14 reports as Report Builder reports programmatically."""
     reports = [
-        {
-            "name": "Abandoned Property Summary",
-            "ref_doctype": "Abandoned Property",
-            "query": "SELECT name, property_name, address, property_status, risk_level, property_type, owner_name FROM `tabAbandoned Property` WHERE docstatus < 2 ORDER BY modified DESC"
-        },
-        {
-            "name": "Citizen Reward Report",
-            "ref_doctype": "Reward Claim",
-            "query": "SELECT name, citizen, report_name, reward_type, reward_amount, claim_status FROM `tabReward Claim` WHERE docstatus < 2 ORDER BY modified DESC"
-        },
-        {
-            "name": "Digital Archive Report",
-            "ref_doctype": "Digital Time Capsule",
-            "query": "SELECT name, property, capsule_name, category, creation_date, status FROM `tabDigital Time Capsule` WHERE docstatus < 2 ORDER BY modified DESC"
-        },
-        {
-            "name": "District Wise Restoration Report",
-            "ref_doctype": "Abandoned Property",
-            "query": "SELECT COALESCE(ap.district, 'Unknown') as district, COALESCE(ap.city, 'Unknown') as city, COUNT(*) as total_properties, SUM(CASE WHEN ap.property_status = 'Reported' THEN 1 ELSE 0 END) as reported, SUM(CASE WHEN ap.property_status = 'Under Inspection' THEN 1 ELSE 0 END) as under_inspection, SUM(CASE WHEN ap.property_status = 'In Restoration' THEN 1 ELSE 0 END) as in_restoration, SUM(CASE WHEN ap.property_status = 'Restored' THEN 1 ELSE 0 END) as restored FROM `tabAbandoned Property` ap WHERE ap.docstatus < 2 GROUP BY ap.district, ap.city ORDER BY total_properties DESC"
-        },
-        {
-            "name": "Historical Records Report",
-            "ref_doctype": "Historical Record",
-            "query": "SELECT name, property, document_type, title, record_date, source_name FROM `tabHistorical Record` WHERE docstatus < 2 ORDER BY modified DESC"
-        },
-        {
-            "name": "Maintenance Report",
-            "ref_doctype": "Maintenance Schedule",
-            "query": "SELECT name, property, schedule_type, schedule_date, schedule_status, contractor, estimated_cost FROM `tabMaintenance Schedule` WHERE docstatus < 2 ORDER BY modified DESC"
-        },
-        {
-            "name": "Material Exchange Report",
-            "ref_doctype": "Material Exchange",
-            "query": "SELECT name, material_name, source_project, destination_project, quantity, exchange_date, exchange_status FROM `tabMaterial Exchange` WHERE docstatus < 2 ORDER BY modified DESC"
-        },
-        {
-            "name": "Material Salvage Report",
-            "ref_doctype": "Material Salvage",
-            "query": "SELECT name, property, material_name, material_category, quantity, condition, status FROM `tabMaterial Salvage` WHERE docstatus < 2 ORDER BY modified DESC"
-        },
-        {
-            "name": "Project Progress Report",
-            "ref_doctype": "Restoration Progress",
-            "query": "SELECT name, restoration_project, property, update_date, progress_percentage, work_completed, current_phase FROM `tabRestoration Progress` WHERE docstatus < 2 ORDER BY update_date DESC"
-        },
-        {
-            "name": "Property Inspection Report",
-            "ref_doctype": "Property Inspection",
-            "query": "SELECT name, property, inspector, inspection_date, structure_condition, risk_level, inspection_status FROM `tabProperty Inspection` WHERE docstatus < 2 ORDER BY modified DESC"
-        },
-        {
-            "name": "Property Timeline Report",
-            "ref_doctype": "Property Timeline",
-            "query": "SELECT name, property, event_type, event_title, event_date, created_by FROM `tabProperty Timeline` WHERE docstatus < 2 ORDER BY event_date DESC"
-        },
-        {
-            "name": "Restoration Cost Report",
-            "ref_doctype": "Project Cost",
-            "query": "SELECT name, restoration_project, cost_type, amount, expense_date, vendor, payment_status FROM `tabProject Cost` WHERE docstatus < 2 ORDER BY modified DESC"
-        },
-        {
-            "name": "Restoration Status Report",
-            "ref_doctype": "Restoration Project",
-            "query": "SELECT name, property, project_status, start_date, expected_end_date, progress_percentage, estimated_cost FROM `tabRestoration Project` WHERE docstatus < 2 ORDER BY modified DESC"
-        },
-        {
-            "name": "Top Contributors Report",
-            "ref_doctype": "Citizen",
-            "query": "SELECT cpr.citizen, COUNT(*) as total_reports, SUM(CASE WHEN cpr.status = 'Verified' THEN 1 ELSE 0 END) as verified_reports, SUM(CASE WHEN cpr.status = 'Pending' THEN 1 ELSE 0 END) as pending_reports, SUM(CASE WHEN cpr.status = 'Rejected' THEN 1 ELSE 0 END) as rejected_reports, COALESCE(SUM(rc.reward_amount), 0) as total_rewards FROM `tabCitizen Property Report` cpr LEFT JOIN `tabReward Claim` rc ON rc.property_report = cpr.name AND rc.claim_status = 'Approved' WHERE cpr.docstatus < 2 GROUP BY cpr.citizen ORDER BY total_reports DESC"
-        },
+        {"name": "Abandoned Property Summary", "ref_doctype": "Abandoned Property"},
+        {"name": "Citizen Reward Report", "ref_doctype": "Reward Claim"},
+        {"name": "Digital Archive Report", "ref_doctype": "Digital Time Capsule"},
+        {"name": "District Wise Restoration Report", "ref_doctype": "Abandoned Property"},
+        {"name": "Historical Records Report", "ref_doctype": "Historical Record"},
+        {"name": "Maintenance Report", "ref_doctype": "Maintenance Schedule"},
+        {"name": "Material Exchange Report", "ref_doctype": "Material Exchange"},
+        {"name": "Material Salvage Report", "ref_doctype": "Material Salvage"},
+        {"name": "Project Progress Report", "ref_doctype": "Restoration Progress"},
+        {"name": "Property Inspection Report", "ref_doctype": "Property Inspection"},
+        {"name": "Property Timeline Report", "ref_doctype": "Property Timeline"},
+        {"name": "Restoration Cost Report", "ref_doctype": "Project Cost"},
+        {"name": "Restoration Status Report", "ref_doctype": "Restoration Project"},
+        {"name": "Top Contributors Report", "ref_doctype": "Citizen Property Report"},
     ]
     
     for report_data in reports:
         try:
             if frappe.db.exists("Report", report_data["name"]):
-                # Update existing report to Query Report type
                 report = frappe.get_doc("Report", report_data["name"])
-                if report.report_type != "Query Report":
-                    report.report_type = "Query Report"
-                    report.query = report_data["query"]
-                    report.report_name = report_data["name"]
+                if report.report_type != "Report Builder":
+                    report.report_type = "Report Builder"
                     report.is_standard = "Yes"
                     report.save(ignore_permissions=True)
             else:
-                # Create new report
                 report = frappe.get_doc({
                     "doctype": "Report",
                     "name": report_data["name"],
@@ -128,8 +68,7 @@ def create_reports():
                     "module": "restoration",
                     "is_standard": "Yes",
                     "ref_doctype": report_data["ref_doctype"],
-                    "report_type": "Query Report",
-                    "query": report_data["query"],
+                    "report_type": "Report Builder",
                     "disabled": 0,
                 })
                 report.insert(ignore_permissions=True)
