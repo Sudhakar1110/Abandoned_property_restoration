@@ -248,17 +248,12 @@ def _create_section(label, create_fn):
     try:
         create_fn()
         frappe.db.commit()
-        frappe.log_error(f"Demo data section '{label}' completed", "Demo Data")
     except Exception as e:
         frappe.log_error(f"Demo data section '{label}' failed: {str(e)[:200]}", "Demo Data")
 
 
 def create_demo_data():
     """Create demo data for testing and evaluating the app."""
-    if frappe.db.exists("Abandoned Property", {"property_name": "Oakwood Manor"}):
-        frappe.log_error("Demo data already exists, skipping.", "Demo Data")
-        return
-
     # First, ensure all reference records exist
     _ensure_fixture_records()
 
