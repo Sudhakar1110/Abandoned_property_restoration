@@ -85,6 +85,19 @@ fixtures = [
     {"dt": "Custom Script", "filters": [["dt", "like", "%"]]},
     {"dt": "Print Format", "filters": [["module", "=", "restoration"]]},
     {"dt": "Report", "filters": [["module", "=", "restoration"]]},
+    # Fixtures with seed data in fixtures/ directory
+    {"dt": "Property Category"},
+    {"dt": "Property Type"},
+    {"dt": "Restoration Category"},
+    {"dt": "Material Category"},
+    {"dt": "Material Condition"},
+    {"dt": "Ownership Type"},
+    {"dt": "Project Priority"},
+    {"dt": "Restoration Status"},
+    {"dt": "Reward Type"},
+    {"dt": "Risk Level"},
+    {"dt": "Historical Document Type"},
+    {"dt": "Time Capsule Category"},
 ]
 
 override_whitelisted_methods = {}

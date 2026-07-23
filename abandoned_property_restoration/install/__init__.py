@@ -2,6 +2,7 @@ import frappe
 
 
 def after_install():
+    create_roles()
     create_workspace()
     create_custom_fields()
     create_property_doctypes()
@@ -11,6 +12,23 @@ def after_install():
 
 def after_uninstall():
     pass
+
+
+def create_roles():
+    """Create custom roles required by the app before workspace creation."""
+    roles = [
+        {"role_name": "Property Administrator", "desk_access": 1},
+        {"role_name": "Restoration Manager", "desk_access": 1},
+        {"role_name": "Government Officer", "desk_access": 1},
+        {"role_name": "View Only User", "desk_access": 0},
+    ]
+    for role_data in roles:
+        if not frappe.db.exists("Role", role_data["role_name"]):
+            frappe.get_doc({
+                "doctype": "Role",
+                "role_name": role_data["role_name"],
+                "desk_access": role_data["desk_access"],
+            }).insert(ignore_permissions=True)
 
 
 def create_workspace():
