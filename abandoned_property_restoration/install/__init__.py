@@ -34,14 +34,12 @@ def create_roles():
 def create_workspace():
     """Create or update the Abandoned Property Restoration workspace."""
     workspace_content = [
-        {"type": "header", "name": "masters", "hidden": False, "data": {"text": "Masters", "col": 12}},
+        {"id": "hdr_masters", "type": "header", "data": {"text": "Masters", "col": 12}},
         {
+            "id": "card_masters",
             "type": "card",
-            "name": "masters",
-            "hidden": False,
             "data": {
                 "card_name": "Masters",
-                "col": 12,
                 "links": [
                     {"type": "link", "label": "Citizen", "link_to": "Citizen", "link_type": "DocType"},
                     {"type": "link", "label": "Contractor", "link_to": "Contractor", "link_type": "DocType"},
@@ -66,14 +64,12 @@ def create_workspace():
                 ]
             }
         },
-        {"type": "header", "name": "transactions", "hidden": False, "data": {"text": "Transactions", "col": 12}},
+        {"id": "hdr_transactions", "type": "header", "data": {"text": "Transactions", "col": 12}},
         {
+            "id": "card_transactions",
             "type": "card",
-            "name": "transactions",
-            "hidden": False,
             "data": {
                 "card_name": "Transactions",
-                "col": 12,
                 "links": [
                     {"type": "link", "label": "Abandoned Property", "link_to": "Abandoned Property", "link_type": "DocType"},
                     {"type": "link", "label": "Citizen Property Report", "link_to": "Citizen Property Report", "link_type": "DocType"},
@@ -100,14 +96,12 @@ def create_workspace():
                 ]
             }
         },
-        {"type": "header", "name": "reports", "hidden": False, "data": {"text": "Reports", "col": 12}},
+        {"id": "hdr_reports", "type": "header", "data": {"text": "Reports", "col": 12}},
         {
+            "id": "card_reports",
             "type": "card",
-            "name": "reports",
-            "hidden": False,
             "data": {
                 "card_name": "Reports",
-                "col": 12,
                 "links": [
                     {"type": "link", "label": "Abandoned Property Summary", "link_to": "Abandoned Property Summary", "link_type": "Report"},
                     {"type": "link", "label": "Citizen Reward Report", "link_to": "Citizen Reward Report", "link_type": "Report"},
