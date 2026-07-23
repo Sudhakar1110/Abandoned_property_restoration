@@ -16,9 +16,9 @@ def get_columns():
     return [
         {"label": _("Archive ID"), "fieldname": "name", "fieldtype": "Link", "options": "Digital Time Capsule", "width": 150},
         {"label": _("Property"), "fieldname": "property", "fieldtype": "Link", "options": "Abandoned Property", "width": 150},
-        {"label": _("Title"), "fieldname": "title", "fieldtype": "Data", "width": 200},
+        {"label": _("Capsule Name"), "fieldname": "capsule_name", "fieldtype": "Data", "width": 200},
         {"label": _("Category"), "fieldname": "category", "fieldtype": "Link", "options": "Time Capsule Category", "width": 150},
-        {"label": _("Archive Date"), "fieldname": "archive_date", "fieldtype": "Date", "width": 120},
+        {"label": _("Creation Date"), "fieldname": "creation_date", "fieldtype": "Date", "width": 120},
         {"label": _("Status"), "fieldname": "status", "fieldtype": "Data", "width": 100},
     ]
 
@@ -28,9 +28,9 @@ def get_data(filters):
         SELECT 
             name,
             property,
-            title,
+            capsule_name,
             category,
-            archive_date,
+            creation_date,
             status
         FROM `tabDigital Time Capsule`
         WHERE docstatus < 2

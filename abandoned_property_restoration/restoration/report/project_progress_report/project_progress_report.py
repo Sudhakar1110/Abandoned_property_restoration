@@ -15,12 +15,12 @@ def execute(filters=None):
 def get_columns():
     return [
         {"label": _("Progress ID"), "fieldname": "name", "fieldtype": "Link", "options": "Restoration Progress", "width": 150},
-        {"label": _("Project"), "fieldname": "project", "fieldtype": "Link", "options": "Restoration Project", "width": 150},
+        {"label": _("Project"), "fieldname": "restoration_project", "fieldtype": "Link", "options": "Restoration Project", "width": 150},
         {"label": _("Property"), "fieldname": "property", "fieldtype": "Link", "options": "Abandoned Property", "width": 150},
-        {"label": _("Progress Date"), "fieldname": "progress_date", "fieldtype": "Date", "width": 120},
+        {"label": _("Update Date"), "fieldname": "update_date", "fieldtype": "Date", "width": 120},
         {"label": _("Progress Percentage"), "fieldname": "progress_percentage", "fieldtype": "Percent", "width": 130},
-        {"label": _("Work Description"), "fieldname": "work_description", "fieldtype": "Data", "width": 250},
-        {"label": _("Status"), "fieldname": "status", "fieldtype": "Data", "width": 100},
+        {"label": _("Work Completed"), "fieldname": "work_completed", "fieldtype": "Data", "width": 250},
+        {"label": _("Current Phase"), "fieldname": "current_phase", "fieldtype": "Data", "width": 100},
     ]
 
 
@@ -28,20 +28,20 @@ def get_data(filters):
     query = """
         SELECT 
             name,
-            project,
+            restoration_project,
             property,
-            progress_date,
+            update_date,
             progress_percentage,
-            work_description,
-            status
+            work_completed,
+            current_phase
         FROM `tabRestoration Progress`
         WHERE docstatus < 2
     """
     
     if filters:
-        if filters.get("project"):
-            query += " AND project = %(project)s"
+        if filters.get("restoration_project"):
+            query += " AND restoration_project = %(restoration_project)s"
     
-    query += " ORDER BY progress_date DESC"
+    query += " ORDER BY update_date DESC"
     
     return frappe.db.sql(query, filters, as_dict=1)

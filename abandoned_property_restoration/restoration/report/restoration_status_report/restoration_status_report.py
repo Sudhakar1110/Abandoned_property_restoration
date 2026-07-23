@@ -18,9 +18,9 @@ def get_columns():
         {"label": _("Property"), "fieldname": "property", "fieldtype": "Link", "options": "Abandoned Property", "width": 150},
         {"label": _("Project Status"), "fieldname": "project_status", "fieldtype": "Data", "width": 120},
         {"label": _("Start Date"), "fieldname": "start_date", "fieldtype": "Date", "width": 100},
-        {"label": _("End Date"), "fieldname": "end_date", "fieldtype": "Date", "width": 100},
-        {"label": _("Progress"), "fieldname": "progress", "fieldtype": "Percent", "width": 80},
-        {"label": _("Budget"), "fieldname": "budget", "fieldtype": "Currency", "width": 120},
+        {"label": _("Expected End Date"), "fieldname": "expected_end_date", "fieldtype": "Date", "width": 100},
+        {"label": _("Progress"), "fieldname": "progress_percentage", "fieldtype": "Percent", "width": 80},
+        {"label": _("Estimated Cost"), "fieldname": "estimated_cost", "fieldtype": "Currency", "width": 120},
     ]
 
 
@@ -31,9 +31,9 @@ def get_data(filters):
             property,
             project_status,
             start_date,
-            end_date,
-            progress,
-            budget
+            expected_end_date,
+            progress_percentage,
+            estimated_cost
         FROM `tabRestoration Project`
         WHERE docstatus < 2
     """

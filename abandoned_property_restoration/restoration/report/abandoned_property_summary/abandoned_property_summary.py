@@ -16,8 +16,8 @@ def get_columns():
     return [
         {"label": _("Property ID"), "fieldname": "name", "fieldtype": "Link", "options": "Abandoned Property", "width": 150},
         {"label": _("Property Name"), "fieldname": "property_name", "fieldtype": "Data", "width": 150},
-        {"label": _("Location"), "fieldname": "location", "fieldtype": "Data", "width": 150},
-        {"label": _("Status"), "fieldname": "status", "fieldtype": "Data", "width": 120},
+        {"label": _("Address"), "fieldname": "address", "fieldtype": "Data", "width": 200},
+        {"label": _("Property Status"), "fieldname": "property_status", "fieldtype": "Data", "width": 120},
         {"label": _("Risk Level"), "fieldname": "risk_level", "fieldtype": "Data", "width": 100},
         {"label": _("Property Type"), "fieldname": "property_type", "fieldtype": "Link", "options": "Property Type", "width": 120},
         {"label": _("Owner Name"), "fieldname": "owner_name", "fieldtype": "Data", "width": 150},
@@ -29,8 +29,8 @@ def get_data(filters):
         SELECT 
             name,
             property_name,
-            location,
-            status,
+            address,
+            property_status,
             risk_level,
             property_type,
             owner_name
@@ -39,8 +39,8 @@ def get_data(filters):
     """
     
     if filters:
-        if filters.get("status"):
-            query += " AND status = %(status)s"
+        if filters.get("property_status"):
+            query += " AND property_status = %(property_status)s"
         if filters.get("risk_level"):
             query += " AND risk_level = %(risk_level)s"
         if filters.get("property_type"):

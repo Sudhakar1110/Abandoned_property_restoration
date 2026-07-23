@@ -19,7 +19,7 @@ def get_columns():
         {"label": _("Material Name"), "fieldname": "material_name", "fieldtype": "Data", "width": 150},
         {"label": _("Category"), "fieldname": "material_category", "fieldtype": "Link", "options": "Material Category", "width": 120},
         {"label": _("Quantity"), "fieldname": "quantity", "fieldtype": "Float", "width": 80},
-        {"label": _("Condition"), "fieldname": "material_condition", "fieldtype": "Link", "options": "Material Condition", "width": 100},
+        {"label": _("Condition"), "fieldname": "condition", "fieldtype": "Link", "options": "Material Condition", "width": 100},
         {"label": _("Status"), "fieldname": "status", "fieldtype": "Data", "width": 100},
     ]
 
@@ -32,7 +32,7 @@ def get_data(filters):
             material_name,
             material_category,
             quantity,
-            material_condition,
+            condition,
             status
         FROM `tabMaterial Salvage`
         WHERE docstatus < 2

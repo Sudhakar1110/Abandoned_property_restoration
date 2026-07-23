@@ -30,10 +30,10 @@ def get_data(filters):
             COALESCE(ap.district, 'Unknown') as district,
             COALESCE(ap.city, 'Unknown') as city,
             COUNT(*) as total_properties,
-            SUM(CASE WHEN ap.status = 'Reported' THEN 1 ELSE 0 END) as reported,
-            SUM(CASE WHEN ap.status = 'Under Inspection' THEN 1 ELSE 0 END) as under_inspection,
-            SUM(CASE WHEN ap.status = 'In Restoration' THEN 1 ELSE 0 END) as in_restoration,
-            SUM(CASE WHEN ap.status = 'Restored' THEN 1 ELSE 0 END) as restored
+            SUM(CASE WHEN ap.property_status = 'Reported' THEN 1 ELSE 0 END) as reported,
+            SUM(CASE WHEN ap.property_status = 'Under Inspection' THEN 1 ELSE 0 END) as under_inspection,
+            SUM(CASE WHEN ap.property_status = 'In Restoration' THEN 1 ELSE 0 END) as in_restoration,
+            SUM(CASE WHEN ap.property_status = 'Restored' THEN 1 ELSE 0 END) as restored
         FROM `tabAbandoned Property` ap
         WHERE ap.docstatus < 2
         GROUP BY ap.district, ap.city

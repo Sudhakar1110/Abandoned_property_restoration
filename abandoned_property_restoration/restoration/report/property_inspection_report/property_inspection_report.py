@@ -18,7 +18,7 @@ def get_columns():
         {"label": _("Property"), "fieldname": "property", "fieldtype": "Link", "options": "Abandoned Property", "width": 150},
         {"label": _("Inspector"), "fieldname": "inspector", "fieldtype": "Link", "options": "Inspector", "width": 140},
         {"label": _("Inspection Date"), "fieldname": "inspection_date", "fieldtype": "Date", "width": 120},
-        {"label": _("Condition"), "fieldname": "overall_condition", "fieldtype": "Data", "width": 120},
+        {"label": _("Structure Condition"), "fieldname": "structure_condition", "fieldtype": "Data", "width": 120},
         {"label": _("Risk Level"), "fieldname": "risk_level", "fieldtype": "Data", "width": 100},
         {"label": _("Status"), "fieldname": "inspection_status", "fieldtype": "Data", "width": 100},
     ]
@@ -31,7 +31,7 @@ def get_data(filters):
             property,
             inspector,
             inspection_date,
-            overall_condition,
+            structure_condition,
             risk_level,
             inspection_status
         FROM `tabProperty Inspection`

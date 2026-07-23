@@ -19,7 +19,7 @@ def get_columns():
         {"label": _("Document Type"), "fieldname": "document_type", "fieldtype": "Link", "options": "Historical Document Type", "width": 150},
         {"label": _("Title"), "fieldname": "title", "fieldtype": "Data", "width": 200},
         {"label": _("Record Date"), "fieldname": "record_date", "fieldtype": "Date", "width": 120},
-        {"label": _("Source"), "fieldname": "source", "fieldtype": "Data", "width": 150},
+        {"label": _("Source"), "fieldname": "source_name", "fieldtype": "Data", "width": 150},
     ]
 
 
@@ -31,7 +31,7 @@ def get_data(filters):
             document_type,
             title,
             record_date,
-            source
+            source_name
         FROM `tabHistorical Record`
         WHERE docstatus < 2
     """
