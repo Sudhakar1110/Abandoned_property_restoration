@@ -98,35 +98,6 @@ def create_roles():
 def create_workspace():
     """Create or update the Abandoned Property Restoration workspace."""
     workspace_content = [
-        # Dashboard Charts Section
-        {"id": "hdr_dashboard", "type": "header", "data": {"text": "Dashboard", "col": 12}},
-        {
-            "id": "chart_property_status",
-            "type": "chart",
-            "data": {
-                "chart_name": "Property Status Distribution",
-                "col": 4,
-                "label": "Property Status"
-            }
-        },
-        {
-            "id": "chart_project_status",
-            "type": "chart",
-            "data": {
-                "chart_name": "Restoration Project Status",
-                "col": 4,
-                "label": "Project Status"
-            }
-        },
-        {
-            "id": "chart_monthly_reports",
-            "type": "chart",
-            "data": {
-                "chart_name": "Monthly Client Reports",
-                "col": 4,
-                "label": "Monthly Reports"
-            }
-        },
         {"id": "hdr_masters", "type": "header", "data": {"text": "Masters", "col": 12}},
         {
             "id": "card_masters",
@@ -259,6 +230,22 @@ def create_workspace():
     for item in ["Abandoned Property Summary", "Citizen Reward Report", "Digital Archive Report", "District Wise Restoration Report", "Historical Records Report", "Maintenance Report", "Material Exchange Report", "Material Salvage Report", "Project Progress Report", "Property Inspection Report", "Property Timeline Report", "Restoration Cost Report", "Restoration Status Report", "Top Contributors Report"]:
         add_link(item, item, "Report")
     
+    # Chart definitions for workspace charts child table
+    workspace_charts = [
+        {
+            "chart_name": "Property Status Distribution",
+            "label": "Property Status"
+        },
+        {
+            "chart_name": "Restoration Project Status",
+            "label": "Project Status"
+        },
+        {
+            "chart_name": "Monthly Client Reports",
+            "label": "Monthly Reports"
+        },
+    ]
+
     if frappe.db.exists("Workspace", "Abandoned Property Restoration"):
         # Update existing workspace
         workspace = frappe.get_doc("Workspace", "Abandoned Property Restoration")
@@ -268,6 +255,10 @@ def create_workspace():
         workspace.set("links", [])
         for link_data in workspace_links:
             workspace.append("links", link_data)
+        # Add charts to the charts child table
+        workspace.set("charts", [])
+        for chart_data in workspace_charts:
+            workspace.append("charts", chart_data)
         workspace.save(ignore_permissions=True)
     else:
         # Create new workspace
@@ -290,6 +281,10 @@ def create_workspace():
         # Add links child table for proper URL resolution
         for link_data in workspace_links:
             workspace.append("links", link_data)
+        
+        # Add charts to the charts child table
+        for chart_data in workspace_charts:
+            workspace.append("charts", chart_data)
         
         workspace.insert(ignore_permissions=True)
     
