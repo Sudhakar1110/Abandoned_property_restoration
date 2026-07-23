@@ -4,6 +4,7 @@
  "module": "restoration",
  "is_standard": "Yes",
  "ref_doctype": "Historical Record",
- "report_type": "Script Report",
+ "report_type": "Query Report",
+ "query": "SELECT\n    name,\n    property,\n    document_type,\n    title,\n    record_date,\n    source_name\nFROM `tabHistorical Record`\nWHERE docstatus < 2\n{% if filters.document_type %}\n  AND document_type = %(document_type)s\n{% endif %}\nORDER BY modified DESC",
  "disabled": 0
 }

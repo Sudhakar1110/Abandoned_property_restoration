@@ -4,6 +4,7 @@
  "module": "restoration",
  "is_standard": "Yes",
  "ref_doctype": "Citizen",
- "report_type": "Script Report",
+ "report_type": "Query Report",
+ "query": "SELECT\n    citizen,\n    COUNT(*) as total_reports,\n    SUM(CASE WHEN status = 'Verified' THEN 1 ELSE 0 END) as verified_reports,\n    SUM(CASE WHEN status = 'Pending' THEN 1 ELSE 0 END) as pending_reports,\n    SUM(CASE WHEN status = 'Rejected' THEN 1 ELSE 0 END) as rejected_reports,\n    COALESCE(SUM(rc.reward_amount), 0) as total_rewards\nFROM `tabCitizen Property Report` cpr\nLEFT JOIN `tabReward Claim` rc ON rc.property_report = cpr.name AND rc.claim_status = 'Approved'\nWHERE cpr.docstatus < 2\nGROUP BY citizen\nORDER BY total_reports DESC",
  "disabled": 0
 }

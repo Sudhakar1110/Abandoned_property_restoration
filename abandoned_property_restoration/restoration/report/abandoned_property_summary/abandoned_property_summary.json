@@ -4,6 +4,7 @@
  "module": "restoration",
  "is_standard": "Yes",
  "ref_doctype": "Abandoned Property",
- "report_type": "Script Report",
+ "report_type": "Query Report",
+ "query": "SELECT\n    name,\n    property_name,\n    address,\n    property_status,\n    risk_level,\n    property_type,\n    owner_name\nFROM `tabAbandoned Property`\nWHERE docstatus < 2\n{% if filters.property_status %}\n  AND property_status = %(property_status)s\n{% endif %}\n{% if filters.risk_level %}\n  AND risk_level = %(risk_level)s\n{% endif %}\n{% if filters.property_type %}\n  AND property_type = %(property_type)s\n{% endif %}\nORDER BY modified DESC",
  "disabled": 0
 }

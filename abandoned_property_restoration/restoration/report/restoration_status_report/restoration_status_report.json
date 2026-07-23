@@ -4,6 +4,7 @@
  "module": "restoration",
  "is_standard": "Yes",
  "ref_doctype": "Restoration Project",
- "report_type": "Script Report",
+ "report_type": "Query Report",
+ "query": "SELECT\n    name,\n    property,\n    project_status,\n    start_date,\n    expected_end_date,\n    progress_percentage,\n    estimated_cost\nFROM `tabRestoration Project`\nWHERE docstatus < 2\n{% if filters.project_status %}\n  AND project_status = %(project_status)s\n{% endif %}\nORDER BY modified DESC",
  "disabled": 0
 }

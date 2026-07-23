@@ -4,6 +4,7 @@
  "module": "restoration",
  "is_standard": "Yes",
  "ref_doctype": "Material Exchange",
- "report_type": "Script Report",
+ "report_type": "Query Report",
+ "query": "SELECT\n    name,\n    material_name,\n    source_project,\n    destination_project,\n    quantity,\n    exchange_date,\n    exchange_status\nFROM `tabMaterial Exchange`\nWHERE docstatus < 2\n{% if filters.exchange_status %}\n  AND exchange_status = %(exchange_status)s\n{% endif %}\nORDER BY modified DESC",
  "disabled": 0
 }

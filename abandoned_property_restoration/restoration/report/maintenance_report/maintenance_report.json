@@ -4,6 +4,7 @@
  "module": "restoration",
  "is_standard": "Yes",
  "ref_doctype": "Maintenance Schedule",
- "report_type": "Script Report",
+ "report_type": "Query Report",
+ "query": "SELECT\n    name,\n    property,\n    schedule_type,\n    schedule_date,\n    schedule_status,\n    contractor,\n    estimated_cost\nFROM `tabMaintenance Schedule`\nWHERE docstatus < 2\n{% if filters.schedule_status %}\n  AND schedule_status = %(schedule_status)s\n{% endif %}\nORDER BY modified DESC",
  "disabled": 0
 }

@@ -4,6 +4,7 @@
  "module": "restoration",
  "is_standard": "Yes",
  "ref_doctype": "Abandoned Property",
- "report_type": "Script Report",
+ "report_type": "Query Report",
+ "query": "SELECT\n    COALESCE(ap.district, 'Unknown') as district,\n    COALESCE(ap.city, 'Unknown') as city,\n    COUNT(*) as total_properties,\n    SUM(CASE WHEN ap.property_status = 'Reported' THEN 1 ELSE 0 END) as reported,\n    SUM(CASE WHEN ap.property_status = 'Under Inspection' THEN 1 ELSE 0 END) as under_inspection,\n    SUM(CASE WHEN ap.property_status = 'In Restoration' THEN 1 ELSE 0 END) as in_restoration,\n    SUM(CASE WHEN ap.property_status = 'Restored' THEN 1 ELSE 0 END) as restored\nFROM `tabAbandoned Property` ap\nWHERE ap.docstatus < 2\nGROUP BY ap.district, ap.city\nORDER BY total_properties DESC",
  "disabled": 0
 }

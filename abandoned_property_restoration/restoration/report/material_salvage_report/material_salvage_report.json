@@ -4,6 +4,7 @@
  "module": "restoration",
  "is_standard": "Yes",
  "ref_doctype": "Material Salvage",
- "report_type": "Script Report",
+ "report_type": "Query Report",
+ "query": "SELECT\n    name,\n    property,\n    material_name,\n    material_category,\n    quantity,\n    condition,\n    status\nFROM `tabMaterial Salvage`\nWHERE docstatus < 2\n{% if filters.material_category %}\n  AND material_category = %(material_category)s\n{% endif %}\n{% if filters.status %}\n  AND status = %(status)s\n{% endif %}\nORDER BY modified DESC",
  "disabled": 0
 }

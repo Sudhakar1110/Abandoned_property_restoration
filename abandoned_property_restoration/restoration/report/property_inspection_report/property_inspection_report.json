@@ -4,6 +4,7 @@
  "module": "restoration",
  "is_standard": "Yes",
  "ref_doctype": "Property Inspection",
- "report_type": "Script Report",
+ "report_type": "Query Report",
+ "query": "SELECT\n    name,\n    property,\n    inspector,\n    inspection_date,\n    structure_condition,\n    risk_level,\n    inspection_status\nFROM `tabProperty Inspection`\nWHERE docstatus < 2\n{% if filters.inspection_status %}\n  AND inspection_status = %(inspection_status)s\n{% endif %}\nORDER BY modified DESC",
  "disabled": 0
 }

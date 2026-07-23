@@ -4,6 +4,7 @@
  "module": "restoration",
  "is_standard": "Yes",
  "ref_doctype": "Property Timeline",
- "report_type": "Script Report",
+ "report_type": "Query Report",
+ "query": "SELECT\n    name,\n    property,\n    event_type,\n    event_title,\n    event_date,\n    created_by\nFROM `tabProperty Timeline`\nWHERE docstatus < 2\n{% if filters.property %}\n  AND property = %(property)s\n{% endif %}\n{% if filters.event_type %}\n  AND event_type = %(event_type)s\n{% endif %}\nORDER BY event_date DESC",
  "disabled": 0
 }
