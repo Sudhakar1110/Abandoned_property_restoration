@@ -64,21 +64,21 @@
    "options": "Client"
   },
   {
-   "fieldname": "citizen_name",
+   "fieldname": "client_name",
    "fieldtype": "Data",
    "in_list_view": 1,
    "label": "Citizen Name",
    "read_only": 1
   },
   {
-   "fieldname": "citizen_email",
+   "fieldname": "client_email",
    "fieldtype": "Data",
    "label": "Citizen Email",
    "options": "Email",
    "read_only": 1
   },
   {
-   "fieldname": "citizen_phone",
+   "fieldname": "client_phone",
    "fieldtype": "Data",
    "label": "Citizen Phone",
    "read_only": 1

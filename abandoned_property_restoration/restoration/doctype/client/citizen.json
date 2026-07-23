@@ -30,7 +30,7 @@
    "unique": 1
   },
   {
-   "fieldname": "citizen_name",
+   "fieldname": "client_name",
    "fieldtype": "Data",
    "in_list_view": 1,
    "label": "Citizen Name",

@@ -69,7 +69,7 @@
    "options": "Abandoned Property"
   },
   {
-   "fieldname": "citizen_report",
+   "fieldname": "client_report",
    "fieldtype": "Link",
    "label": "Citizen Report",
    "options": "Citizen Property Report"

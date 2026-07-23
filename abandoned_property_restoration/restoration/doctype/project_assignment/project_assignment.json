@@ -46,7 +46,7 @@
    "options": "Abandoned Property"
   },
   {
-   "fieldname": "citizen_report",
+   "fieldname": "client_report",
    "fieldtype": "Link",
    "label": "Citizen Report",
    "options": "Citizen Property Report"
@@ -87,7 +87,7 @@
    "options": "Contractor"
   },
   {
-   "fieldname": "government_department",
+   "fieldname": "department",
    "fieldtype": "Link",
    "label": "Government Department",
    "options": "Government Department"
