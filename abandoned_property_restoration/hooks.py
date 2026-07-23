@@ -84,7 +84,6 @@ fixtures = [
     {"dt": "Property Setter", "filters": [["module", "=", "restoration"]]},
     {"dt": "Custom Script", "filters": [["dt", "like", "%"]]},
     {"dt": "Print Format", "filters": [["module", "=", "restoration"]]},
-    {"dt": "Module Def"},
     {"dt": "Report", "filters": [["module", "=", "restoration"]]},
     # Fixtures with seed data in fixtures/ directory
     {"dt": "Property Category"},
