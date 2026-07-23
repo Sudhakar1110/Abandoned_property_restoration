@@ -2,6 +2,7 @@ import frappe
 
 
 def after_install():
+    create_module_def()
     create_roles()
     create_workspace()
     create_custom_fields()
@@ -12,6 +13,16 @@ def after_install():
 
 def after_uninstall():
     pass
+
+
+def create_module_def():
+    """Ensure the Module Def for restoration exists so Frappe can find report modules."""
+    if not frappe.db.exists("Module Def", "restoration"):
+        frappe.get_doc({
+            "doctype": "Module Def",
+            "module_name": "restoration",
+            "app_name": "abandoned_property_restoration",
+        }).insert(ignore_permissions=True)
 
 
 def create_roles():
