@@ -158,6 +158,7 @@ def create_workspace():
     # Content JSON defines the workspace layout structure (headers, charts, cards)
     # Individual links are managed via the links child table below
     workspace_content = [
+        {"id": "hdr_dashboard", "type": "header", "data": {"text": "Dashboard", "col": 12}},
         {"id": "hdr_masters", "type": "header", "data": {"text": "Masters", "col": 12}},
         {"id": "card_masters", "type": "card", "data": {"card_name": "Masters"}},
         {"id": "hdr_transactions", "type": "header", "data": {"text": "Transactions", "col": 12}},
