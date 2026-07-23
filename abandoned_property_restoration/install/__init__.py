@@ -11,6 +11,11 @@ def after_install():
     frappe.publish_realtime("bench_event", {"message": "Abandoned Property Restoration installed successfully"})
 
 
+def after_migrate():
+    """Ensure Module Def exists after migration so report Python imports work."""
+    create_module_def()
+
+
 def after_uninstall():
     pass
 

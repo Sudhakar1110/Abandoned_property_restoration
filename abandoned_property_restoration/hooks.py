@@ -77,6 +77,7 @@ scheduler_events = {
 }
 
 after_install = "abandoned_property_restoration.install.after_install"
+after_migrate = "abandoned_property_restoration.install.after_migrate"
 after_uninstall = "abandoned_property_restoration.install.after_uninstall"
 
 fixtures = [
