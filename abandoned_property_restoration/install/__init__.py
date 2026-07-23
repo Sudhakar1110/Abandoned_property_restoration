@@ -297,7 +297,7 @@ def create_workspace():
 
 
 def create_dashboard_charts():
-    """Create dashboard charts and add them to the workspace."""
+    """Create or update dashboard charts for the workspace."""
     charts = [
         {
             "chart_name": "Property Status Distribution",
@@ -332,24 +332,27 @@ def create_dashboard_charts():
 
     for chart_data in charts:
         try:
-            if not frappe.db.exists("Dashboard Chart", chart_data["chart_name"]):
-                chart_doc = frappe.get_doc({
-                    "doctype": "Dashboard Chart",
-                    "chart_name": chart_data["chart_name"],
-                    "chart_type": chart_data["chart_type"],
-                    "document_type": chart_data["document_type"],
-                    "group_by_based_on": chart_data["group_by_based_on"],
-                    "type": chart_data["type"],
-                    "timeseries": chart_data["timeseries"],
-                    "is_public": chart_data["is_public"],
-                })
-                if "timespan" in chart_data:
-                    chart_doc.timespan = chart_data["timespan"]
-                if "time_interval" in chart_data:
-                    chart_doc.time_interval = chart_data["time_interval"]
-                chart_doc.insert(ignore_permissions=True)
+            if frappe.db.exists("Dashboard Chart", chart_data["chart_name"]):
+                # Delete old broken chart (might have wrong type) and recreate
+                frappe.delete_doc("Dashboard Chart", chart_data["chart_name"], force=True)
+            
+            chart_doc = frappe.get_doc({
+                "doctype": "Dashboard Chart",
+                "chart_name": chart_data["chart_name"],
+                "chart_type": chart_data["chart_type"],
+                "document_type": chart_data["document_type"],
+                "group_by_based_on": chart_data["group_by_based_on"],
+                "type": chart_data["type"],
+                "timeseries": chart_data["timeseries"],
+                "is_public": chart_data["is_public"],
+            })
+            if "timespan" in chart_data:
+                chart_doc.timespan = chart_data["timespan"]
+            if "time_interval" in chart_data:
+                chart_doc.time_interval = chart_data["time_interval"]
+            chart_doc.insert(ignore_permissions=True)
         except Exception as e:
-            frappe.log_error(f"Could not create dashboard chart {chart_data['chart_name']}: {e}")
+            frappe.log_error(f"Could not create/update dashboard chart {chart_data['chart_name']}: {e}")
 
 
 def create_custom_fields():
