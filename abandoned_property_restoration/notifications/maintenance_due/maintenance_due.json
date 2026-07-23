@@ -19,7 +19,7 @@
  "parenttype": "DocType",
  "recipients": [
   {
-   "receiver_by_role": "Property Administrator"
+   "receiver_by_role": "Property Manager"
   },
   {
    "receiver_by_role": "Restoration Manager"

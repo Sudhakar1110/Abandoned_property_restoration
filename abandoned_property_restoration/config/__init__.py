@@ -61,7 +61,7 @@ def get_transaction_items():
         "Material Salvage",
         "Material Exchange",
         "Material Sale",
-        "Citizen Property Report",
+        "Client Property Report",
         "Reward Claim",
         "Project Assignment",
         "Inspection Report",

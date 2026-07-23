@@ -20,7 +20,7 @@
  "recipients": [
   {
    "receiver_by_document_field": "citizen",
-   "receiver_by_role": "Citizen"
+   "receiver_by_role": "Client"
   }
  ],
  "sendAlertForDocument": 0,

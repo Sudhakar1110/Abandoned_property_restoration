@@ -1,47 +1,51 @@
 {
  "actions": [],
- "autoname": "field:engineer_id",
+ "autoname": "field:citizen_id",
  "creation": "2024-01-01 00:00:00.000000",
  "docstatus": 0,
  "doctype": "DocType",
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
-  "engineer_id",
-  "engineer_name",
+  "citizen_id",
+  "citizen_name",
   "email",
   "phone",
   "address",
-  "qualification",
-  "specialization",
-  "license_number",
+  "district",
+  "city",
+  "state",
+  "country",
   "is_active",
-  "inspections_completed"
+  "total_reports",
+  "total_rewards"
  ],
  "fields": [
   {
-   "fieldname": "engineer_id",
+   "fieldname": "citizen_id",
    "fieldtype": "Data",
    "in_list_view": 1,
-   "label": "Engineer ID",
+   "label": "Citizen ID",
    "reqd": 1,
    "unique": 1
   },
   {
-   "fieldname": "engineer_name",
+   "fieldname": "citizen_name",
    "fieldtype": "Data",
    "in_list_view": 1,
-   "label": "Engineer Name",
+   "label": "Citizen Name",
    "reqd": 1
   },
   {
    "fieldname": "email",
    "fieldtype": "Data",
+   "in_list_view": 1,
    "label": "Email"
   },
   {
    "fieldname": "phone",
    "fieldtype": "Data",
+   "in_list_view": 1,
    "label": "Phone"
   },
   {
@@ -50,19 +54,28 @@
    "label": "Address"
   },
   {
-   "fieldname": "qualification",
-   "fieldtype": "Data",
-   "label": "Qualification"
+   "fieldname": "district",
+   "fieldtype": "Link",
+   "label": "District",
+   "options": "District"
   },
   {
-   "fieldname": "specialization",
-   "fieldtype": "Small Text",
-   "label": "Specialization"
+   "fieldname": "city",
+   "fieldtype": "Link",
+   "label": "City",
+   "options": "City"
   },
   {
-   "fieldname": "license_number",
-   "fieldtype": "Data",
-   "label": "License Number"
+   "fieldname": "state",
+   "fieldtype": "Link",
+   "label": "State",
+   "options": "State"
+  },
+  {
+   "fieldname": "country",
+   "fieldtype": "Link",
+   "label": "Country",
+   "options": "Country"
   },
   {
    "fieldname": "is_active",
@@ -72,9 +85,15 @@
    "default": "1"
   },
   {
-   "fieldname": "inspections_completed",
+   "fieldname": "total_reports",
    "fieldtype": "Int",
-   "label": "Inspections Completed",
+   "label": "Total Reports",
+   "read_only": 1
+  },
+  {
+   "fieldname": "total_rewards",
+   "fieldtype": "Currency",
+   "label": "Total Rewards",
    "read_only": 1
   }
  ],
@@ -83,7 +102,7 @@
  "modified": "2024-01-01 00:00:00.000000",
  "modified_by": "Administrator",
  "module": "restoration",
- "name": "Engineer",
+ "name": "Client",
  "owner": "Administrator",
  "permissions": [
   {
@@ -118,13 +137,13 @@
    "print": 1,
    "read": 1,
    "report": 1,
-   "role": "Restoration Manager",
+   "role": "Approver",
    "share": 1,
    "write": 1
   },
   {
    "read": 1,
-   "role": "Engineer",
+   "role": "Client",
    "share": 1
   }
  ],

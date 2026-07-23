@@ -16,13 +16,13 @@
     "role": "System Manager"
    },
    {
-    "role": "Property Administrator"
+    "role": "Property Manager"
    },
    {
     "role": "Restoration Manager"
    },
    {
-    "role": "Government Officer"
+    "role": "Approver"
    },
    {
     "role": "View Only User"
@@ -44,8 +44,8 @@
    },
    {
     "type": "Link",
-    "label": "Citizen",
-    "link_to": "Citizen",
+    "label": "Client",
+    "link_to": "Client",
     "link_type": "DocType",
     "onboard": 0,
     "hidden": 0,
@@ -77,8 +77,8 @@
    },
    {
     "type": "Link",
-    "label": "Inspector",
-    "link_to": "Inspector",
+    "label": "Field Agent",
+    "link_to": "Field Agent",
     "link_type": "DocType",
     "onboard": 0,
     "hidden": 0,

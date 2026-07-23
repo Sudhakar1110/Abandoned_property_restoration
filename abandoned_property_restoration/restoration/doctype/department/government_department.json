@@ -1,51 +1,64 @@
 {
  "actions": [],
- "autoname": "field:citizen_id",
+ "autoname": "field:department_id",
  "creation": "2024-01-01 00:00:00.000000",
  "docstatus": 0,
  "doctype": "DocType",
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
-  "citizen_id",
-  "citizen_name",
+  "department_id",
+  "department_name",
+  "government_level",
+  "description",
+  "contact_person",
   "email",
   "phone",
   "address",
-  "district",
-  "city",
-  "state",
-  "country",
-  "is_active",
-  "total_reports",
-  "total_rewards"
+  "is_active"
  ],
  "fields": [
   {
-   "fieldname": "citizen_id",
+   "fieldname": "department_id",
    "fieldtype": "Data",
    "in_list_view": 1,
-   "label": "Citizen ID",
+   "label": "Department ID",
    "reqd": 1,
    "unique": 1
   },
   {
-   "fieldname": "citizen_name",
+   "fieldname": "department_name",
    "fieldtype": "Data",
    "in_list_view": 1,
-   "label": "Citizen Name",
+   "label": "Department Name",
    "reqd": 1
+  },
+  {
+   "fieldname": "government_level",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Government Level",
+   "options": "\nFederal\nState\nCounty\nCity\nLocal",
+   "reqd": 1
+  },
+  {
+   "fieldname": "description",
+   "fieldtype": "Text Editor",
+   "label": "Description"
+  },
+  {
+   "fieldname": "contact_person",
+   "fieldtype": "Data",
+   "label": "Contact Person"
   },
   {
    "fieldname": "email",
    "fieldtype": "Data",
-   "in_list_view": 1,
    "label": "Email"
   },
   {
    "fieldname": "phone",
    "fieldtype": "Data",
-   "in_list_view": 1,
    "label": "Phone"
   },
   {
@@ -54,47 +67,11 @@
    "label": "Address"
   },
   {
-   "fieldname": "district",
-   "fieldtype": "Link",
-   "label": "District",
-   "options": "District"
-  },
-  {
-   "fieldname": "city",
-   "fieldtype": "Link",
-   "label": "City",
-   "options": "City"
-  },
-  {
-   "fieldname": "state",
-   "fieldtype": "Link",
-   "label": "State",
-   "options": "State"
-  },
-  {
-   "fieldname": "country",
-   "fieldtype": "Link",
-   "label": "Country",
-   "options": "Country"
-  },
-  {
    "fieldname": "is_active",
    "fieldtype": "Check",
    "in_list_view": 1,
    "label": "Is Active",
    "default": "1"
-  },
-  {
-   "fieldname": "total_reports",
-   "fieldtype": "Int",
-   "label": "Total Reports",
-   "read_only": 1
-  },
-  {
-   "fieldname": "total_rewards",
-   "fieldtype": "Currency",
-   "label": "Total Rewards",
-   "read_only": 1
   }
  ],
  "istable": 0,
@@ -102,7 +79,7 @@
  "modified": "2024-01-01 00:00:00.000000",
  "modified_by": "Administrator",
  "module": "restoration",
- "name": "Citizen",
+ "name": "Government Department",
  "owner": "Administrator",
  "permissions": [
   {
@@ -125,7 +102,7 @@
    "print": 1,
    "read": 1,
    "report": 1,
-   "role": "Property Administrator",
+   "role": "Property Manager",
    "share": 1,
    "write": 1
   },
@@ -137,14 +114,9 @@
    "print": 1,
    "read": 1,
    "report": 1,
-   "role": "Government Officer",
+   "role": "Approver",
    "share": 1,
    "write": 1
-  },
-  {
-   "read": 1,
-   "role": "Citizen",
-   "share": 1
   }
  ],
  "quick_entry": 1,

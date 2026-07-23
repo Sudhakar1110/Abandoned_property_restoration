@@ -84,7 +84,7 @@
  "modified": "2024-01-01 00:00:00.000000",
  "modified_by": "Administrator",
  "module": "restoration",
- "name": "Inspector",
+ "name": "Field Agent",
  "owner": "Administrator",
  "permissions": [
   {
@@ -107,7 +107,7 @@
    "print": 1,
    "read": 1,
    "report": 1,
-   "role": "Property Administrator",
+   "role": "Property Manager",
    "share": 1,
    "write": 1
   },
@@ -125,7 +125,7 @@
   },
   {
    "read": 1,
-   "role": "Inspector",
+   "role": "Field Agent",
    "share": 1
   }
  ],

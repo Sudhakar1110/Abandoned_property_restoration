@@ -49,7 +49,7 @@ def create_reports():
         {"name": "Property Timeline Report", "ref_doctype": "Property Timeline"},
         {"name": "Restoration Cost Report", "ref_doctype": "Project Cost"},
         {"name": "Restoration Status Report", "ref_doctype": "Restoration Project"},
-        {"name": "Top Contributors Report", "ref_doctype": "Citizen Property Report"},
+        {"name": "Top Contributors Report", "ref_doctype": "Client Property Report"},
     ]
     
     for report_data in reports:
@@ -78,9 +78,9 @@ def create_reports():
 def create_roles():
     """Create custom roles required by the app before workspace creation."""
     roles = [
-        {"role_name": "Property Administrator", "desk_access": 1},
+        {"role_name": "Property Manager", "desk_access": 1},
         {"role_name": "Restoration Manager", "desk_access": 1},
-        {"role_name": "Government Officer", "desk_access": 1},
+        {"role_name": "Approver", "desk_access": 1},
         {"role_name": "View Only User", "desk_access": 0},
     ]
     for role_data in roles:
@@ -102,11 +102,11 @@ def create_workspace():
             "data": {
                 "card_name": "Masters",
                 "links": [
-                    {"type": "link", "label": "Citizen", "link_to": "Citizen", "link_type": "DocType"},
+                    {"type": "link", "label": "Client", "link_to": "Client", "link_type": "DocType"},
                     {"type": "link", "label": "Contractor", "link_to": "Contractor", "link_type": "DocType"},
                     {"type": "link", "label": "Engineer", "link_to": "Engineer", "link_type": "DocType"},
-                    {"type": "link", "label": "Inspector", "link_to": "Inspector", "link_type": "DocType"},
-                    {"type": "link", "label": "Government Department", "link_to": "Government Department", "link_type": "DocType"},
+                    {"type": "link", "label": "Field Agent", "link_to": "Field Agent", "link_type": "DocType"},
+                    {"type": "link", "label": "Department", "link_to": "Department", "link_type": "DocType"},
                     {"type": "link", "label": "Location", "link_to": "Location", "link_type": "DocType"},
                     {"type": "link", "label": "District", "link_to": "District", "link_type": "DocType"},
                     {"type": "link", "label": "City", "link_to": "City", "link_type": "DocType"},
@@ -133,7 +133,7 @@ def create_workspace():
                 "card_name": "Transactions",
                 "links": [
                     {"type": "link", "label": "Abandoned Property", "link_to": "Abandoned Property", "link_type": "DocType"},
-                    {"type": "link", "label": "Citizen Property Report", "link_to": "Citizen Property Report", "link_type": "DocType"},
+                    {"type": "link", "label": "Client Property Report", "link_to": "Client Property Report", "link_type": "DocType"},
                     {"type": "link", "label": "Property Inspection", "link_to": "Property Inspection", "link_type": "DocType"},
                     {"type": "link", "label": "Inspection Report", "link_to": "Inspection Report", "link_type": "DocType"},
                     {"type": "link", "label": "Restoration Project", "link_to": "Restoration Project", "link_type": "DocType"},
@@ -214,12 +214,12 @@ def create_workspace():
     
     # Masters section
     add_card_break("Masters")
-    for item in ["Citizen", "Contractor", "Engineer", "Inspector", "Government Department", "Location", "District", "City", "State", "Country", "Property Category", "Property Type", "Restoration Category", "Material Category", "Material Condition", "Reward Type", "Ownership Type", "Risk Level", "Restoration Status", "Project Priority"]:
+    for item in ["Client", "Contractor", "Engineer", "Field Agent", "Department", "Location", "District", "City", "State", "Country", "Property Category", "Property Type", "Restoration Category", "Material Category", "Material Condition", "Reward Type", "Ownership Type", "Risk Level", "Restoration Status", "Project Priority"]:
         add_link(item, item, "DocType")
     
     # Transactions section
     add_card_break("Transactions")
-    for item in ["Abandoned Property", "Citizen Property Report", "Property Inspection", "Inspection Report", "Restoration Project", "Project Assignment", "Restoration Progress", "Before After Visualization", "Material Salvage", "Material Exchange", "Material Sale", "Digital Time Capsule", "Historical Record", "Maintenance Schedule", "Maintenance Visit", "Property Ownership Record", "Property Timeline", "Property Images", "Property Documents", "Reward Claim", "Project Cost", "Expense Entry"]:
+    for item in ["Abandoned Property", "Client Property Report", "Property Inspection", "Inspection Report", "Restoration Project", "Project Assignment", "Restoration Progress", "Before After Visualization", "Material Salvage", "Material Exchange", "Material Sale", "Digital Time Capsule", "Historical Record", "Maintenance Schedule", "Maintenance Visit", "Property Ownership Record", "Property Timeline", "Property Images", "Property Documents", "Reward Claim", "Project Cost", "Expense Entry"]:
         add_link(item, item, "DocType")
     
     # Reports section
@@ -251,7 +251,7 @@ def create_workspace():
         workspace.content = frappe.json.dumps(workspace_content)
         
         # Add roles
-        roles = ["System Manager", "Property Administrator", "Restoration Manager", "Government Officer", "View Only User"]
+        roles = ["System Manager", "Property Manager", "Restoration Manager", "Approver", "View Only User"]
         for role in roles:
             workspace.append("roles", {"role": role})
         

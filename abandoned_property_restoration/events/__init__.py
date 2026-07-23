@@ -1,30 +1,30 @@
 import frappe
 
 
-def citizen_property_report_on_update(doc, method):
+def client_property_report_on_update(doc, method):
     if doc.has_value_changed("status"):
         if doc.status == "Verified":
             send_notification(
                 doc,
                 "Property Verification Completed",
-                "Property Administrator",
+                "Property Manager",
                 f"Property {doc.property_name} has been verified"
             )
         elif doc.status == "Inspection Scheduled":
             send_notification(
                 doc,
                 "Inspection Scheduled",
-                "Inspector",
+                "Field Agent",
                 f"Inspection scheduled for {doc.property_name}"
             )
 
 
-def citizen_property_report_after_insert(doc, method):
+def client_property_report_after_insert(doc, method):
     send_notification(
         doc,
         "New Property Reported",
-        "Property Administrator",
-        f"New property {doc.property_name} reported by {doc.citizen_name}"
+        "Property Manager",
+        f"New property {doc.property_name} reported by {doc.client_name}"
     )
 
 
@@ -34,14 +34,14 @@ def property_inspection_on_update(doc, method):
             send_notification(
                 doc,
                 "Inspection Completed",
-                "Property Administrator",
+                "Property Manager",
                 f"Inspection completed for {doc.property}"
             )
         elif doc.inspection_status == "In Progress":
             send_notification(
                 doc,
                 "Inspection Started",
-                "Property Administrator",
+                "Property Manager",
                 f"Inspection started for {doc.property}"
             )
 
@@ -50,7 +50,7 @@ def property_inspection_after_insert(doc, method):
     send_notification(
         doc,
         "Inspection Assigned",
-        "Inspector",
+        "Field Agent",
         f"New inspection assigned for {doc.property}"
     )
 
@@ -61,14 +61,14 @@ def restoration_project_on_update(doc, method):
             send_notification(
                 doc,
                 "Restoration Started",
-                "Property Administrator",
+                "Property Manager",
                 f"Restoration project {doc.name} has started"
             )
         elif doc.project_status == "Completed":
             send_notification(
                 doc,
                 "Restoration Completed",
-                "Property Administrator",
+                "Property Manager",
                 f"Restoration project {doc.name} has been completed"
             )
             update_abandoned_property_status(doc.property, "Restored")
@@ -77,9 +77,8 @@ def restoration_project_on_update(doc, method):
 def restoration_project_after_insert(doc, method):
     send_notification(
         doc,
-        "Restoration Started",
-        "Property Administrator",
-        f"New restoration project {doc.name} created"
+        "Restoration Started",                "Property Manager",
+                f"New restoration project {doc.name} created"
     )
 
 
@@ -119,7 +118,7 @@ def material_sale_on_update(doc, method):
             send_notification(
                 doc,
                 "Material Sold",
-                "Property Administrator",
+                "Property Manager",
                 f"Material sale {doc.name} completed"
             )
 
@@ -134,14 +133,14 @@ def reward_claim_on_update(doc, method):
             send_notification(
                 doc,
                 "Reward Approved",
-                "Citizen",
+                "Client",
                 f"Your reward claim {doc.name} has been approved"
             )
         elif doc.claim_status == "Paid":
             send_notification(
                 doc,
                 "Reward Paid",
-                "Citizen",
+                "Client",
                 f"Your reward for {doc.report_name} has been paid"
             )
 
@@ -156,7 +155,7 @@ def historical_record_on_update(doc, method):
             send_notification(
                 doc,
                 "Historical Record Added",
-                "Property Administrator",
+                "Property Manager",
                 f"New historical record {doc.record_title} archived"
             )
 
@@ -186,14 +185,14 @@ def abandoned_property_on_update(doc, method):
             send_notification(
                 doc,
                 "Restoration Started",
-                "Property Administrator",
+                "Property Manager",
                 f"Restoration started for property {doc.property_name}"
             )
         elif doc.restoration_status == "Completed":
             send_notification(
                 doc,
                 "Restoration Completed",
-                "Property Administrator",
+                "Property Manager",
                 f"Property {doc.property_name} restoration completed"
             )
 

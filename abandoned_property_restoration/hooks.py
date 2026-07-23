@@ -10,9 +10,9 @@ app_version = "1.0.0"
 required_apps = ["erpnext"]
 
 doc_events = {
-    "Citizen Property Report": {
-        "on_update": "abandoned_property_restoration.events.citizen_property_report_on_update",
-        "after_insert": "abandoned_property_restoration.events.citizen_property_report_after_insert",
+    "Client Property Report": {
+        "on_update": "abandoned_property_restoration.events.client_property_report_on_update",
+        "after_insert": "abandoned_property_restoration.events.client_property_report_after_insert",
     },
     "Property Inspection": {
         "on_update": "abandoned_property_restoration.events.property_inspection_on_update",
@@ -104,7 +104,7 @@ fixtures = [
 override_whitelisted_methods = {}
 
 has_permission = {
-    "Citizen Property Report": "abandoned_property_restoration.permissions.citizen_property_report_has_permission",
+    "Client Property Report": "abandoned_property_restoration.permissions.client_property_report_has_permission",
     "Abandoned Property": "abandoned_property_restoration.permissions.abandoned_property_has_permission",
     "Property Inspection": "abandoned_property_restoration.permissions.property_inspection_has_permission",
     "Restoration Project": "abandoned_property_restoration.permissions.restoration_project_has_permission",
@@ -120,7 +120,7 @@ has_permission = {
 }
 
 permission_query_conditions = {
-    "Citizen Property Report": "abandoned_property_restoration.permissions.citizen_property_report_permission_query",
+    "Client Property Report": "abandoned_property_restoration.permissions.client_property_report_permission_query",
     "Abandoned Property": "abandoned_property_restoration.permissions.abandoned_property_permission_query",
     "Property Inspection": "abandoned_property_restoration.permissions.property_inspection_permission_query",
 }

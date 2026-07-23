@@ -10,11 +10,11 @@
   "report_id",
   "property_name",
   "property_type",
-  "citizen_section",
-  "citizen",
-  "citizen_name",
-  "citizen_email",
-  "citizen_phone",
+  "client_section",
+  "client",
+  "client_name",
+  "client_email",
+  "client_phone",
   "property_location",
   "address",
   "district",
@@ -38,7 +38,7 @@
   "inspection_scheduled",
   "inspection_date",
   "inspection_section",
-  "inspector",
+  "field_agent",
   "approval_section",
   "approved_by",
   "approval_date",
@@ -75,33 +75,33 @@
    "options": "Property Type"
   },
   {
-   "fieldname": "citizen_section",
+   "fieldname": "client_section",
    "fieldtype": "Section Break",
-   "label": "Citizen Information"
+   "label": "Client Information"
   },
   {
-   "fieldname": "citizen",
+   "fieldname": "client",
    "fieldtype": "Link",
-   "label": "Citizen",
-   "options": "Citizen"
+   "label": "Client",
+   "options": "Client"
   },
   {
-   "fieldname": "citizen_name",
+   "fieldname": "client_name",
    "fieldtype": "Data",
    "in_list_view": 1,
-   "label": "Citizen Name",
+   "label": "Client Name",
    "reqd": 1
   },
   {
-   "fieldname": "citizen_email",
+   "fieldname": "client_email",
    "fieldtype": "Data",
-   "label": "Citizen Email",
+   "label": "Client Email",
    "options": "Email"
   },
   {
-   "fieldname": "citizen_phone",
+   "fieldname": "client_phone",
    "fieldtype": "Data",
-   "label": "Citizen Phone"
+   "label": "Client Phone"
   },
   {
    "fieldname": "property_location",
@@ -158,7 +158,7 @@
    "fieldtype": "Select",
    "in_list_view": 1,
    "label": "Ownership Status",
-   "options": "\nUnknown\nPrivate\nGovernment\nReligious\nCommercial"
+   "options": "\nUnknown\nPrivate\nCompany\nReligious\nCommercial"
   },
   {
    "fieldname": "owner_name",
@@ -234,10 +234,10 @@
    "label": "Inspection"
   },
   {
-   "fieldname": "inspector",
+   "fieldname": "field_agent",
    "fieldtype": "Link",
-   "label": "Inspector",
-   "options": "Inspector"
+   "label": "Field Agent",
+   "options": "Field Agent"
   },
   {
    "fieldname": "approval_section",
@@ -307,7 +307,7 @@
  "modified": "2024-01-01 00:00:00.000000",
  "modified_by": "Administrator",
  "module": "restoration",
- "name": "Citizen Property Report",
+ "name": "Client Property Report",
  "owner": "Administrator",
  "permissions": [
   {
@@ -330,7 +330,7 @@
    "print": 1,
    "read": 1,
    "report": 1,
-   "role": "Property Administrator",
+   "role": "Property Manager",
    "share": 1,
    "write": 1
   },
@@ -341,7 +341,7 @@
    "print": 1,
    "read": 1,
    "report": 1,
-   "role": "Citizen",
+   "role": "Client",
    "share": 1
   },
   {
@@ -351,7 +351,7 @@
    "print": 1,
    "read": 1,
    "report": 1,
-   "role": "Government Officer",
+   "role": "Approver",
    "share": 1
   },
   {

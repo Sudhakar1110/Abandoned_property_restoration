@@ -78,8 +78,8 @@
    "fieldname": "inspector",
    "fieldtype": "Link",
    "in_list_view": 1,
-   "label": "Inspector",
-   "options": "Inspector",
+   "label": "Field Agent",
+   "options": "Field Agent",
    "reqd": 1
   },
   {
@@ -341,7 +341,7 @@
    "print": 1,
    "read": 1,
    "report": 1,
-   "role": "Property Administrator",
+   "role": "Property Manager",
    "share": 1,
    "write": 1
   },
@@ -353,7 +353,7 @@
    "print": 1,
    "read": 1,
    "report": 1,
-   "role": "Inspector",
+   "role": "Field Agent",
    "share": 1,
    "write": 1
   },

@@ -8,19 +8,19 @@
  "filter_meta": 0,
  "is_standard": 1,
  "is_training_notification": 0,
- "message": "New property report {{ doc.name }} has been submitted by {{ doc.citizen_name }}.",
+ "message": "New property report {{ doc.name }} has been submitted by {{ doc.client_name }}.",
  "modified": "2024-01-01 00:00:00.000000",
  "modified_by": "Administrator",
  "module": "restoration",
  "name": "New Property Report",
  "owner": "Administrator",
- "parent": "Citizen Property Report",
+ "parent": "Client Property Report",
  "parentfield": "notifications",
  "parenttype": "DocType",
  "recipients": [
   {
    "receiver_by_document_field": "owner",
-   "receiver_by_role": "Property Administrator"
+   "receiver_by_role": "Property Manager"
   }
  ],
  "sendAlertForDocument": 0,

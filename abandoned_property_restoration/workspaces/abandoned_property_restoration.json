@@ -11,16 +11,14 @@
  "roles": [
   {
    "role": "System Manager"
-  },
-  {
-   "role": "Property Administrator"
-  },
+  },   {
+      "role": "Property Manager"
+   },
   {
    "role": "Restoration Manager"
-  },
-  {
-   "role": "Government Officer"
-  },
+  },   {
+      "role": "Approver"
+   },
   {
    "role": "View Only User"
   }
@@ -62,9 +60,9 @@
    "col": 3
   },
   {
-   "label": "Citizen",
+   "label": "Client",
    "link_type": "DocType",
-   "link_to": "Citizen",
+   "link_to": "Client",
    "icon": "fa fa-user",
    "col": 3
   },
@@ -83,16 +81,16 @@
    "col": 3
   },
   {
-   "label": "Inspector",
+   "label": "Field Agent",
    "link_type": "DocType",
-   "link_to": "Inspector",
+   "link_to": "Field Agent",
    "icon": "fa fa-search",
    "col": 3
   },
   {
-   "label": "Government Department",
+   "label": "Department",
    "link_type": "DocType",
-   "link_to": "Government Department",
+   "link_to": "Department",
    "icon": "fa fa-institution",
    "col": 3
   },
@@ -111,9 +109,9 @@
    "col": 3
   },
   {
-   "label": "Citizen Property Report",
+   "label": "Client Property Report",
    "link_type": "DocType",
-   "link_to": "Citizen Property Report",
+   "link_to": "Client Property Report",
    "icon": "fa fa-flag",
    "col": 3
   },

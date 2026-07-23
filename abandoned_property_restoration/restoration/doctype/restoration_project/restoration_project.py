@@ -27,7 +27,7 @@ class RestorationProject(Document):
     
     def on_submit(self):
         self.update_property_status()
-        self.update_citizen_report()
+        self.update_client_report()
     
     def update_property_status(self):
         if self.project_status == "Completed":
@@ -53,17 +53,17 @@ class RestorationProject(Document):
                 update_modified=False
             )
     
-    def update_citizen_report(self):
-        if self.citizen_report:
+    def update_client_report(self):
+        if self.client_report:
             frappe.db.set_value(
-                "Citizen Property Report",
+                "Client Property Report",
                 self.citizen_report,
                 "assigned_project",
                 self.name,
                 update_modified=False
             )
             frappe.db.set_value(
-                "Citizen Property Report",
+                "Client Property Report",
                 self.citizen_report,
                 "status",
                 "Restoration Assigned",

@@ -19,8 +19,8 @@
  "parenttype": "DocType",
  "recipients": [
   {
-   "receiver_by_document_field": "inspector",
-   "receiver_by_role": "Inspector"
+   "receiver_by_document_field": "field_agent",
+   "receiver_by_role": "Field Agent"
   }
  ],
  "sendAlertForDocument": 0,

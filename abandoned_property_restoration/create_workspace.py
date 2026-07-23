@@ -44,7 +44,7 @@ def create_abandoned_property_workspace():
         {"label": "Government Department", "link_type": "DocType", "link_to": "Government Department"},
         {"label": "Reward Type", "link_type": "DocType", "link_to": "Reward Type"},
         {"label": "Abandoned Property", "link_type": "DocType", "link_to": "Abandoned Property"},
-        {"label": "Citizen Property Report", "link_type": "DocType", "link_to": "Citizen Property Report"},
+        {"label": "Client Property Report", "link_type": "DocType", "link_to": "Client Property Report"},
         {"label": "Property Inspection", "link_type": "DocType", "link_to": "Property Inspection"},
         {"label": "Restoration Project", "link_type": "DocType", "link_to": "Restoration Project"},
         {"label": "Material Salvage", "link_type": "DocType", "link_to": "Material Salvage"},
