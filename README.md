@@ -1,10 +1,12 @@
-# 🏚️ Abandoned Property Restoration
+# 🏢 Abandoned Property Restoration
 
-A comprehensive **Frappe/ERPNext** application for identifying, restoring, preserving, and managing abandoned properties. Built for government departments, municipal corporations, and urban development authorities.
+A comprehensive **Frappe/ERPNext** application for identifying, restoring, preserving, and managing abandoned properties. Built for restoration companies, property developers, and private enterprises.
 
 ## 📋 Overview
 
-This application provides an end-to-end solution for managing the lifecycle of abandoned properties — from citizen reporting and inspection through restoration, material salvage, and long-term maintenance. It includes robust reporting, a digital time capsule for historical preservation, and a reward system to encourage citizen participation.
+This application provides an end-to-end solution for managing the lifecycle of abandoned properties — from client reporting and inspection through restoration, material salvage, and long-term maintenance. It includes robust reporting, a digital time capsule for historical preservation, and a reward system to encourage community participation.
+
+> 🔄 **Context**: This application was originally designed for government use and has been **fully converted to a private/business-oriented context**. All government terminology has been replaced with private-sector equivalents.
 
 ---
 
@@ -16,21 +18,21 @@ This application provides an end-to-end solution for managing the lifecycle of a
 - Maintain complete property timelines, images, and document records
 - Track ownership history and legal status
 
-### 👥 Citizen Engagement
-- Allow citizens to report abandoned properties via **Citizen Property Report**
+### 👥 Client Engagement
+- Allow clients to report abandoned properties via **Client Property Report**
 - Reward system to incentivize community participation
-- Track contributions and citizen recognition
+- Track contributions and client recognition
 
 ### 🔍 Inspection System
 - Conduct thorough **Property Inspections** with detailed assessment reports
-- Assign inspectors and track inspection schedules
+- Assign field agents and track inspection schedules
 - Document findings with structured inspection reports
 
 ### 🛠️ Restoration Projects
 - Create and manage restoration projects with timelines and budgets
 - Track **Restoration Progress** with milestone-based updates
 - **Before/After Visualization** to document transformation
-- Assign project teams (Engineers, Contractors, Inspectors)
+- Assign project teams (Engineers, Contractors, Field Agents)
 - Monitor project costs and expense entries
 
 ### ♻️ Material Management
@@ -47,7 +49,7 @@ This application provides an end-to-end solution for managing the lifecycle of a
 | Report | Description |
 |--------|-------------|
 | **Abandoned Property Summary** | Overview of all abandoned properties with status and risk levels |
-| **Citizen Reward Report** | Track rewards issued to citizens for reporting properties |
+| **Client Reward Report** | Track rewards issued to clients for reporting properties |
 | **Digital Archive Report** | Browse the digital time capsule contents |
 | **District Wise Restoration Report** | Restoration activity grouped by district |
 | **Historical Records Report** | Historical documentation and records |
@@ -59,7 +61,7 @@ This application provides an end-to-end solution for managing the lifecycle of a
 | **Property Timeline Report** | Chronological events for each property |
 | **Restoration Cost Report** | Project cost breakdowns and analysis |
 | **Restoration Status Report** | Current status of all restoration projects |
-| **Top Contributors Report** | Most active citizen contributors |
+| **Top Contributors Report** | Most active contributors from all clients |
 
 ### 🔔 Notifications & Automation
 - Automated inspection due reminders
@@ -72,9 +74,9 @@ This application provides an end-to-end solution for managing the lifecycle of a
 | Role | Access Level |
 |------|-------------|
 | **System Manager** | Full administrative access |
-| **Property Administrator** | Manage properties, inspections, and restoration projects |
+| **Property Manager** | Manage properties, inspections, and restoration projects |
 | **Restoration Manager** | Oversee restoration workflows and material management |
-| **Government Officer** | View and approve reports and reward claims |
+| **Approver** | View and approve reports and reward claims |
 | **View Only User** | Read-only access to dashboards and reports |
 
 ---
@@ -86,11 +88,11 @@ The application includes **44 DocTypes** organized into Master Data and Transact
 ### Master Data (20)
 | DocType | Purpose |
 |---------|---------|
-| Citizen | Community members who report properties |
+| Client | Individuals or entities who report properties |
 | Contractor | Restoration contractors and vendors |
 | Engineer | Project engineers and technical staff |
-| Inspector | Property inspection officers |
-| Government Department | Municipal/government departments |
+| Field Agent | On-site property inspection officers |
+| Department | Organizational departments |
 | Location | Geographic location references |
 | District | Administrative districts |
 | City | City/municipal boundaries |
@@ -101,8 +103,8 @@ The application includes **44 DocTypes** organized into Master Data and Transact
 | Restoration Category | Type of restoration needed |
 | Material Category | Classification of salvaged materials |
 | Material Condition | Condition assessment (Excellent, Good, Fair, Poor, etc.) |
-| Reward Type | Reward categories for citizen reports |
-| Ownership Type | Private, Government, Mixed, Unknown |
+| Reward Type | Reward categories for property reports |
+| Ownership Type | Private, Company, Corporate, Trust, Individual |
 | Risk Level | Safety/structural risk assessment |
 | Restoration Status | Workflow stages of restoration |
 | Project Priority | Priority levels for projects |
@@ -111,7 +113,7 @@ The application includes **44 DocTypes** organized into Master Data and Transact
 | DocType | Purpose |
 |---------|---------|
 | Abandoned Property | Core property registration record |
-| Citizen Property Report | Citizen-submitted property reports |
+| Client Property Report | Client-submitted property reports |
 | Property Inspection | Inspection scheduling and execution |
 | Inspection Report | Detailed inspection findings |
 | Restoration Project | Project creation and management |
@@ -129,7 +131,7 @@ The application includes **44 DocTypes** organized into Master Data and Transact
 | Property Timeline | Chronological property events |
 | Property Images | Photographic documentation |
 | Property Documents | Legal and technical documents |
-| Reward Claim | Citizen reward requests and processing |
+| Reward Claim | Client reward requests and processing |
 | Project Cost | Budget and cost tracking |
 | Expense Entry | Project expense recording |
 
@@ -236,6 +238,23 @@ abandoned_property_restoration/
 ├── workspaces/          # Workspace definitions
 └── www/                 # Web pages
 ```
+
+---
+
+## 🍃 Conversion History
+
+This application was originally designed with government terminology and has been **fully converted to a private/business context** with the following changes:
+
+| Old (Government) | New (Private) |
+|-----------------|---------------|
+| Citizen → | **Client** |
+| Citizen Property Report → | **Client Property Report** |
+| Inspector → | **Field Agent** |
+| Government Department → | **Department** |
+| Property Administrator (role) → | **Property Manager** |
+| Government Officer (role) → | **Approver** |
+
+All doctype definitions, permissions, event handlers, workspace, notifications, and report configurations have been updated to reflect the new naming convention.
 
 ---
 
